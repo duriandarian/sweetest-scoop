@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: The Sweetest Scoop party game API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: sweetest-scoop
+    description: Persistent multiplayer game rooms
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /rooms:
+    post:
+      operationId: createRoom
+      tags: [sweetest-scoop]
+      summary: Create a room and host session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRoomInput"
+      responses:
+        "201":
+          description: Room created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRoom"
+  /rooms/{code}:
+    get:
+      operationId: getRoom
+      tags: [sweetest-scoop]
+      summary: Get current room state
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      responses:
+        "200":
+          description: Room state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+        "404":
+          description: Room not found
+  /rooms/{code}/players:
+    post:
+      operationId: joinRoom
+      tags: [sweetest-scoop]
+      summary: Join a room as a guest
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JoinRoomInput"
+      responses:
+        "201":
+          description: Player joined
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRoom"
+  /rooms/{code}/questions:
+    put:
+      operationId: updateQuestions
+      tags: [sweetest-scoop]
+      summary: Replace the room's ten questions before starting
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuestionListInput"
+      responses:
+        "200":
+          description: Questions saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/start:
+    post:
+      operationId: startGame
+      tags: [sweetest-scoop]
+      summary: Start the game
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      responses:
+        "200":
+          description: Game started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/answer:
+    put:
+      operationId: submitAnswer
+      tags: [sweetest-scoop]
+      summary: Submit or update the current answer
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerInput"
+      responses:
+        "200":
+          description: Answer saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/reveal:
+    post:
+      operationId: revealAnswers
+      tags: [sweetest-scoop]
+      summary: Reveal grouped answers and score the round
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      responses:
+        "200":
+          description: Answers revealed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/next:
+    post:
+      operationId: nextQuestion
+      tags: [sweetest-scoop]
+      summary: Advance to the next question or finish
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      responses:
+        "200":
+          description: Round advanced
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+components:
+  parameters:
+    RoomCode:
+      name: code
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 4
+        maxLength: 8
+    SessionToken:
+      name: X-Session-Token
+      in: header
+      required: false
+      schema:
+        type: string
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    CreateRoomInput:
+      type: object
+      required: [hostName]
+      properties:
+        hostName: { type: string, minLength: 1, maxLength: 32 }
+    JoinRoomInput:
+      type: object
+      required: [displayName]
+      properties:
+        displayName: { type: string, minLength: 1, maxLength: 32 }
+    QuestionListInput:
+      type: object
+      required: [questions]
+      properties:
+        questions:
+          type: array
+          minItems: 10
+          maxItems: 10
+          items: { type: string, minLength: 1, maxLength: 280 }
+    AnswerInput:
+      type: object
+      required: [answer]
+      properties:
+        answer: { type: string, minLength: 1, maxLength: 120 }
+    SessionRoom:
+      type: object
+      required: [sessionToken, room]
+      properties:
+        sessionToken: { type: string }
+        room: { $ref: "#/components/schemas/RoomState" }
+    RoomState:
+      type: object
+      required: [code, phase, round, questionCount, questions, players, answers, standings, isHost, submitted]
+      properties:
+        code: { type: string }
+        phase: { type: string, enum: [lobby, answering, revealed, finished] }
+        round: { type: integer, minimum: 0, maximum: 10 }
+        questionCount: { type: integer, enum: [10] }
+        questions:
+          type: array
+          items: { type: string }
+        currentQuestion: { type: ["string", "null"] }
+        players:
+          type: array
+          items: { $ref: "#/components/schemas/RoomPlayer" }
+        answers:
+          type: array
+          items: { $ref: "#/components/schemas/GroupedAnswer" }
+        standings:
+          type: array
+          items: { $ref: "#/components/schemas/Standing" }
+        isHost: { type: boolean }
+        submitted: { type: boolean }
+        submittedCount: { type: integer }
+    RoomPlayer:
+      type: object
+      required: [id, displayName, isHost]
+      properties:
+        id: { type: string }
+        displayName: { type: string }
+        isHost: { type: boolean }
+    GroupedAnswer:
+      type: object
+      required: [answer, players, count, points, tier, ingredient]
+      properties:
+        answer: { type: string }
+        players:
+          type: array
+          items: { type: string }
+        count: { type: integer }
+        points: { type: integer, minimum: 0, maximum: 100 }
+        tier: { type: string }
+        ingredient: { type: string }
+    Standing:
+      type: object
+      required: [playerId, displayName, points, discoveries]
+      properties:
+        playerId: { type: string }
+        displayName: { type: string }
+        points: { type: integer }
+        discoveries: { type: integer }
+

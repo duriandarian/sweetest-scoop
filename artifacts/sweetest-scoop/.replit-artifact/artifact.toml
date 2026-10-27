@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "The Sweetest Scoop"
+description = "A multiplayer shaved-ice party game for Daniel and Amy’s engagement party at Meet Fresh. Guests join a room, submit answers, and watch rare answers dig deeper into a persistent illustrated dessert scene."
+version = "1.0.0"
+id = "artifacts/sweetest-scoop"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19489
+
+[services.development]
+run = "pnpm --filter @workspace/sweetest-scoop run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sweetest-scoop", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/sweetest-scoop/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19489"
+BASE_PATH = "/"
