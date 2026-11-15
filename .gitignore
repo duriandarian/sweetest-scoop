@@ -53,3 +53,18 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Credentials, local databases, and generated recordings
+.env
+.env.*
+!.env.example
+!.env.sample
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql.gz
+/generated-artifacts/
+/test-results/
+/playwright-report/
+*.webm

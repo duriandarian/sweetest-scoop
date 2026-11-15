@@ -20,6 +20,7 @@ import { ArrowRight, Check, Copy, Crown, DoorOpen, RotateCcw, Send, Users, Volum
 import { Link, Route, Switch, useLocation, useParams, Router as WouterRouter } from 'wouter';
 import { ExcavationScene } from './components/ExcavationScene';
 import { IngredientBadge } from './components/IngredientBadge';
+import { StoryIntro } from './components/story/StoryIntro';
 import NotFound from '@/pages/not-found';
 
 const queryClient = new QueryClient();
@@ -82,16 +83,13 @@ function Home() {
       onError: (cause) => setError(cause instanceof Error ? cause.message : 'That room could not be found. Check the code and try again.'),
     });
   };
-  return <BrandShell>
-    <section className="panel hero-panel arrive">
-      <div className="hero-copy">
-        <span className="eyebrow">a party game for two very sweet people</span>
-        <h1 className="display-title">Dig up the<br/><em>good stuff.</em></h1>
-        <p className="body-copy">Everyone knows a different little piece of Daniel and Amy. Answer together, then excavate the bowl to see what the room remembers.</p>
-        <div className="button-row"><Link href="/solo" className="btn btn-soft" data-testid="link-solo">Try a solo scoop <ArrowRight size={16}/></Link></div>
-      </div>
-      <DessertIllustration/>
-    </section>
+  return <>
+    <StoryIntro onJoin={() => document.getElementById('join-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}/>
+    <BrandShell>
+    <div className="home-intro arrive" id="join-game">
+      <div><span className="eyebrow">a party game for two very sweet people</span><h1 className="form-title" style={{fontSize:'clamp(26px,3.4vw,34px)',marginTop:8}}>Pull up a chair.</h1></div>
+      <Link href="/solo" className="btn btn-soft" data-testid="link-solo">Try a solo scoop <ArrowRight size={16}/></Link>
+    </div>
     <section className="home-forms" aria-label="Create or join a game">
       <form className="panel form-card" onSubmit={onCreate}>
         <p className="section-kicker">Gather the room</p><h2 className="form-title">Host a new game</h2><p className="form-subtitle">Start the bowl, invite everyone in.</p>
@@ -105,34 +103,8 @@ function Home() {
       </form>
     </section>
     {error && <div className="error-box" role="alert" data-testid="status-home-error">{error}</div>}
-  </BrandShell>;
-}
-
-function DessertIllustration() {
-  return <div className="dessert-stage" aria-label="Illustration of a colorful shaved ice bowl">
-    <svg className="ice-art" viewBox="0 0 440 370" role="img" aria-label="A tall shaved ice bowl with fruit, mochi, and a wooden spoon">
-      <defs>
-        <linearGradient id="ice" x1="0" y1="0" x2=".8" y2="1"><stop stopColor="#fffdf2"/><stop offset=".45" stopColor="#f8e9d1"/><stop offset="1" stopColor="#d7b28b"/></linearGradient>
-        <linearGradient id="bowl" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#e78d92"/><stop offset="1" stopColor="#b85f6c"/></linearGradient>
-        <linearGradient id="spoonwood" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#b7784e"/><stop offset=".5" stopColor="#e2b178"/><stop offset="1" stopColor="#9a613e"/></linearGradient>
-      </defs>
-      <ellipse cx="222" cy="313" rx="141" ry="23" fill="#a87756" opacity=".2"/>
-      <path d="M94 218 Q220 262 346 218 L322 306 Q220 342 118 306Z" fill="url(#bowl)" stroke="#684c41" strokeWidth="4"/>
-      <path d="M94 218 Q220 261 346 218 Q220 274 94 218Z" fill="#f3c87d" stroke="#684c41" strokeWidth="4"/>
-      <path d="M104 203 Q117 133 171 112 Q196 70 245 94 Q300 88 326 143 Q343 176 337 216 Q220 265 104 203Z" fill="url(#ice)" stroke="#684c41" strokeWidth="4"/>
-      <path d="M124 193 Q151 203 180 209 M142 158q15 7 30 6m117 33q16-7 28-18M183 122q20 4 36-1" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round" opacity=".8"/>
-      <path d="M181 129c-5-23 6-39 21-41 16-2 24 14 17 31-6 14-22 17-38 10Z" fill="#c889cf" stroke="#684c41" strokeWidth="3"/><path d="M187 120q14-17 30-7" fill="none" stroke="#eed6f0" strokeWidth="4" strokeLinecap="round"/>
-      <path d="M126 184c-3-22 10-35 24-32 13 4 16 19 6 32-8 10-20 10-30 0Z" fill="#e9878f" stroke="#684c41" strokeWidth="3"/><path d="M134 171q6-9 14-7" stroke="#ffd1c8" strokeWidth="3" fill="none"/>
-      <path d="M270 143c-1-18 12-30 25-27 14 3 18 18 9 31-8 11-22 9-34-4Z" fill="#f0bf58" stroke="#684c41" strokeWidth="3"/><path d="M280 136q7-9 16-6" fill="none" stroke="#ffebb1" strokeWidth="3"/>
-      <circle cx="235" cy="177" r="17" fill="#5d3b33" stroke="#684c41" strokeWidth="3"/><circle cx="235" cy="177" r="6" fill="#d9a567"/>
-      <circle cx="207" cy="200" r="15" fill="#f3d9b8" stroke="#684c41" strokeWidth="3"/><circle cx="207" cy="200" r="4" fill="#d5af88"/>
-      <path d="M340 83c-5-20 5-37 20-36 16 1 22 18 12 34-8 13-21 12-32 2Z" fill="url(#spoonwood)" stroke="#684c41" strokeWidth="4"/><path d="M361 105 277 209" stroke="url(#spoonwood)" strokeWidth="15" strokeLinecap="round"/><path d="M361 105 277 209" stroke="#684c41" strokeWidth="3" strokeLinecap="round"/>
-      <path d="M114 230q105 28 211 0M130 276q87 31 171 6" fill="none" stroke="#f3b3ad" strokeWidth="5" opacity=".75"/>
-      <path d="M90 173q-12-14-18 0m278 21q9-16 17-8" fill="none" stroke="#986b59" strokeWidth="3" strokeLinecap="round"/>
-      <path d="m67 128 4 9 10 1-8 6 3 9-9-5-8 5 2-9-7-6 10-1Z" fill="#e3b45e"/>
-      <path d="m362 253 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1Z" fill="#9c83b2"/>
-    </svg>
-  </div>;
+    </BrandShell>
+  </>;
 }
 
 function RoomPage() {

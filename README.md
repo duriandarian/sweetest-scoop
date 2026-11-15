@@ -2,6 +2,8 @@
 
 A multiplayer shaved-ice party game for Daniel and Amy’s engagement party at Meet Fresh. Guests join a room without accounts, answer ten host-written questions, and watch rare answers dig deeper into the dessert.
 
+The homepage introduces Bobi, a boba companion, in an automatic mango-sago photo tutorial. Increasingly niche example answers take guests deeper through relationship memories before the **Ready to play** action opens the game. These examples illustrate rarity; they do not calculate multiplayer scores.
+
 ## Setup
 
 This project uses the Replit PostgreSQL database and the shared API server.
