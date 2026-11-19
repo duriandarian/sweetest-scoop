@@ -19,6 +19,38 @@ async function call(path: string, method = "GET", token?: string, body?: unknown
   return { status: r.status, data };
 }
 try {
+  // Practice uses the same prepared bank, not the former selectable example prize.
+  for (let position = 0; position < questionBank.length; position++) {
+    for (const depth of [0, 1, 2, 3, 4]) {
+      const candidate = questionBank[position].catalog.find(entry => entry.depth === depth);
+      if (!candidate) continue;
+      const checked = await call("/practice/answer", "POST", undefined,
+        { round: position + 1, answer: candidate.answer, elapsedMs: 10000 });
+      assert.equal(checked.status, 200);
+      assert.equal(checked.data.matched, true);
+      assert.equal(checked.data.ingredient, candidate.tier);
+      assert.equal(checked.data.depth, depth);
+      assert.equal(checked.data.basePoints, candidate.basePoints);
+      assert.equal(checked.data.speedBonus, 12);
+      assert.equal(checked.data.points, candidate.basePoints + 12);
+      assert.ok(!("possibleAnswers" in checked.data));
+    }
+    assert.equal((await call("/practice/answer", "POST", undefined,
+      { round: position + 1, answer: "unlisted smoke answer", elapsedMs: 1000 })).status, 400);
+  }
+  for (const data of [
+    { round: 1, answer: "Bruno Mras", elapsedMs: 1000 },
+  ]) {
+    const checked = await call("/practice/answer", "POST", undefined, data);
+    assert.equal(checked.status, 200);
+    assert.equal(checked.data.depth, 0);
+  }
+  for (const data of [
+    { round: 3, answer: "Bruno Mars", elapsedMs: 1000 },
+    { round: 1, answer: "   ", elapsedMs: 1000 },
+    { round: 1, answer: "Phil Wickham", elapsedMs: 25001 },
+    { round: 8, answer: "Phil Wickham", elapsedMs: 1000 },
+  ]) assert.equal((await call("/practice/answer", "POST", undefined, data)).status, 400);
   const customAvatar = "b1:5:13:11:11";
   const created = await call("/rooms", "POST", undefined, { hostName: "Smoke moderator", avatar: "b1:2:12:8:9" });
   assert.equal(created.status, 201);
@@ -89,6 +121,13 @@ try {
     assert.equal(refetched.avatar, customAvatar);
     assert.equal(refetched.standings.find((s: { playerId: string }) => s.playerId === saved.data.playerId).points, total);
     assert.equal((await call(`${root}/answer`, "PUT", tokens[0], { answer: "overwrite", round })).status, 409);
+    const rejected = await call(`${root}/answer`, "PUT", tokens[1], { answer: "unlisted smoke answer", round });
+    assert.equal(rejected.status, 400);
+    const afterReject = (await call(root, "GET", tokens[1])).data;
+    assert.equal(afterReject.submitted, false);
+    assert.equal(afterReject.myReward, null);
+    assert.equal(afterReject.myAnswer, null);
+    assert.equal(afterReject.roundEndsAt, before.roundEndsAt, "Invalid attempts do not restart the live deadline.");
     const other = await call(`${root}/answer`, "PUT", tokens[1], { answer: round === 1 ? "Bruno Mras" : answer, round });
     assert.equal(other.status, 200); // Same answer is allowed across players, scores are individual.
     assert.equal(other.data.submittedCount, 2);
@@ -97,13 +136,13 @@ try {
       assert.equal(other.data.myReward.basePoints, 20, "A clear typo receives the canonical answer's reward.");
       assert.equal((await call(`${root}/answer`, "PUT", tokens[3], { answer: "Bruno Mars", round })).status, 200);
     }
-    assert.equal((await call(`${root}/answer`, "PUT", tokens[2], { answer: "unlisted smoke answer", round })).data.myReward.points, 0);
+    assert.equal((await call(`${root}/answer`, "PUT", tokens[2], { answer: "unlisted smoke answer", round })).status, 400);
     const hidden = (await call(root, "GET", host)).data;
     assert.equal(hidden.myAnswer, null);
     assert.equal(hidden.myReward, null);
     assert.equal(hidden.myTotalPoints, 0);
     assert.equal(hidden.answers.length, 0); assert.equal(hidden.possibleAnswers.length, 0);
-    const submitted = round === 1 ? 4 : 3;
+    const submitted = round === 1 ? 3 : 2;
     assert.equal(hidden.submittedCount, submitted);
     assert.equal(hidden.players.filter((p: { hasAnswered: boolean }) => p.hasAnswered).length, submitted);
     assert.equal(hidden.players.find((p: { isHost: boolean }) => p.isHost).hasAnswered, false);
@@ -137,7 +176,9 @@ try {
     assert.deepEqual(playerReveal.possibleAnswers, revealed.possibleAnswers);
     assert.equal(revealed.roundStandings.find((s: { playerId: string }) => s.playerId === saved.data.playerId).avatar, customAvatar);
     assert.equal(revealed.standings.find((s: { playerId: string }) => s.playerId === saved.data.playerId).avatar, customAvatar);
-    assert.equal(revealed.roundStandings.find((s: { answer: string }) => s.answer === "unlisted smoke answer").points, 0);
+    const unanswered = revealed.roundStandings.find((s: { displayName: string }) => s.displayName === "Smoke guest 3");
+    assert.equal(unanswered.points, 0);
+    assert.equal(unanswered.answer, null);
     assert.equal(revealed.standings.find((s: { playerId: string }) => s.playerId === saved.data.playerId).points, total);
     assert.equal(revealed.roundStandings[0].points >= revealed.roundStandings[1].points, true);
     assert.equal((await call(`${root}/answer`, "PUT", tokens[3], { answer, round })).status, 409);

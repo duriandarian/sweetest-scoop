@@ -18,6 +18,36 @@ export const HealthCheckResponse = zod.object({
 
 
 /**
+ * @summary Check a practice answer against the prepared bank without saving it
+ */
+export const checkPracticeAnswerBodyAnswerMax = 120;
+
+export const checkPracticeAnswerBodyRoundMax = 7;
+
+export const checkPracticeAnswerBodyElapsedMsMin = 0;
+export const checkPracticeAnswerBodyElapsedMsMax = 25000;
+
+
+
+export const CheckPracticeAnswerBody = zod.object({
+  "answer": zod.string().min(1).max(checkPracticeAnswerBodyAnswerMax),
+  "round": zod.number().int().min(1).max(checkPracticeAnswerBodyRoundMax),
+  "elapsedMs": zod.number().int().min(checkPracticeAnswerBodyElapsedMsMin).max(checkPracticeAnswerBodyElapsedMsMax)
+})
+
+export const CheckPracticeAnswerResponse = zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+})
+
+
+/**
  * @summary Create a room and host session
  */
 export const createRoomBodyHostNameMax = 32;

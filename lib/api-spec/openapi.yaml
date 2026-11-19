@@ -26,6 +26,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /practice/answer:
+    post:
+      operationId: checkPracticeAnswer
+      tags: [sweetest-scoop]
+      summary: Check a practice answer against the prepared bank without saving it
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PracticeAnswerInput"
+      responses:
+        "200":
+          description: Valid answer and its actual practice reward
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerReward"
+        "400":
+          description: Invalid input or answer not in this question's prepared list
   /rooms:
     post:
       operationId: createRoom
@@ -274,6 +294,13 @@ components:
       properties:
         answer: { type: string, minLength: 1, maxLength: 120 }
         round: { type: integer, minimum: 1, maximum: 7 }
+    PracticeAnswerInput:
+      type: object
+      required: [answer, round, elapsedMs]
+      properties:
+        answer: { type: string, minLength: 1, maxLength: 120 }
+        round: { type: integer, minimum: 1, maximum: 7 }
+        elapsedMs: { type: integer, minimum: 0, maximum: 25000 }
     SessionRoom:
       type: object
       required: [sessionToken, room]

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Menu, MonitorPlay, RotateCcw, Smartphone } from 'lucide-react';
 import { Link } from 'wouter';
 import { Answering } from './Round';
-import { PRIZES } from './theme';
+import { useCheckPracticeAnswer, type AnswerReward } from '@workspace/api-client-react';
 import { DEFAULT_LOOK, encodeAvatar } from './wardrobe';
 import { PREVIEW_QUESTIONS, questionPreviewState } from './question-preview-state';
 import { countdownSeconds, PRACTICE_ROUND_MS, remainingPracticeMs } from './round-countdown';
@@ -17,11 +17,14 @@ export function QuestionPreview({ practice: solo = false }: { practice?: boolean
   const practice = solo || !host;
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState<string | null>(null);
-  const [tier, setTier] = useState(2);
+  const [reward, setReward] = useState<AnswerReward | null>(null);
+  const [error, setError] = useState('');
+  const checkAnswer = useCheckPracticeAnswer();
+  const attempt = useRef(0);
   const [run, setRun] = useState(0);
   const [deadline, setDeadline] = useState<number | null>(null);
   const [now, setNow] = useState(Date.now);
-  const [lockedAtMs, setLockedAtMs] = useState(0);
+  useEffect(() => () => { attempt.current++; }, []);
   useEffect(() => {
     if (!practice || deadline === null) return;
     const timer = window.setInterval(() => {
@@ -37,24 +40,37 @@ export function QuestionPreview({ practice: solo = false }: { practice?: boolean
     practice && deadline !== null && remainingMs > 0 && remainingMs <= 10000);
   const avatar = encodeAvatar(DEFAULT_LOOK);
   const reset = () => {
-    setAnswer(null); setRun(n => n + 1); setLockedAtMs(0);
+    attempt.current++; checkAnswer.reset();
+    setAnswer(null); setReward(null); setError(''); setRun(n => n + 1);
     setNow(Date.now()); setDeadline(null);
   };
   const startPractice = () => {
+    setError('');
     const start = Date.now();
     if (!practice || (deadline !== null && start < deadline)) return;
     setNow(start); setDeadline(start + PRACTICE_ROUND_MS);
   };
   const changeQuestion = (next: number) => { setIndex(next); reset(); };
-  const room = questionPreviewState({ index, host, answer, tier, avatar });
-  if (practice && room.myReward) room.myReward = { ...room.myReward, elapsedMs: lockedAtMs };
+  const room = questionPreviewState({ index, host, answer, reward, avatar });
   const submit = (text: string) => {
     const timestamp = Date.now();
     if (practice && deadline !== null && timestamp >= deadline) { setNow(timestamp); return; }
-    setLockedAtMs(practice && deadline !== null ? Math.max(0, PRACTICE_ROUND_MS - (deadline - timestamp)) : 0);
-    setAnswer(text);
+    const request = ++attempt.current;
+    setError('');
+    checkAnswer.mutate({ data: {
+      answer: text, round: index + 1,
+      elapsedMs: deadline === null ? 0 : Math.max(0, PRACTICE_ROUND_MS - (deadline - timestamp)),
+    } }, {
+      onSuccess: checked => {
+        if (request !== attempt.current) return;
+        setReward(checked); setAnswer(text);
+      },
+      onError: failure => {
+        if (request === attempt.current) setError(failure instanceof Error ? failure.message : 'Could not check your answer. Please try again.');
+      },
+    });
   };
-  const scene = <Answering key={`${host}-${index}-${run}`} room={room} avatar={avatar} remainingMs={remainingMs} onSubmit={submit} submitting={false} error="" practice={practice}
+  const scene = <Answering key={`${host}-${index}-${run}`} room={room} avatar={avatar} remainingMs={remainingMs} onSubmit={submit} submitting={checkAnswer.isPending} error={error} practice={practice}
     practiceWaiting={practice && deadline === null} onDraftChange={startPractice}
     roundActions={practice && (answer !== null || remainingMs <= 0) ? <div className="qp-round-actions">
       <button type="button" onClick={reset} data-testid="button-practice-retry"><RotateCcw size={14}/> Try again</button>
@@ -75,15 +91,12 @@ export function QuestionPreview({ practice: solo = false }: { practice?: boolean
         <label>Question<select value={index} onChange={e => changeQuestion(Number(e.target.value))} data-testid="select-preview-question">
           {PREVIEW_QUESTIONS.map((_, i) => <option key={i} value={i}>Question {i + 1}</option>)}
         </select></label>
-        <label>Example dive depth<select value={tier} onChange={e => { setTier(Number(e.target.value)); reset(); }} data-testid="select-preview-reward">
-          {PRIZES.map((p, i) => <option key={p.name} value={i}>{i === 0 ? 'Shallowest' : i === PRIZES.length - 1 ? 'Deepest' : `Depth ${i + 1} of ${PRIZES.length}`}</option>)}
-        </select></label>
         <button type="button" className="qp-menu-btn" onClick={reset} data-testid="button-preview-reset"><RotateCcw size={13}/> Reset answer</button>
-        <p>{practice ? `${PRACTICE_ROUND_MS / 1000} seconds, starting when you type. ` : 'Timer paused. '}Your answer is not checked; the dive uses the example depth. Nothing is saved.</p>
+        <p>25 seconds, starting when you type. Answers are checked against this question's real list. Only a valid answer earns a dive. Practice points are not saved to a room.</p>
         <Link href="/" className="qp-menu-btn" data-testid="link-preview-menu"><ArrowLeft size={13}/> Back to menu</Link>
       </div>
     </details>
-    <span className="qp-badge" role="note">{practice ? 'Practice · unscored' : 'Preview · paused'}</span>
+    <span className="qp-badge" role="note">{practice ? 'Practice · not saved' : 'Preview · paused'}</span>
   </>}/>;
   if (!host) return <div className={`g-screen question-preview is-game ${practice ? 'is-practice' : ''}`}>{scene}</div>;
   return <div className="g-screen question-preview">

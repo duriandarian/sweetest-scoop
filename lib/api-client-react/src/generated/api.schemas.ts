@@ -72,6 +72,24 @@ export interface AnswerInput {
   round: number;
 }
 
+export interface PracticeAnswerInput {
+  /**
+     * @minLength 1
+     * @maxLength 120
+     */
+  answer: string;
+  /**
+     * @minimum 1
+     * @maximum 7
+     */
+  round: number;
+  /**
+     * @minimum 0
+     * @maximum 25000
+     */
+  elapsedMs: number;
+}
+
 export type RoomStatePhase = typeof RoomStatePhase[keyof typeof RoomStatePhase];
 
 

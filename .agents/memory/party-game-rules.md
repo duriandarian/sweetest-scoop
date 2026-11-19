@@ -73,3 +73,9 @@ Forgive small answer typos only when there is one clear prepared-answer match.
 **Why:** The user chose "Forgive small answer typos" over typing suggestions, after being offered conservative matching that would not change an unusual answer into something else.
 
 **How to apply:** Prefer exact answers; do not guess between plausible answers or favor higher rarity. Preserve what each player typed, award the matched answer's normal rarity and server-timed speed points, and keep previously saved scores unchanged.
+
+Reject answers outside the current question's prepared list rather than granting an example prize.
+
+**Why:** The user said it should reject anything that is not correct or in the list, after reporting that the Pomelo rewards did not work. Practice must demonstrate real answer quality, not always award a manually selected tier.
+
+**How to apply:** Use the same server-side prepared-answer matching for practice and multiplayer, retaining conservative typo forgiveness. Invalid attempts do not earn points, trigger a dive, record a submission or lock the draft. They do not restart the live deadline. Only the first accepted answer locks a player's round. Practice is unranked and does not save answers or points.

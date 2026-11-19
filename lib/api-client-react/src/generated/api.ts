@@ -21,9 +21,11 @@ import type {
 
 import type {
   AnswerInput,
+  AnswerReward,
   CreateRoomInput,
   HealthStatus,
   JoinRoomInput,
+  PracticeAnswerInput,
   ProfileInput,
   QuestionListInput,
   RoomState,
@@ -135,6 +137,94 @@ export function useHealthCheck<TData = Awaited<ReturnType<typeof healthCheck>>, 
 
 
 
+
+export const getCheckPracticeAnswerUrl = () => {
+
+
+
+
+  return `/api/practice/answer`
+}
+
+/**
+ * @summary Check a practice answer against the prepared bank without saving it
+ */
+export const checkPracticeAnswer = async (practiceAnswerInput: PracticeAnswerInput, options?: Parameters<typeof customFetch>[1]): Promise<AnswerReward> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<AnswerReward>(getCheckPracticeAnswerUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(practiceAnswerInput)
+  }
+);}
+
+
+
+
+
+export const getCheckPracticeAnswerMutationKey = () => ['checkPracticeAnswer'] as const;
+
+export const getCheckPracticeAnswerMutationOptions = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof checkPracticeAnswer>>, TError,CheckPracticeAnswerMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof checkPracticeAnswer>>, TError,CheckPracticeAnswerMutationVariables, TContext> => {
+
+const mutationKey = getCheckPracticeAnswerMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof checkPracticeAnswer>>, CheckPracticeAnswerMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  checkPracticeAnswer(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CheckPracticeAnswerMutationResult = NonNullable<Awaited<ReturnType<typeof checkPracticeAnswer>>>
+    export type CheckPracticeAnswerMutationBody = BodyType<PracticeAnswerInput>
+    export type CheckPracticeAnswerMutationError = ErrorType<void>
+    export type CheckPracticeAnswerMutationVariables = {data: BodyType<PracticeAnswerInput>}
+
+    /**
+ * @summary Check a practice answer against the prepared bank without saving it
+ */
+export const useCheckPracticeAnswer = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof checkPracticeAnswer>>, TError,CheckPracticeAnswerMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof checkPracticeAnswer>>,
+        TError,
+        CheckPracticeAnswerMutationVariables,
+        TContext
+      > => {
+      return useMutation(getCheckPracticeAnswerMutationOptions(options));
+    }
 
 export const getCreateRoomUrl = () => {
 

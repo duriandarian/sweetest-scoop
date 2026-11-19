@@ -14,6 +14,7 @@ export * from './createRoomInput';
 export * from './groupedAnswer';
 export * from './healthStatus';
 export * from './joinRoomInput';
+export * from './practiceAnswerInput';
 export * from './profileInput';
 export * from './questionListInput';
 export * from './roomPlayer';

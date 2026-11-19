@@ -14,6 +14,11 @@ await build({
   plugins: [{
     name: 'exact-wardrobe-paths',
     setup(builder) {
+      // This workspace package exports TypeScript with extensionless imports;
+      // bundle it rather than asking native Node to load those source exports.
+      builder.onResolve({ filter: /^@workspace\/api-client-react$/ }, () => ({
+        path: join(app, '../../lib/api-client-react/src/index.ts'),
+      }));
       // esbuild's extension fallback conflates Wardrobe.tsx and wardrobe.ts
       // when both extensionless imports occur in a single standalone bundle.
       builder.onResolve({ filter: /^\.\/(?:Wardrobe|wardrobe)$/ }, args => ({

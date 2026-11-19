@@ -3,6 +3,7 @@ import { and, eq } from "drizzle-orm";
 import {
   CreateRoomBody, CreateRoomResponse, GetRoomParams, GetRoomResponse, JoinRoomBody, JoinRoomResponse,
   UpdateQuestionsBody, SubmitAnswerBody, UpdateProfileBody, UpdateSettingsBody,
+  CheckPracticeAnswerBody, CheckPracticeAnswerResponse,
 } from "@workspace/api-zod";
 import { db, scoopAnswersTable, scoopPlayersTable, scoopQuestionsTable, scoopRoomsTable } from "@workspace/db";
 import { createSessionToken, getRoomState, hashSessionToken, lockRoom, normalizeAnswer, requireRoomPlayer,
@@ -30,6 +31,19 @@ class RuleError extends Error { constructor(public status: number, message: stri
 const safe = (handler: (req: Request, res: Response) => Promise<void>) => async (req: Request, res: Response) => {
   try { await handler(req, res); } catch (e) { if (e instanceof RuleError) fail(res, e.status, e.message); else throw e; }
 };
+
+router.post("/practice/answer", safe(async (req, res) => {
+  const body = CheckPracticeAnswerBody.safeParse(req.body);
+  if (!body.success || !normalizeAnswer(body.data.answer)) {
+    fail(res, 400, "Enter an answer for a valid practice question."); return;
+  }
+  // Practice is unranked: elapsed time is illustrative, never persisted in a room.
+  const reward = scoreAnswer(body.data.round - 1, body.data.answer, body.data.elapsedMs, ROUND_DURATION_SECONDS * 1000);
+  if (!reward.matched) {
+    fail(res, 400, "Not in this question's answer list. Try another answer."); return;
+  }
+  res.json(CheckPracticeAnswerResponse.parse(reward));
+}));
 
 router.post("/rooms", safe(async (req, res) => {
   const body = CreateRoomBody.safeParse(req.body);
@@ -148,7 +162,11 @@ router.put("/rooms/:code/answer", safe(async (req, res) => {
     const [question] = await tx.select().from(scoopQuestionsTable).where(and(eq(scoopQuestionsTable.roomId, room.id),
       eq(scoopQuestionsTable.position, room.round - 1))).limit(1);
     if (!question) throw new RuleError(409, "Question not found.");
+    const [existing] = await tx.select({ id: scoopAnswersTable.id }).from(scoopAnswersTable)
+      .where(and(eq(scoopAnswersTable.questionId, question.id), eq(scoopAnswersTable.playerId, a.player.id))).limit(1);
+    if (existing) throw new RuleError(409, "Your first answer is already locked for this round.");
     const reward = scoreAnswer(room.round - 1, body.data.answer, now - room.roundStartedAt.getTime(), room.roundDuration * 1000);
+    if (!reward.matched) throw new RuleError(400, "Not in this question's answer list. Try another before time runs out.");
     const [saved] = await tx.insert(scoopAnswersTable).values({
       roomId: room.id, questionId: question.id, playerId: a.player.id,
       answer: body.data.answer.trim().replace(/\s+/g, " "), normalizedAnswer: normalizeAnswer(body.data.answer), ...reward,

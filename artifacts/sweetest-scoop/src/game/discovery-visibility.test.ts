@@ -9,18 +9,33 @@ import { Lobby } from './Lobby';
 import { PRIZES } from './theme';
 import { questionPreviewState } from './question-preview-state';
 import { MusicProvider } from './MusicProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const renderToStaticMarkup = (element: ReactElement) =>
-  renderMarkup(createElement(MusicProvider, { children: element }));
+  renderMarkup(createElement(QueryClientProvider, { client: new QueryClient() },
+    createElement(MusicProvider, { children: element })));
 
 const avatar = 'b1:0:2:1:1';
+const exampleReward = (tier: number) => {
+  const prize = PRIZES[tier];
+  return { matched: true, tier: prize.name, ingredient: prize.name, depth: prize.depth,
+    basePoints: prize.base, speedBonus: 0, points: prize.base, elapsedMs: 0 };
+};
 const room = (answer: string | null = null, tier = 2) =>
-  questionPreviewState({ index: 0, host: false, answer, tier, avatar });
+  questionPreviewState({ index: 0, host: false, answer, reward: answer ? exampleReward(tier) : null, avatar });
 
 function noTierSpoilers(markup: string) {
   for (const prize of PRIZES) assert.ok(!markup.includes(prize.name), `Premature reward spoiler: ${prize.name}`);
   assert.ok(!/Bobi found/i.test(markup));
 }
+
+test('unchecked practice text cannot create a default Pomelo Gem or points', () => {
+  const unchecked = questionPreviewState({ index: 0, host: false, answer: 'anything at all', avatar });
+  assert.equal(unchecked.submitted, false);
+  assert.equal(unchecked.myAnswer, null);
+  assert.equal(unchecked.myReward, null);
+  assert.equal(unchecked.myTotalPoints, 0);
+});
 
 test('waiting player sees the prompt and answer timer, not a labeled reward ladder', () => {
   const markup = renderToStaticMarkup(createElement(Answering, {
@@ -75,7 +90,7 @@ test('expired practice stays editable so a fresh nonblank edit can restart it', 
 
 test('the default phone preview is playable practice, not a silent paused screen', () => {
   const markup = renderToStaticMarkup(createElement(Router, { ssrPath: '/preview/question' }, createElement(QuestionPreview)));
-  assert.match(markup, /Practice · unscored/);
+  assert.match(markup, /Practice · not saved/);
   assert.match(markup, /25 seconds start when you type/);
   assert.match(markup, /data-testid="input-answer"/);
   noTierSpoilers(markup);
@@ -104,7 +119,7 @@ test('lobby instructions preserve the discovery instead of listing every tier', 
 for (const answered of [false, true]) {
   test(`the watercolor shared cup keeps ${answered ? 'answered' : 'waiting'} players and answers private`, () => {
     const state = questionPreviewState({
-      index: 0, host: true, answer: answered ? 'This answer stays private' : null, tier: 2, avatar,
+      index: 0, host: true, answer: answered ? 'This answer stays private' : null, reward: answered ? exampleReward(2) : null, avatar,
     });
     const markup = renderToStaticMarkup(createElement(Answering, {
       room: state, avatar, remainingMs: 15_000, onSubmit: () => {}, submitting: false, error: '',

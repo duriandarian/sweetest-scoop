@@ -8,6 +8,12 @@ Standalone UI test bundles need exact-case module resolution; do not assume Vite
 
 **How to apply:** Use exact filenames and extensions in the standalone bundle's resolver when adding server-rendered UI checks. Keep this as a testing-tool constraint, not a reason to rename working app modules broadly.
 
+Bundle workspace TypeScript dependencies into standalone UI tests instead of treating them as external Node packages.
+
+**Why:** Workspace source exports can contain extensionless TypeScript imports that Vite resolves but native Node does not. Adding a real API hook to a previously local-only component exposed this difference in server-rendered checks.
+
+**How to apply:** Keep third-party dependencies external, but resolve workspace source packages into the test bundle. Do not change generated API imports or application module conventions to satisfy a standalone test runner.
+
 Separate actual typing behavior from the embedded Design canvas's interaction mode before changing answer-entry logic.
 
 **Why:** The user continued reporting blocked practice typing after timer/input fixes. Real key-event checks in desktop and phone browsers preserved the full answer, focus and input node, with no errors. An enabled input in static markup alone had not established this. Replit's Canvas documentation says form inputs require the Interact tool.

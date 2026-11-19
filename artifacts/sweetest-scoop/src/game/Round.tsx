@@ -20,13 +20,13 @@ export function Answering({ room, avatar, remainingMs, onSubmit, submitting, err
     {!locked && <form className="dock-form pd-form" onSubmit={submit}>
       <AnswerCountdown remainingMs={remainingMs}/>
       <input autoFocus aria-label="Your one answer" data-testid="input-answer" maxLength={120} disabled={(!practice && expired) || submitting} placeholder={expired && !practice ? 'Time is up' : 'Your one answer...'} value={text} onChange={e => { setText(e.target.value); if (e.target.value.trim()) onDraftChange?.(); }}/>
-      <button className="pd-go" disabled={!text.trim() || expired || submitting} data-testid="button-submit-answer">{submitting ? 'Sinking...' : 'Dive'} <Send size={15}/></button>
+      <button className="pd-go" disabled={!text.trim() || expired || submitting} data-testid="button-submit-answer">{submitting ? 'Checking...' : 'Dive'} <Send size={15}/></button>
     </form>}
     {!locked && practice && <p className="pd-note" role="status">{expired ? "Time's up. Keep typing to start a fresh 25 seconds, or try the next question." : practiceWaiting ? 'Your 25 seconds start when you type.' : 'One answer. Dive before the timer runs out.'}</p>}
     {!locked && expired && !practice && <p className="pd-note" role="status">Time's up. This answer is closed.</p>}
     {locked && <div className="pd-locked" data-testid="status-answer-locked">
       <span className="ph-seal"><Lock size={12}/>Locked</span>
-      <p>{practice ? 'Practice dive. Not scored.' : expired ? 'Time. The big screen is pouring the podium.' : 'Only you see this dive. Watch the big screen.'}</p>
+      <p>{practice ? 'Practice points only. Not saved to a room.' : expired ? 'Time. The big screen is pouring the podium.' : 'Only you see this dive. Watch the big screen.'}</p>
       <AnswerCountdown remainingMs={remainingMs}/>
     </div>}
     {error && <p className="g-error" role="alert">{error}</p>}
