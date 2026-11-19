@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "BbTvjfcSU_qPmNeF6-4rk"
+uri = "file://generated-artifacts/sweet-cafe.mp3"
+type = "audio"
+title = "Cozy dessert cafe loop"
+description = "Generated music: Original instrumental background music for a cozy, cute Taiwanese dessert cafe party game. Warm intimate cafe jazz-pop, 96 BPM in F major, soft felt piano playing a memorable simple …"

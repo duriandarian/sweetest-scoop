@@ -5,10 +5,11 @@
  * The Sweetest Scoop party game API
  * OpenAPI spec version: 0.1.0
  */
+import type { AnswerReward } from './answerReward';
+import type { CatalogAnswer } from './catalogAnswer';
 import type { GroupedAnswer } from './groupedAnswer';
 import type { RoomPlayer } from './roomPlayer';
 import type { RoomStatePhase } from './roomStatePhase';
-import type { RoomStateQuestionCount } from './roomStateQuestionCount';
 import type { Standing } from './standing';
 
 export interface RoomState {
@@ -19,7 +20,25 @@ export interface RoomState {
      * @maximum 10
      */
   round: number;
-  questionCount: RoomStateQuestionCount;
+  questionCount: number;
+  serverNow?: string;
+  /** @nullable */
+  roundStartedAt?: string | null;
+  /** @nullable */
+  roundEndsAt?: string | null;
+  roundDuration?: number;
+  /** @nullable */
+  playerId?: string | null;
+  /** @nullable */
+  myAnswer?: string | null;
+  /**
+     * Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.
+     * @minimum 0
+     */
+  myTotalPoints: number;
+  myReward?: AnswerReward | null;
+  roundStandings?: Standing[];
+  possibleAnswers?: CatalogAnswer[];
   questions: string[];
   /** @nullable */
   currentQuestion?: string | null;
@@ -27,6 +46,7 @@ export interface RoomState {
   answers: GroupedAnswer[];
   standings: Standing[];
   isHost: boolean;
+  avatar?: string;
   submitted: boolean;
   submittedCount?: number;
 }

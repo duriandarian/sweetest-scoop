@@ -5,6 +5,7 @@
  * The Sweetest Scoop party game API
  * OpenAPI spec version: 0.1.0
  */
+import type { BobiAppearance } from './bobiAppearance';
 
 export interface CreateRoomInput {
   /**
@@ -12,4 +13,5 @@ export interface CreateRoomInput {
      * @maxLength 32
      */
   hostName: string;
+  avatar?: BobiAppearance;
 }

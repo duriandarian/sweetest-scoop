@@ -1,437 +1,181 @@
-import { Router, type IRouter, type Response } from "express";
+import { Router, type IRouter, type Request, type Response } from "express";
 import { and, eq } from "drizzle-orm";
 import {
-  CreateRoomBody,
-  CreateRoomResponse,
-  GetRoomHeader,
-  GetRoomParams,
-  GetRoomResponse,
-  JoinRoomBody,
-  JoinRoomParams,
-  JoinRoomResponse,
-  NextQuestionHeader,
-  NextQuestionParams,
-  NextQuestionResponse,
-  RevealAnswersHeader,
-  RevealAnswersParams,
-  RevealAnswersResponse,
-  StartGameHeader,
-  StartGameParams,
-  StartGameResponse,
-  SubmitAnswerBody,
-  SubmitAnswerHeader,
-  SubmitAnswerParams,
-  SubmitAnswerResponse,
-  UpdateQuestionsBody,
-  UpdateQuestionsHeader,
-  UpdateQuestionsParams,
-  UpdateQuestionsResponse,
+  CreateRoomBody, CreateRoomResponse, GetRoomParams, GetRoomResponse, JoinRoomBody, JoinRoomResponse,
+  UpdateQuestionsBody, SubmitAnswerBody, UpdateProfileBody, UpdateSettingsBody,
 } from "@workspace/api-zod";
-import {
-  db,
-  scoopAnswersTable,
-  scoopPlayersTable,
-  scoopQuestionsTable,
-  scoopRoomsTable,
-} from "@workspace/db";
-import {
-  createSessionToken,
-  getReward,
-  getRoomState,
-  hashSessionToken,
-  normalizeAnswer,
-  requireRoomPlayer,
-  roomByCode,
-  roomCode,
-  sampleQuestions,
-} from "../lib/sweetest-scoop";
+import { db, scoopAnswersTable, scoopPlayersTable, scoopQuestionsTable, scoopRoomsTable } from "@workspace/db";
+import { createSessionToken, getRoomState, hashSessionToken, lockRoom, normalizeAnswer, requireRoomPlayer,
+  roomByCode, roomCode, sampleQuestions, expireRound } from "../lib/sweetest-scoop";
+import { GAME_VERSION, ROUND_COUNT, ROUND_DURATION_SECONDS, scoreAnswer } from "../lib/party-scoring";
 
 const router: IRouter = Router();
-
-function requestHeader(schema: typeof GetRoomHeader, token: string | undefined) {
-  return schema.safeParse({ "X-Session-Token": token });
+const fail = (res: Response, status: number, error: string) => { res.status(status).json({ error }); };
+async function access(req: Request, res: Response, host = false) {
+  const parsed = GetRoomParams.safeParse(req.params);
+  if (!parsed.success) { fail(res, 400, "Invalid room code."); return null; }
+  const room = await roomByCode(parsed.data.code);
+  if (!room) { fail(res, 404, "Room not found. Check the code."); return null; }
+  const player = await requireRoomPlayer(room.id, req.get("X-Session-Token"));
+  if (!player) { fail(res, 401, "Join this room to continue."); return null; }
+  if (host && !player.isHost) { fail(res, 403, "Only the host can do that."); return null; }
+  return { room, player };
 }
-
-function nameIsValid(value: string): boolean {
-  return value.trim().length > 0 && value.trim().length <= 32;
+async function state(req: Request, room: { id: string; code: string }) {
+  const token = req.get("X-Session-Token");
+  return GetRoomResponse.parse(await getRoomState(room.id, room.code, token ? hashSessionToken(token) : undefined));
 }
+class RuleError extends Error { constructor(public status: number, message: string) { super(message); } }
+// Express forwards other errors to the app error handler; expected game conflicts remain actionable.
+const safe = (handler: (req: Request, res: Response) => Promise<void>) => async (req: Request, res: Response) => {
+  try { await handler(req, res); } catch (e) { if (e instanceof RuleError) fail(res, e.status, e.message); else throw e; }
+};
 
-function sendInputError(res: Response, message: string) {
-  res.status(400).json({ error: message });
-}
-
-async function hostFor(
-  roomId: string,
-  token: string | undefined,
-  res: Response,
-) {
-  const player = await requireRoomPlayer(roomId, token);
-  if (!player) {
-    res.status(401).json({ error: "Join this room to continue." });
-    return null;
-  }
-  if (!player.isHost) {
-    res.status(403).json({ error: "Only the host can do that." });
-    return null;
-  }
-  return player;
-}
-
-async function sessionTokenFor(
-  roomId: string,
-  token: string | undefined,
-  res: Response,
-) {
-  const player = await requireRoomPlayer(roomId, token);
-  if (!player) {
-    res.status(401).json({ error: "Your room session could not be verified." });
-    return null;
-  }
-  return player;
-}
-
-router.post("/rooms", async (req, res): Promise<void> => {
-  const parsed = CreateRoomBody.safeParse(req.body);
-  if (!parsed.success) {
-    sendInputError(res, "Add a display name to create a room.");
-    return;
-  }
-  if (!nameIsValid(parsed.data.hostName)) {
-    sendInputError(res, "Add a display name to create a room.");
-    return;
-  }
-  const displayName = parsed.data.hostName.trim();
-  let room: typeof scoopRoomsTable.$inferSelect | undefined;
-  for (let attempt = 0; attempt < 5 && !room; attempt += 1) {
-    const [created] = await db
-      .insert(scoopRoomsTable)
-      .values({ code: roomCode() })
-      .onConflictDoNothing()
-      .returning();
-    room = created;
-  }
-  if (!room) {
-    res.status(503).json({ error: "A room code could not be generated. Try again." });
-    return;
-  }
+router.post("/rooms", safe(async (req, res) => {
+  const body = CreateRoomBody.safeParse(req.body);
+  if (!body.success || !body.data.hostName.trim()) { fail(res, 400, "Add a display name."); return; }
   const session = createSessionToken();
-  const [host] = await db
-    .insert(scoopPlayersTable)
-    .values({
-      roomId: room.id,
-      displayName,
-      isHost: true,
-      sessionHash: session.hash,
-    })
-    .returning();
-  await db.insert(scoopQuestionsTable).values(
-    sampleQuestions.map((prompt, position) => ({
-      roomId: room.id,
-      prompt,
-      position,
-    })),
-  );
-  const state = await getRoomState(room.id, room.code, host.sessionHash);
-  res.status(201).json(CreateRoomResponse.parse({ sessionToken: session.token, room: state }));
-});
-
-router.get("/rooms/:code", async (req, res): Promise<void> => {
-  const params = GetRoomParams.safeParse(req.params);
-  const header = requestHeader(GetRoomHeader, req.get("X-Session-Token"));
-  if (!params.success || !header.success) {
-    sendInputError(res, "Invalid room code.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found. Check the code and try again." });
-    return;
-  }
-  const token = header.data["X-Session-Token"];
-  const player = await requireRoomPlayer(room.id, token);
-  const state = await getRoomState(
-    room.id,
-    room.code,
-    player ? hashSessionToken(token!) : undefined,
-  );
-  res.json(GetRoomResponse.parse(state));
-});
-
-router.post("/rooms/:code/players", async (req, res): Promise<void> => {
-  const params = JoinRoomParams.safeParse(req.params);
-  const parsed = JoinRoomBody.safeParse(req.body);
-  if (!params.success || !parsed.success) {
-    sendInputError(res, "Enter a display name to join.");
-    return;
-  }
-  if (!nameIsValid(parsed.data.displayName)) {
-    sendInputError(res, "Enter a display name to join.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found. Check the code and try again." });
-    return;
-  }
-  const displayName = parsed.data.displayName.trim();
-  const session = createSessionToken();
-  const [player] = await db
-    .insert(scoopPlayersTable)
-    .values({
-      roomId: room.id,
-      displayName,
-      sessionHash: session.hash,
-    })
-    .returning();
-  const state = await getRoomState(room.id, room.code, player.sessionHash);
-  res.status(201).json(JoinRoomResponse.parse({ sessionToken: session.token, room: state }));
-});
-
-router.put("/rooms/:code/questions", async (req, res): Promise<void> => {
-  const params = UpdateQuestionsParams.safeParse(req.params);
-  const header = requestHeader(UpdateQuestionsHeader, req.get("X-Session-Token"));
-  const body = UpdateQuestionsBody.safeParse(req.body);
-  if (!params.success || !header.success || !body.success) {
-    sendInputError(res, "Add exactly 10 questions before saving.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found." });
-    return;
-  }
-  const host = await hostFor(
-    room.id,
-    header.data["X-Session-Token"],
-    res,
-  );
-  if (!host) return;
-  if (room.phase !== "lobby") {
-    res.status(409).json({ error: "Questions can only be edited before the game starts." });
-    return;
-  }
-  await db.transaction(async (tx) => {
-    await tx.delete(scoopQuestionsTable).where(eq(scoopQuestionsTable.roomId, room.id));
-    await tx.insert(scoopQuestionsTable).values(
-      body.data.questions.map((prompt, position) => ({
-        roomId: room.id,
-        prompt: prompt.trim(),
-        position,
-      })),
-    );
-  });
-  res.json(
-    UpdateQuestionsResponse.parse(
-      await getRoomState(room.id, room.code, hashSessionToken(header.data["X-Session-Token"]!)),
-    ),
-  );
-});
-
-router.post("/rooms/:code/start", async (req, res): Promise<void> => {
-  const params = StartGameParams.safeParse(req.params);
-  const header = requestHeader(StartGameHeader, req.get("X-Session-Token"));
-  if (!params.success || !header.success) {
-    sendInputError(res, "Invalid room code.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found." });
-    return;
-  }
-  const host = await hostFor(room.id, header.data["X-Session-Token"], res);
-  if (!host) return;
-  const questions = await db
-    .select()
-    .from(scoopQuestionsTable)
-    .where(eq(scoopQuestionsTable.roomId, room.id));
-  if (room.phase !== "lobby" || questions.length !== 10) {
-    res.status(409).json({ error: "The room needs exactly 10 questions and must still be in the lobby." });
-    return;
-  }
-  await db
-    .update(scoopRoomsTable)
-    .set({ phase: "answering", round: 1 })
-    .where(eq(scoopRoomsTable.id, room.id));
-  res.json(
-    StartGameResponse.parse(
-      await getRoomState(room.id, room.code, hashSessionToken(header.data["X-Session-Token"]!)),
-    ),
-  );
-});
-
-router.put("/rooms/:code/answer", async (req, res): Promise<void> => {
-  const params = SubmitAnswerParams.safeParse(req.params);
-  const header = requestHeader(SubmitAnswerHeader, req.get("X-Session-Token"));
-  const body = SubmitAnswerBody.safeParse(req.body);
-  if (!params.success || !header.success || !body.success) {
-    sendInputError(res, "Type an answer before submitting.");
-    return;
-  }
-  if (!normalizeAnswer(body.data.answer)) {
-    sendInputError(res, "Type an answer before submitting.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found." });
-    return;
-  }
-  const player = await sessionTokenFor(room.id, header.data["X-Session-Token"], res);
-  if (!player) return;
-  if (player.isHost) {
-    res.status(403).json({ error: "The host does not submit a player answer." });
-    return;
-  }
-  if (room.phase !== "answering") {
-    res.status(409).json({ error: "Answers are not open right now." });
-    return;
-  }
-  const [question] = await db
-    .select()
-    .from(scoopQuestionsTable)
-    .where(
-      and(
-        eq(scoopQuestionsTable.roomId, room.id),
-        eq(scoopQuestionsTable.position, room.round - 1),
-      ),
-    )
-    .limit(1);
-  if (!question) {
-    res.status(409).json({ error: "The current question could not be found." });
-    return;
-  }
-  const answer = body.data.answer.trim().replace(/\s+/g, " ");
-  await db
-    .insert(scoopAnswersTable)
-    .values({
-      roomId: room.id,
-      questionId: question.id,
-      playerId: player.id,
-      answer,
-      normalizedAnswer: normalizeAnswer(answer),
-    })
-    .onConflictDoUpdate({
-      target: [scoopAnswersTable.questionId, scoopAnswersTable.playerId],
-      set: {
-        answer,
-        normalizedAnswer: normalizeAnswer(answer),
-        points: null,
-        tier: null,
-        ingredient: null,
-      },
+  let result: { id: string; code: string } | undefined;
+  for (let attempt = 0; attempt < 5 && !result; attempt++) {
+    result = await db.transaction(async tx => {
+      const [room] = await tx.insert(scoopRoomsTable).values({ code: roomCode(), bankVersion: GAME_VERSION, roundDuration: ROUND_DURATION_SECONDS }).onConflictDoNothing().returning();
+      if (!room) return undefined;
+      await tx.insert(scoopPlayersTable).values({ roomId: room.id, displayName: body.data.hostName.trim(),
+        isHost: true, sessionHash: session.hash, avatar: body.data.avatar ?? "mango" });
+      await tx.insert(scoopQuestionsTable).values(sampleQuestions.map((prompt, position) => ({ roomId: room.id, prompt, position })));
+      return room;
     });
-  res.json(
-    SubmitAnswerResponse.parse(
-      await getRoomState(room.id, room.code, hashSessionToken(header.data["X-Session-Token"]!)),
-    ),
-  );
-});
+  }
+  if (!result) { fail(res, 503, "Could not generate a room code. Try again."); return; }
+  res.status(201).json(CreateRoomResponse.parse({ sessionToken: session.token, room: await getRoomState(result.id, result.code, session.hash) }));
+}));
 
-router.post("/rooms/:code/reveal", async (req, res): Promise<void> => {
-  const params = RevealAnswersParams.safeParse(req.params);
-  const header = requestHeader(RevealAnswersHeader, req.get("X-Session-Token"));
-  if (!params.success || !header.success) {
-    sendInputError(res, "Invalid room code.");
-    return;
-  }
+router.get("/rooms/:code", safe(async (req, res) => {
+  const params = GetRoomParams.safeParse(req.params);
+  if (!params.success) { fail(res, 400, "Invalid room code."); return; }
   const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found." });
-    return;
+  if (!room) { fail(res, 404, "Room not found. Check the code."); return; }
+  if (req.get("X-Session-Token") && !(await requireRoomPlayer(room.id, req.get("X-Session-Token")))) {
+    fail(res, 401, "Your room session could not be verified. Rejoin the lobby."); return;
   }
-  const host = await hostFor(room.id, header.data["X-Session-Token"], res);
-  if (!host) return;
-  if (room.phase !== "answering") {
-    res.status(409).json({ error: "There are no hidden answers to reveal." });
-    return;
-  }
-  const [question] = await db
-    .select()
-    .from(scoopQuestionsTable)
-    .where(
-      and(
-        eq(scoopQuestionsTable.roomId, room.id),
-        eq(scoopQuestionsTable.position, room.round - 1),
-      ),
-    )
-    .limit(1);
-  if (!question) {
-    res.status(409).json({ error: "The current question could not be found." });
-    return;
-  }
-  await db.transaction(async (tx) => {
-    const answers = await tx
-      .select({
-        id: scoopAnswersTable.id,
-        normalizedAnswer: scoopAnswersTable.normalizedAnswer,
-      })
-      .from(scoopAnswersTable)
-      .where(
-        and(
-          eq(scoopAnswersTable.roomId, room.id),
-          eq(scoopAnswersTable.questionId, question.id),
-        ),
-      );
-    const counts = new Map<string, number>();
-    for (const answer of answers) {
-      counts.set(
-        answer.normalizedAnswer,
-        (counts.get(answer.normalizedAnswer) ?? 0) + 1,
-      );
-    }
-    for (const answer of answers) {
-      const count = counts.get(answer.normalizedAnswer) ?? 1;
-      const points = Math.round((100 * (answers.length - count + 1)) / answers.length);
-      const reward = getReward(points);
-      await tx
-        .update(scoopAnswersTable)
-        .set({ points, tier: reward.tier, ingredient: reward.ingredient })
-        .where(eq(scoopAnswersTable.id, answer.id));
-    }
-    await tx
-      .update(scoopRoomsTable)
-      .set({ phase: "revealed" })
-      .where(eq(scoopRoomsTable.id, room.id));
+  res.json(await state(req, room));
+}));
+
+router.post("/rooms/:code/players", safe(async (req, res) => {
+  const params = GetRoomParams.safeParse(req.params), body = JoinRoomBody.safeParse(req.body);
+  if (!params.success || !body.success || !body.data.displayName.trim()) { fail(res, 400, "Enter your display name."); return; }
+  const room = await roomByCode(params.data.code);
+  if (!room) { fail(res, 404, "Room not found."); return; }
+  const session = createSessionToken();
+  await db.transaction(async tx => {
+    const locked = await lockRoom(tx, room.id);
+    if (locked.phase !== "lobby") throw new RuleError(409, "This game has started. Ask the host for the next room.");
+    await tx.insert(scoopPlayersTable).values({ roomId: room.id, displayName: body.data.displayName.trim(),
+      sessionHash: session.hash, avatar: body.data.avatar ?? "mango" });
   });
-  res.json(
-    RevealAnswersResponse.parse(
-      await getRoomState(room.id, room.code, hashSessionToken(header.data["X-Session-Token"]!)),
-    ),
-  );
-});
+  res.status(201).json(JoinRoomResponse.parse({ sessionToken: session.token, room: await getRoomState(room.id, room.code, session.hash) }));
+}));
 
-router.post("/rooms/:code/next", async (req, res): Promise<void> => {
-  const params = NextQuestionParams.safeParse(req.params);
-  const header = requestHeader(NextQuestionHeader, req.get("X-Session-Token"));
-  if (!params.success || !header.success) {
-    sendInputError(res, "Invalid room code.");
-    return;
-  }
-  const room = await roomByCode(params.data.code);
-  if (!room) {
-    res.status(404).json({ error: "Room not found." });
-    return;
-  }
-  const host = await hostFor(room.id, header.data["X-Session-Token"], res);
-  if (!host) return;
-  if (room.phase !== "revealed") {
-    res.status(409).json({ error: "Reveal this round before continuing." });
-    return;
-  }
-  const nextRound = room.round + 1;
-  await db
-    .update(scoopRoomsTable)
-    .set({
-      round: Math.min(nextRound, 10),
-      phase: nextRound > 10 ? "finished" : "answering",
-    })
-    .where(eq(scoopRoomsTable.id, room.id));
-  res.json(
-    NextQuestionResponse.parse(
-      await getRoomState(room.id, room.code, hashSessionToken(header.data["X-Session-Token"]!)),
-    ),
-  );
-});
+router.put("/rooms/:code/profile", safe(async (req, res) => {
+  const a = await access(req, res); if (!a) return;
+  const body = UpdateProfileBody.safeParse(req.body);
+  if (!body.success) { fail(res, 400, "Choose a valid Bobi outfit combination."); return; }
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    if (room.phase !== "lobby") throw new RuleError(409, "Bobi styles are locked once the game starts.");
+    await tx.update(scoopPlayersTable).set({ avatar: body.data.avatar }).where(eq(scoopPlayersTable.id, a.player.id));
+  });
+  res.json(await state(req, a.room));
+}));
 
+router.put("/rooms/:code/settings", safe(async (req, res) => {
+  const a = await access(req, res, true); if (!a) return;
+  const body = UpdateSettingsBody.safeParse(req.body);
+  if (!body.success) { fail(res, 400, "Each round is 25 seconds."); return; }
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    if (room.phase !== "lobby") throw new RuleError(409, "Round duration is locked after starting.");
+    await tx.update(scoopRoomsTable).set({ roundDuration: body.data.roundDuration }).where(eq(scoopRoomsTable.id, room.id));
+  });
+  res.json(await state(req, a.room));
+}));
+
+router.put("/rooms/:code/questions", safe(async (req, res) => {
+  const a = await access(req, res, true); if (!a) return;
+  const body = UpdateQuestionsBody.safeParse(req.body);
+  if (!body.success) { fail(res, 400, "Exactly seven prompts are required."); return; }
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    if (room.phase !== "lobby") throw new RuleError(409, "Questions are locked after starting.");
+    // Prompts may be reworded, but positions continue to use the corresponding spreadsheet answer bank.
+    for (let i = 0; i < ROUND_COUNT; i++) {
+      if (!body.data.questions[i].trim()) throw new RuleError(400, "Prompts cannot be blank.");
+      await tx.update(scoopQuestionsTable).set({ prompt: body.data.questions[i].trim() })
+        .where(and(eq(scoopQuestionsTable.roomId, room.id), eq(scoopQuestionsTable.position, i)));
+    }
+  });
+  res.json(await state(req, a.room));
+}));
+
+router.post("/rooms/:code/start", safe(async (req, res) => {
+  const a = await access(req, res, true); if (!a) return;
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    if (room.bankVersion !== GAME_VERSION) throw new RuleError(409, "This is an older game room. Create a new room for the seven-round game.");
+    if (room.phase !== "lobby") throw new RuleError(409, "This game has already started.");
+    const guests = await tx.select().from(scoopPlayersTable).where(and(eq(scoopPlayersTable.roomId, room.id), eq(scoopPlayersTable.isHost, false)));
+    if (!guests.length) throw new RuleError(409, "At least one guest must join before starting.");
+    const now = new Date();
+    await tx.update(scoopRoomsTable).set({ phase: "answering", round: 1, roundDuration: ROUND_DURATION_SECONDS,
+      roundStartedAt: now, roundEndsAt: new Date(now.getTime() + ROUND_DURATION_SECONDS * 1000) }).where(eq(scoopRoomsTable.id, room.id));
+  });
+  res.json(await state(req, a.room));
+}));
+
+router.put("/rooms/:code/answer", safe(async (req, res) => {
+  const a = await access(req, res); if (!a) return;
+  const body = SubmitAnswerBody.safeParse(req.body);
+  if (!body.success || !normalizeAnswer(body.data.answer)) { fail(res, 400, "Type an answer before submitting."); return; }
+  if (a.player.isHost) { fail(res, 403, "The host moderates; guests submit answers."); return; }
+  // Commit the expiry even when the following submission is rejected.
+  await expireRound(a.room.id);
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    const now = Date.now();
+    if (room.phase !== "answering" || !room.roundEndsAt || !room.roundStartedAt || now >= room.roundEndsAt.getTime())
+      throw new RuleError(409, "Time is up. Answers are closed.");
+    if (body.data.round !== room.round) throw new RuleError(409, "That answer belongs to a previous round. Refresh the current question.");
+    const [question] = await tx.select().from(scoopQuestionsTable).where(and(eq(scoopQuestionsTable.roomId, room.id),
+      eq(scoopQuestionsTable.position, room.round - 1))).limit(1);
+    if (!question) throw new RuleError(409, "Question not found.");
+    const reward = scoreAnswer(room.round - 1, body.data.answer, now - room.roundStartedAt.getTime(), room.roundDuration * 1000);
+    const [saved] = await tx.insert(scoopAnswersTable).values({
+      roomId: room.id, questionId: question.id, playerId: a.player.id,
+      answer: body.data.answer.trim().replace(/\s+/g, " "), normalizedAnswer: normalizeAnswer(body.data.answer), ...reward,
+    }).onConflictDoNothing().returning({ id: scoopAnswersTable.id });
+    if (!saved) throw new RuleError(409, "Your first answer is already locked for this round.");
+  });
+  res.json(await state(req, a.room));
+}));
+
+router.post("/rooms/:code/reveal", safe(async (req, res) => {
+  const a = await access(req, res, true); if (!a) return;
+  await expireRound(a.room.id);
+  const room = await roomByCode(a.room.code);
+  if (room?.phase !== "revealed") { fail(res, 409, "Results open automatically when the timer expires."); return; }
+  res.json(await state(req, a.room));
+}));
+
+router.post("/rooms/:code/next", safe(async (req, res) => {
+  const a = await access(req, res, true); if (!a) return;
+  await db.transaction(async tx => {
+    const room = await lockRoom(tx, a.room.id);
+    if (room.phase !== "revealed") throw new RuleError(409, "Wait for the current round to end.");
+    const now = new Date(), done = room.round >= ROUND_COUNT;
+    await tx.update(scoopRoomsTable).set({ phase: done ? "finished" : "answering", roundDuration: done ? room.roundDuration : ROUND_DURATION_SECONDS,
+      round: done ? ROUND_COUNT : room.round + 1, roundStartedAt: done ? room.roundStartedAt : now,
+      roundEndsAt: done ? room.roundEndsAt : new Date(now.getTime() + ROUND_DURATION_SECONDS * 1000) }).where(eq(scoopRoomsTable.id, room.id));
+  });
+  res.json(await state(req, a.room));
+}));
 export default router;

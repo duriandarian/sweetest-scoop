@@ -1,0 +1,5 @@
+.music-error { flex-basis:100%; max-width:360px; margin:4px 0; color:#963d4d; font-size:12px; padding:8px; background:#fff5e9; border-radius:8px; }
+.photo-menu > .music-error { position:absolute; z-index:15; top:14px; right:14px; }
+@media (max-width:700px) {
+  .photo-menu > .music-error { top:10px; left:12px; right:12px; margin-inline:auto; }
+}

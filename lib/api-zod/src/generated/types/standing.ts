@@ -11,4 +11,11 @@ export interface Standing {
   displayName: string;
   points: number;
   discoveries: number;
+  avatar?: string;
+  /** @nullable */
+  answer?: string | null;
+  basePoints?: number;
+  speedBonus?: number;
+  /** @nullable */
+  elapsedMs?: number | null;
 }

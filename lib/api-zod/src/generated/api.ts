@@ -22,17 +22,24 @@ export const HealthCheckResponse = zod.object({
  */
 export const createRoomBodyHostNameMax = 32;
 
+export const createRoomBodyAvatarMax = 16;
+
+
+export const createRoomBodyAvatarRegExp = new RegExp('^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\\s\\S])');
 
 
 export const CreateRoomBody = zod.object({
-  "hostName": zod.string().min(1).max(createRoomBodyHostNameMax)
+  "hostName": zod.string().min(1).max(createRoomBodyHostNameMax),
+  "avatar": zod.string().max(createRoomBodyAvatarMax).regex(createRoomBodyAvatarRegExp).optional().describe('Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.')
 })
 
 export const createRoomResponseRoomRoundMin = 0;
 export const createRoomResponseRoomRoundMax = 10;
 
+export const createRoomResponseRoomMyTotalPointsMin = 0;
+
 export const createRoomResponseRoomAnswersItemPointsMin = 0;
-export const createRoomResponseRoomAnswersItemPointsMax = 100;
+export const createRoomResponseRoomAnswersItemPointsMax = 120;
 
 
 
@@ -42,13 +49,51 @@ export const CreateRoomResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(createRoomResponseRoomRoundMin).max(createRoomResponseRoomRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(createRoomResponseRoomMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -62,9 +107,15 @@ export const CreateRoomResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -90,8 +141,10 @@ export const GetRoomHeader = zod.object({
 export const getRoomResponseRoundMin = 0;
 export const getRoomResponseRoundMax = 10;
 
+export const getRoomResponseMyTotalPointsMin = 0;
+
 export const getRoomResponseAnswersItemPointsMin = 0;
-export const getRoomResponseAnswersItemPointsMax = 100;
+export const getRoomResponseAnswersItemPointsMax = 120;
 
 
 
@@ -99,13 +152,51 @@ export const GetRoomResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(getRoomResponseRoundMin).max(getRoomResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(getRoomResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -119,9 +210,15 @@ export const GetRoomResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -141,17 +238,24 @@ export const JoinRoomParams = zod.object({
 
 export const joinRoomBodyDisplayNameMax = 32;
 
+export const joinRoomBodyAvatarMax = 16;
+
+
+export const joinRoomBodyAvatarRegExp = new RegExp('^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\\s\\S])');
 
 
 export const JoinRoomBody = zod.object({
-  "displayName": zod.string().min(1).max(joinRoomBodyDisplayNameMax)
+  "displayName": zod.string().min(1).max(joinRoomBodyDisplayNameMax),
+  "avatar": zod.string().max(joinRoomBodyAvatarMax).regex(joinRoomBodyAvatarRegExp).optional().describe('Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.')
 })
 
 export const joinRoomResponseRoomRoundMin = 0;
 export const joinRoomResponseRoomRoundMax = 10;
 
+export const joinRoomResponseRoomMyTotalPointsMin = 0;
+
 export const joinRoomResponseRoomAnswersItemPointsMin = 0;
-export const joinRoomResponseRoomAnswersItemPointsMax = 100;
+export const joinRoomResponseRoomAnswersItemPointsMax = 120;
 
 
 
@@ -161,13 +265,51 @@ export const JoinRoomResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(joinRoomResponseRoomRoundMin).max(joinRoomResponseRoomRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(joinRoomResponseRoomMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -181,9 +323,15 @@ export const JoinRoomResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -191,7 +339,7 @@ export const JoinRoomResponse = zod.object({
 
 
 /**
- * @summary Replace the room's ten questions before starting
+ * @summary Replace the room's seven prompts before starting
  */
 export const updateQuestionsPathCodeMin = 4;
 export const updateQuestionsPathCodeMax = 8;
@@ -208,8 +356,8 @@ export const UpdateQuestionsHeader = zod.object({
 
 export const updateQuestionsBodyQuestionsItemMax = 280;
 
-export const updateQuestionsBodyQuestionsMin = 10;
-export const updateQuestionsBodyQuestionsMax = 10;
+export const updateQuestionsBodyQuestionsMin = 7;
+export const updateQuestionsBodyQuestionsMax = 7;
 
 
 
@@ -220,8 +368,10 @@ export const UpdateQuestionsBody = zod.object({
 export const updateQuestionsResponseRoundMin = 0;
 export const updateQuestionsResponseRoundMax = 10;
 
+export const updateQuestionsResponseMyTotalPointsMin = 0;
+
 export const updateQuestionsResponseAnswersItemPointsMin = 0;
-export const updateQuestionsResponseAnswersItemPointsMax = 100;
+export const updateQuestionsResponseAnswersItemPointsMax = 120;
 
 
 
@@ -229,13 +379,51 @@ export const UpdateQuestionsResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(updateQuestionsResponseRoundMin).max(updateQuestionsResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(updateQuestionsResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -249,9 +437,15 @@ export const UpdateQuestionsResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -276,8 +470,10 @@ export const StartGameHeader = zod.object({
 export const startGameResponseRoundMin = 0;
 export const startGameResponseRoundMax = 10;
 
+export const startGameResponseMyTotalPointsMin = 0;
+
 export const startGameResponseAnswersItemPointsMin = 0;
-export const startGameResponseAnswersItemPointsMax = 100;
+export const startGameResponseAnswersItemPointsMax = 120;
 
 
 
@@ -285,13 +481,51 @@ export const StartGameResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(startGameResponseRoundMin).max(startGameResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(startGameResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -305,16 +539,22 @@ export const StartGameResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
 
 
 /**
- * @summary Submit or update the current answer
+ * @summary Lock one answer for the timed round
  */
 export const submitAnswerPathCodeMin = 4;
 export const submitAnswerPathCodeMax = 8;
@@ -331,17 +571,22 @@ export const SubmitAnswerHeader = zod.object({
 
 export const submitAnswerBodyAnswerMax = 120;
 
+export const submitAnswerBodyRoundMax = 7;
+
 
 
 export const SubmitAnswerBody = zod.object({
-  "answer": zod.string().min(1).max(submitAnswerBodyAnswerMax)
+  "answer": zod.string().min(1).max(submitAnswerBodyAnswerMax),
+  "round": zod.number().int().min(1).max(submitAnswerBodyRoundMax)
 })
 
 export const submitAnswerResponseRoundMin = 0;
 export const submitAnswerResponseRoundMax = 10;
 
+export const submitAnswerResponseMyTotalPointsMin = 0;
+
 export const submitAnswerResponseAnswersItemPointsMin = 0;
-export const submitAnswerResponseAnswersItemPointsMax = 100;
+export const submitAnswerResponseAnswersItemPointsMax = 120;
 
 
 
@@ -349,13 +594,51 @@ export const SubmitAnswerResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(submitAnswerResponseRoundMin).max(submitAnswerResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(submitAnswerResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -369,9 +652,15 @@ export const SubmitAnswerResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -396,8 +685,10 @@ export const RevealAnswersHeader = zod.object({
 export const revealAnswersResponseRoundMin = 0;
 export const revealAnswersResponseRoundMax = 10;
 
+export const revealAnswersResponseMyTotalPointsMin = 0;
+
 export const revealAnswersResponseAnswersItemPointsMin = 0;
-export const revealAnswersResponseAnswersItemPointsMax = 100;
+export const revealAnswersResponseAnswersItemPointsMax = 120;
 
 
 
@@ -405,13 +696,51 @@ export const RevealAnswersResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(revealAnswersResponseRoundMin).max(revealAnswersResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(revealAnswersResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -425,9 +754,15 @@ export const RevealAnswersResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })
@@ -452,8 +787,10 @@ export const NextQuestionHeader = zod.object({
 export const nextQuestionResponseRoundMin = 0;
 export const nextQuestionResponseRoundMax = 10;
 
+export const nextQuestionResponseMyTotalPointsMin = 0;
+
 export const nextQuestionResponseAnswersItemPointsMin = 0;
-export const nextQuestionResponseAnswersItemPointsMax = 100;
+export const nextQuestionResponseAnswersItemPointsMax = 120;
 
 
 
@@ -461,13 +798,51 @@ export const NextQuestionResponse = zod.object({
   "code": zod.string(),
   "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
   "round": zod.number().int().min(nextQuestionResponseRoundMin).max(nextQuestionResponseRoundMax),
-  "questionCount": zod.literal(10),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(nextQuestionResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
   "questions": zod.array(zod.string()),
   "currentQuestion": zod.string().nullish(),
   "players": zod.array(zod.object({
   "id": zod.string(),
   "displayName": zod.string(),
-  "isHost": zod.boolean()
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
 })),
   "answers": zod.array(zod.object({
   "answer": zod.string(),
@@ -481,9 +856,227 @@ export const NextQuestionResponse = zod.object({
   "playerId": zod.string(),
   "displayName": zod.string(),
   "points": zod.number().int(),
-  "discoveries": zod.number().int()
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
 })),
   "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "submitted": zod.boolean(),
+  "submittedCount": zod.number().int().optional()
+})
+
+
+export const updateProfilePathCodeMin = 4;
+export const updateProfilePathCodeMax = 8;
+
+
+
+export const UpdateProfileParams = zod.object({
+  "code": zod.coerce.string().min(updateProfilePathCodeMin).max(updateProfilePathCodeMax)
+})
+
+export const UpdateProfileHeader = zod.object({
+  "X-Session-Token": zod.string().optional()
+})
+
+export const updateProfileBodyAvatarMax = 16;
+
+
+export const updateProfileBodyAvatarRegExp = new RegExp('^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\\s\\S])');
+
+
+export const UpdateProfileBody = zod.object({
+  "avatar": zod.string().max(updateProfileBodyAvatarMax).regex(updateProfileBodyAvatarRegExp).describe('Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.')
+})
+
+export const updateProfileResponseRoundMin = 0;
+export const updateProfileResponseRoundMax = 10;
+
+export const updateProfileResponseMyTotalPointsMin = 0;
+
+export const updateProfileResponseAnswersItemPointsMin = 0;
+export const updateProfileResponseAnswersItemPointsMax = 120;
+
+
+
+export const UpdateProfileResponse = zod.object({
+  "code": zod.string(),
+  "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
+  "round": zod.number().int().min(updateProfileResponseRoundMin).max(updateProfileResponseRoundMax),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(updateProfileResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
+  "questions": zod.array(zod.string()),
+  "currentQuestion": zod.string().nullish(),
+  "players": zod.array(zod.object({
+  "id": zod.string(),
+  "displayName": zod.string(),
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
+})),
+  "answers": zod.array(zod.object({
+  "answer": zod.string(),
+  "players": zod.array(zod.string()),
+  "count": zod.number().int(),
+  "points": zod.number().int().min(updateProfileResponseAnswersItemPointsMin).max(updateProfileResponseAnswersItemPointsMax),
+  "tier": zod.string(),
+  "ingredient": zod.string()
+})),
+  "standings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})),
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "submitted": zod.boolean(),
+  "submittedCount": zod.number().int().optional()
+})
+
+
+export const updateSettingsPathCodeMin = 4;
+export const updateSettingsPathCodeMax = 8;
+
+
+
+export const UpdateSettingsParams = zod.object({
+  "code": zod.coerce.string().min(updateSettingsPathCodeMin).max(updateSettingsPathCodeMax)
+})
+
+export const UpdateSettingsHeader = zod.object({
+  "X-Session-Token": zod.string().optional()
+})
+
+export const UpdateSettingsBody = zod.object({
+  "roundDuration": zod.literal(25)
+})
+
+export const updateSettingsResponseRoundMin = 0;
+export const updateSettingsResponseRoundMax = 10;
+
+export const updateSettingsResponseMyTotalPointsMin = 0;
+
+export const updateSettingsResponseAnswersItemPointsMin = 0;
+export const updateSettingsResponseAnswersItemPointsMax = 120;
+
+
+
+export const UpdateSettingsResponse = zod.object({
+  "code": zod.string(),
+  "phase": zod.enum(['lobby', 'answering', 'revealed', 'finished']),
+  "round": zod.number().int().min(updateSettingsResponseRoundMin).max(updateSettingsResponseRoundMax),
+  "questionCount": zod.number().int(),
+  "serverNow": zod.string().optional(),
+  "roundStartedAt": zod.string().nullish(),
+  "roundEndsAt": zod.string().nullish(),
+  "roundDuration": zod.number().int().optional(),
+  "playerId": zod.string().nullish(),
+  "myAnswer": zod.string().nullish(),
+  "myTotalPoints": zod.number().int().min(updateSettingsResponseMyTotalPointsMin).describe('Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.'),
+  "myReward": zod.union([zod.object({
+  "points": zod.number().int(),
+  "basePoints": zod.number().int(),
+  "speedBonus": zod.number().int(),
+  "tier": zod.string(),
+  "ingredient": zod.string(),
+  "depth": zod.number().int(),
+  "matched": zod.boolean(),
+  "elapsedMs": zod.number().int()
+}),zod.null()]).optional(),
+  "roundStandings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})).optional(),
+  "possibleAnswers": zod.array(zod.object({
+  "answer": zod.string(),
+  "tier": zod.string(),
+  "basePoints": zod.number().int(),
+  "depth": zod.number().int(),
+  "submitted": zod.boolean().optional(),
+  "submittedCount": zod.number().int().optional()
+})).optional(),
+  "questions": zod.array(zod.string()),
+  "currentQuestion": zod.string().nullish(),
+  "players": zod.array(zod.object({
+  "id": zod.string(),
+  "displayName": zod.string(),
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
+  "hasAnswered": zod.boolean().optional().describe('Whether this player has locked an answer in the current round. Does not expose answer content or score.')
+})),
+  "answers": zod.array(zod.object({
+  "answer": zod.string(),
+  "players": zod.array(zod.string()),
+  "count": zod.number().int(),
+  "points": zod.number().int().min(updateSettingsResponseAnswersItemPointsMin).max(updateSettingsResponseAnswersItemPointsMax),
+  "tier": zod.string(),
+  "ingredient": zod.string()
+})),
+  "standings": zod.array(zod.object({
+  "playerId": zod.string(),
+  "displayName": zod.string(),
+  "points": zod.number().int(),
+  "discoveries": zod.number().int(),
+  "avatar": zod.string().optional(),
+  "answer": zod.string().nullish(),
+  "basePoints": zod.number().int().optional(),
+  "speedBonus": zod.number().int().optional(),
+  "elapsedMs": zod.number().int().nullish()
+})),
+  "isHost": zod.boolean(),
+  "avatar": zod.string().optional(),
   "submitted": zod.boolean(),
   "submittedCount": zod.number().int().optional()
 })

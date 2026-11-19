@@ -85,7 +85,7 @@ paths:
     put:
       operationId: updateQuestions
       tags: [sweetest-scoop]
-      summary: Replace the room's ten questions before starting
+      summary: Replace the room's seven prompts before starting
       parameters:
         - $ref: "#/components/parameters/RoomCode"
         - $ref: "#/components/parameters/SessionToken"
@@ -121,7 +121,7 @@ paths:
     put:
       operationId: submitAnswer
       tags: [sweetest-scoop]
-      summary: Submit or update the current answer
+      summary: Lock one answer for the timed round
       parameters:
         - $ref: "#/components/parameters/RoomCode"
         - $ref: "#/components/parameters/SessionToken"
@@ -168,6 +168,46 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/profile:
+    put:
+      operationId: updateProfile
+      tags: [sweetest-scoop]
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileInput"
+      responses:
+        "200":
+          description: Bobi appearance saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/settings:
+    put:
+      operationId: updateSettings
+      tags: [sweetest-scoop]
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - $ref: "#/components/parameters/SessionToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SettingsInput"
+      responses:
+        "200":
+          description: Round duration saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomState"
 components:
   parameters:
     RoomCode:
@@ -192,30 +232,48 @@ components:
           type: string
       required:
         - status
+    BobiAppearance:
+      type: string
+      maxLength: 16
+      pattern: '^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\s\S])'
+      description: Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.
     CreateRoomInput:
       type: object
       required: [hostName]
       properties:
         hostName: { type: string, minLength: 1, maxLength: 32 }
+        avatar: { $ref: "#/components/schemas/BobiAppearance" }
     JoinRoomInput:
       type: object
       required: [displayName]
       properties:
         displayName: { type: string, minLength: 1, maxLength: 32 }
+        avatar: { $ref: "#/components/schemas/BobiAppearance" }
+    ProfileInput:
+      type: object
+      required: [avatar]
+      properties:
+        avatar: { $ref: "#/components/schemas/BobiAppearance" }
+    SettingsInput:
+      type: object
+      required: [roundDuration]
+      properties:
+        roundDuration: { type: integer, enum: [25] }
     QuestionListInput:
       type: object
       required: [questions]
       properties:
         questions:
           type: array
-          minItems: 10
-          maxItems: 10
+          minItems: 7
+          maxItems: 7
           items: { type: string, minLength: 1, maxLength: 280 }
     AnswerInput:
       type: object
-      required: [answer]
+      required: [answer, round]
       properties:
         answer: { type: string, minLength: 1, maxLength: 120 }
+        round: { type: integer, minimum: 1, maximum: 7 }
     SessionRoom:
       type: object
       required: [sessionToken, room]
@@ -224,12 +282,32 @@ components:
         room: { $ref: "#/components/schemas/RoomState" }
     RoomState:
       type: object
-      required: [code, phase, round, questionCount, questions, players, answers, standings, isHost, submitted]
+      required: [code, phase, round, questionCount, questions, players, answers, standings, isHost, submitted, myTotalPoints]
       properties:
         code: { type: string }
         phase: { type: string, enum: [lobby, answering, revealed, finished] }
         round: { type: integer, minimum: 0, maximum: 10 }
-        questionCount: { type: integer, enum: [10] }
+        questionCount: { type: integer }
+        serverNow: { type: string }
+        roundStartedAt: { type: ["string", "null"] }
+        roundEndsAt: { type: ["string", "null"] }
+        roundDuration: { type: integer }
+        playerId: { type: ["string", "null"] }
+        myAnswer: { type: ["string", "null"] }
+        myTotalPoints:
+          type: integer
+          minimum: 0
+          description: Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.
+        myReward:
+          anyOf:
+            - $ref: "#/components/schemas/AnswerReward"
+            - type: "null"
+        roundStandings:
+          type: array
+          items: { $ref: "#/components/schemas/Standing" }
+        possibleAnswers:
+          type: array
+          items: { $ref: "#/components/schemas/CatalogAnswer" }
         questions:
           type: array
           items: { type: string }
@@ -244,6 +322,29 @@ components:
           type: array
           items: { $ref: "#/components/schemas/Standing" }
         isHost: { type: boolean }
+        avatar: { type: string }
+        submitted: { type: boolean }
+        submittedCount: { type: integer }
+    AnswerReward:
+      type: object
+      required: [points, basePoints, speedBonus, tier, ingredient, depth, matched, elapsedMs]
+      properties:
+        points: { type: integer }
+        basePoints: { type: integer }
+        speedBonus: { type: integer }
+        tier: { type: string }
+        ingredient: { type: string }
+        depth: { type: integer }
+        matched: { type: boolean }
+        elapsedMs: { type: integer }
+    CatalogAnswer:
+      type: object
+      required: [answer, tier, basePoints, depth]
+      properties:
+        answer: { type: string }
+        tier: { type: string }
+        basePoints: { type: integer }
+        depth: { type: integer }
         submitted: { type: boolean }
         submittedCount: { type: integer }
     RoomPlayer:
@@ -253,6 +354,10 @@ components:
         id: { type: string }
         displayName: { type: string }
         isHost: { type: boolean }
+        avatar: { type: string }
+        hasAnswered:
+          type: boolean
+          description: Whether this player has locked an answer in the current round. Does not expose answer content or score.
     GroupedAnswer:
       type: object
       required: [answer, players, count, points, tier, ingredient]
@@ -262,7 +367,7 @@ components:
           type: array
           items: { type: string }
         count: { type: integer }
-        points: { type: integer, minimum: 0, maximum: 100 }
+        points: { type: integer, minimum: 0, maximum: 120 }
         tier: { type: string }
         ingredient: { type: string }
     Standing:
@@ -273,4 +378,9 @@ components:
         displayName: { type: string }
         points: { type: integer }
         discoveries: { type: integer }
+        avatar: { type: string }
+        answer: { type: ["string", "null"] }
+        basePoints: { type: integer }
+        speedBonus: { type: integer }
+        elapsedMs: { type: ["integer", "null"] }
 

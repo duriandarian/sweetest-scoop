@@ -17,6 +17,10 @@ export const scoopRoomsTable = pgTable(
     code: varchar("code", { length: 8 }).notNull().unique(),
     phase: varchar("phase", { length: 16 }).notNull().default("lobby"),
     round: integer("round").notNull().default(0),
+    bankVersion: integer("bank_version").notNull().default(1),
+    roundDuration: integer("round_duration").notNull().default(25),
+    roundStartedAt: timestamp("round_started_at", { withTimezone: true }),
+    roundEndsAt: timestamp("round_ends_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -31,6 +35,7 @@ export const scoopPlayersTable = pgTable(
       .notNull()
       .references(() => scoopRoomsTable.id, { onDelete: "cascade" }),
     displayName: varchar("display_name", { length: 32 }).notNull(),
+    avatar: varchar("avatar", { length: 16 }).notNull().default("mango"),
     isHost: boolean("is_host").notNull().default(false),
     sessionHash: text("session_hash").notNull().unique(),
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -76,6 +81,10 @@ export const scoopAnswersTable = pgTable(
     points: integer("points"),
     tier: varchar("tier", { length: 24 }),
     ingredient: varchar("ingredient", { length: 32 }),
+    basePoints: integer("base_points"),
+    speedBonus: integer("speed_bonus"),
+    elapsedMs: integer("elapsed_ms"),
+    depth: integer("depth"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

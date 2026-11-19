@@ -9,12 +9,20 @@ export interface HealthStatus {
   status: string;
 }
 
+/**
+ * Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.
+ * @maxLength 16
+ * @pattern ^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\s\S])
+ */
+export type BobiAppearance = string;
+
 export interface CreateRoomInput {
   /**
      * @minLength 1
      * @maxLength 32
      */
   hostName: string;
+  avatar?: BobiAppearance;
 }
 
 export interface JoinRoomInput {
@@ -23,12 +31,28 @@ export interface JoinRoomInput {
      * @maxLength 32
      */
   displayName: string;
+  avatar?: BobiAppearance;
+}
+
+export interface ProfileInput {
+  avatar: BobiAppearance;
+}
+
+export type SettingsInputRoundDuration = typeof SettingsInputRoundDuration[keyof typeof SettingsInputRoundDuration];
+
+
+export const SettingsInputRoundDuration = {
+  NUMBER_25: 25,
+} as const;
+
+export interface SettingsInput {
+  roundDuration: SettingsInputRoundDuration;
 }
 
 export interface QuestionListInput {
   /**
-     * @minItems 10
-     * @maxItems 10
+     * @minItems 7
+     * @maxItems 7
      * @items.minLength 1
      * @items.maxLength 280
      */
@@ -41,6 +65,11 @@ export interface AnswerInput {
      * @maxLength 120
      */
   answer: string;
+  /**
+     * @minimum 1
+     * @maximum 7
+     */
+  round: number;
 }
 
 export type RoomStatePhase = typeof RoomStatePhase[keyof typeof RoomStatePhase];
@@ -53,17 +82,47 @@ export const RoomStatePhase = {
   finished: 'finished',
 } as const;
 
-export type RoomStateQuestionCount = typeof RoomStateQuestionCount[keyof typeof RoomStateQuestionCount];
+export interface AnswerReward {
+  points: number;
+  basePoints: number;
+  speedBonus: number;
+  tier: string;
+  ingredient: string;
+  depth: number;
+  matched: boolean;
+  elapsedMs: number;
+}
 
+export interface Standing {
+  playerId: string;
+  displayName: string;
+  points: number;
+  discoveries: number;
+  avatar?: string;
+  /** @nullable */
+  answer?: string | null;
+  basePoints?: number;
+  speedBonus?: number;
+  /** @nullable */
+  elapsedMs?: number | null;
+}
 
-export const RoomStateQuestionCount = {
-  NUMBER_10: 10,
-} as const;
+export interface CatalogAnswer {
+  answer: string;
+  tier: string;
+  basePoints: number;
+  depth: number;
+  submitted?: boolean;
+  submittedCount?: number;
+}
 
 export interface RoomPlayer {
   id: string;
   displayName: string;
   isHost: boolean;
+  avatar?: string;
+  /** Whether this player has locked an answer in the current round. Does not expose answer content or score. */
+  hasAnswered?: boolean;
 }
 
 export interface GroupedAnswer {
@@ -72,18 +131,11 @@ export interface GroupedAnswer {
   count: number;
   /**
      * @minimum 0
-     * @maximum 100
+     * @maximum 120
      */
   points: number;
   tier: string;
   ingredient: string;
-}
-
-export interface Standing {
-  playerId: string;
-  displayName: string;
-  points: number;
-  discoveries: number;
 }
 
 export interface RoomState {
@@ -94,7 +146,25 @@ export interface RoomState {
      * @maximum 10
      */
   round: number;
-  questionCount: RoomStateQuestionCount;
+  questionCount: number;
+  serverNow?: string;
+  /** @nullable */
+  roundStartedAt?: string | null;
+  /** @nullable */
+  roundEndsAt?: string | null;
+  roundDuration?: number;
+  /** @nullable */
+  playerId?: string | null;
+  /** @nullable */
+  myAnswer?: string | null;
+  /**
+     * Private cumulative score of the authenticated player, including their current locked answer. Zero for a moderator or anonymous viewer.
+     * @minimum 0
+     */
+  myTotalPoints: number;
+  myReward?: AnswerReward | null;
+  roundStandings?: Standing[];
+  possibleAnswers?: CatalogAnswer[];
   questions: string[];
   /** @nullable */
   currentQuestion?: string | null;
@@ -102,6 +172,7 @@ export interface RoomState {
   answers: GroupedAnswer[];
   standings: Standing[];
   isHost: boolean;
+  avatar?: string;
   submitted: boolean;
   submittedCount?: number;
 }

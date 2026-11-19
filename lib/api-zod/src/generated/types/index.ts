@@ -7,15 +7,20 @@
  */
 
 export * from './answerInput';
+export * from './answerReward';
+export * from './bobiAppearance';
+export * from './catalogAnswer';
 export * from './createRoomInput';
 export * from './groupedAnswer';
 export * from './healthStatus';
 export * from './joinRoomInput';
+export * from './profileInput';
 export * from './questionListInput';
 export * from './roomPlayer';
 export * from './roomState';
 export * from './roomStatePhase';
-export * from './roomStateQuestionCount';
 export * from './sessionRoom';
 export * from './sessionTokenParameter';
+export * from './settingsInput';
+export * from './settingsInputRoundDuration';
 export * from './standing';

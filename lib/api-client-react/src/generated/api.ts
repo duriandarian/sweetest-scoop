@@ -24,9 +24,11 @@ import type {
   CreateRoomInput,
   HealthStatus,
   JoinRoomInput,
+  ProfileInput,
   QuestionListInput,
   RoomState,
-  SessionRoom
+  SessionRoom,
+  SettingsInput
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -397,7 +399,7 @@ export const getUpdateQuestionsUrl = (code: string,) => {
 }
 
 /**
- * @summary Replace the room's ten questions before starting
+ * @summary Replace the room's seven prompts before starting
  */
 export const updateQuestions = async (code: string,
     questionListInput: QuestionListInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
@@ -464,7 +466,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type UpdateQuestionsMutationVariables = {code: string;data: BodyType<QuestionListInput>}
 
     /**
- * @summary Replace the room's ten questions before starting
+ * @summary Replace the room's seven prompts before starting
  */
 export const useUpdateQuestions = <TError = ErrorType<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateQuestions>>, TError,UpdateQuestionsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -560,7 +562,7 @@ export const getSubmitAnswerUrl = (code: string,) => {
 }
 
 /**
- * @summary Submit or update the current answer
+ * @summary Lock one answer for the timed round
  */
 export const submitAnswer = async (code: string,
     answerInput: AnswerInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
@@ -627,7 +629,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubmitAnswerMutationVariables = {code: string;data: BodyType<AnswerInput>}
 
     /**
- * @summary Submit or update the current answer
+ * @summary Lock one answer for the timed round
  */
 export const useSubmitAnswer = <TError = ErrorType<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitAnswer>>, TError,SubmitAnswerMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -786,5 +788,171 @@ export const useNextQuestion = <TError = ErrorType<unknown>,
         TContext
       > => {
       return useMutation(getNextQuestionMutationOptions(options));
+    }
+
+export const getUpdateProfileUrl = (code: string,) => {
+
+
+
+
+  return `/api/rooms/${code}/profile`
+}
+
+export const updateProfile = async (code: string,
+    profileInput: ProfileInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<RoomState>(getUpdateProfileUrl(code),
+  {
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(profileInput)
+  }
+);}
+
+
+
+
+
+export const getUpdateProfileMutationKey = () => ['updateProfile'] as const;
+
+export const getUpdateProfileMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,UpdateProfileMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,UpdateProfileMutationVariables, TContext> => {
+
+const mutationKey = getUpdateProfileMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProfile>>, UpdateProfileMutationVariables> = (props) => {
+          const {code,data} = props ?? {};
+
+          return  updateProfile(code,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateProfileMutationResult = NonNullable<Awaited<ReturnType<typeof updateProfile>>>
+    export type UpdateProfileMutationBody = BodyType<ProfileInput>
+    export type UpdateProfileMutationError = ErrorType<unknown>
+    export type UpdateProfileMutationVariables = {code: string;data: BodyType<ProfileInput>}
+
+    export const useUpdateProfile = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,UpdateProfileMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateProfile>>,
+        TError,
+        UpdateProfileMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUpdateProfileMutationOptions(options));
+    }
+
+export const getUpdateSettingsUrl = (code: string,) => {
+
+
+
+
+  return `/api/rooms/${code}/settings`
+}
+
+export const updateSettings = async (code: string,
+    settingsInput: SettingsInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<RoomState>(getUpdateSettingsUrl(code),
+  {
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(settingsInput)
+  }
+);}
+
+
+
+
+
+export const getUpdateSettingsMutationKey = () => ['updateSettings'] as const;
+
+export const getUpdateSettingsMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSettings>>, TError,UpdateSettingsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateSettings>>, TError,UpdateSettingsMutationVariables, TContext> => {
+
+const mutationKey = getUpdateSettingsMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateSettings>>, UpdateSettingsMutationVariables> = (props) => {
+          const {code,data} = props ?? {};
+
+          return  updateSettings(code,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateSettingsMutationResult = NonNullable<Awaited<ReturnType<typeof updateSettings>>>
+    export type UpdateSettingsMutationBody = BodyType<SettingsInput>
+    export type UpdateSettingsMutationError = ErrorType<unknown>
+    export type UpdateSettingsMutationVariables = {code: string;data: BodyType<SettingsInput>}
+
+    export const useUpdateSettings = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSettings>>, TError,UpdateSettingsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateSettings>>,
+        TError,
+        UpdateSettingsMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUpdateSettingsMutationOptions(options));
     }
 

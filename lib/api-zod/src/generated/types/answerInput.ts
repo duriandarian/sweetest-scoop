@@ -12,4 +12,9 @@ export interface AnswerInput {
      * @maxLength 120
      */
   answer: string;
+  /**
+     * @minimum 1
+     * @maximum 7
+     */
+  round: number;
 }

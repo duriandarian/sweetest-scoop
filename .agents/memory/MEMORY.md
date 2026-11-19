@@ -1,0 +1,4 @@
+- [Welcome direction](welcome-direction.md) — persistent photo menu, no intro, original Bobi and watercolor art, energetic host waiting music.
+- [Party game rules](party-game-rules.md) — seven timed rounds, prepared answer rarity, individual scores, one answer each, and round podiums.
+- [Standalone UI checks](standalone-ui-checks.md) — standalone bundlers need exact-case resolution even when the normal Vite app works.
+- [GitHub synchronization](github-synchronization.md) — preserve GitHub history when syncing the separate Replit checkpoint tree; never force-push.

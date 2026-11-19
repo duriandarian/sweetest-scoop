@@ -12,7 +12,7 @@ export interface GroupedAnswer {
   count: number;
   /**
      * @minimum 0
-     * @maximum 100
+     * @maximum 120
      */
   points: number;
   tier: string;

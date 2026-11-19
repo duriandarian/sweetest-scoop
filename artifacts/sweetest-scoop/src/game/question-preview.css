@@ -1,0 +1,32 @@
+.qp-toolbar { width:min(860px,calc(100% - 28px)); margin:16px auto 8px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.qp-toolbar .seg button { display:inline-flex; gap:6px; align-items:center; }
+.qp-note { margin:0 auto 6px; padding:0 14px; text-align:center; font-size:11px; line-height:1.5; color:var(--g-soft); }
+.qp-note b { color:var(--g-matcha-d); }
+.qp-settings { width:min(860px,calc(100% - 28px)); margin:0 auto; border-bottom:1px dashed var(--g-line); padding:8px 0; color:var(--g-soft); font-size:11px; }
+.qp-settings summary { width:fit-content; cursor:pointer; font-weight:650; }
+.qp-settings-body { display:flex; align-items:end; gap:14px; flex-wrap:wrap; margin:12px 0 7px; }
+.qp-settings-body label { display:flex; flex-direction:column; gap:5px; }
+.qp-settings select { background:var(--g-paper); border:1px solid var(--g-line); padding:8px; border-radius:10px; font-size:16px; color:var(--g-ink); }
+.qp-settings p { margin:0; max-width:75ch; line-height:1.6; }
+.qp-example { margin:10px auto 0; width:min(680px,calc(100% - 30px)); padding:9px 13px; border-radius:12px; background:#fce8b6; color:#765320; text-align:center; font-size:12px; }
+.question-preview .g-main { padding-top:8px; }
+.question-preview .ph { margin-top:12px; min-height:0; justify-content:flex-start; gap:12px; }
+@media (max-width:520px) {
+  .qp-toolbar { gap:9px; }
+  .qp-toolbar .seg button { font-size:12px; padding:8px 10px; }
+  .qp-toolbar > .g-link { font-size:11px; }
+  .qp-note { font-size:10px; }
+}
+/* in-game practice/preview menu */
+.qp-menu { position:relative; }
+.qp-menu summary { list-style:none; width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:rgba(255,248,232,.86); color:#6b4208; border:1px solid rgba(160,100,30,.25); cursor:pointer; box-shadow:0 3px 0 rgba(150,90,20,.18); }
+.qp-menu summary::-webkit-details-marker { display:none; }
+.qp-menu[open] summary { background:#6b4208; color:#fff3d6; }
+.qp-menu-body { position:absolute; top:46px; left:0; z-index:10; width:min(290px, calc(100vw - 24px)); max-height:calc(100dvh - 140px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:14px; border-radius:18px; background:rgba(255,249,236,.97); border:1px solid #ecd3a0; box-shadow:0 18px 40px rgba(110,60,10,.25); color:var(--g-ink); font-size:12px; }
+.qp-menu-body label { display:flex; flex-direction:column; gap:4px; font-weight:700; color:var(--g-soft); }
+.qp-menu-body select { background:var(--g-paper); border:1px solid var(--g-line); padding:8px; border-radius:10px; font-size:16px; color:var(--g-ink); }
+.qp-menu-body p:not(.g-kicker) { margin:0; color:var(--g-soft); line-height:1.5; font-size:11px; }
+.qp-menu-btn { display:inline-flex; align-items:center; gap:7px; padding:9px 11px; border-radius:11px; border:1px solid var(--g-line); background:var(--g-paper); color:var(--g-ink); font-weight:700; font-size:13px; text-decoration:none; }
+.qp-badge { font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; color:#7c5410; background:rgba(255,246,222,.8); padding:4px 8px; border-radius:99px; white-space:nowrap; }
+.qp-round-actions { display:flex; justify-content:center; gap:10px; }
+.qp-round-actions button { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:44px; padding:6px 13px; border:1px solid rgba(255,244,220,.45); border-radius:8px; background:rgba(65,46,30,.93); color:#fff4de; font-size:13px; font-weight:700; }

@@ -1,0 +1,5945 @@
+[
+  {
+    "prompt": "Name an artist in Amy has recently listened to in Spotify",
+    "answers": [
+      {
+        "answer": "Bruno Mars",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Ella Langley",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Phil Wickham",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Dolly Parton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sovereign Grace Music",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "Olivia Rodrigo",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Kehlani",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Lainey Wilson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "JENNIE",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Olivia Dean",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Anderson .Paak",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dua Lipa",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Girls' Generation",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Adela",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "NewJeans",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Vineyard Music",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Emma Stone",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "TWICE",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Justin Hurwitz",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "NIKI",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Matilda Mann",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ariana Grande",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "OSA",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rosé",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Kameron Marlowe",
+        "sourceTier": "Deep Cut"
+      }
+    ]
+  },
+  {
+    "prompt": "Name a restaurant that Daniel & Amy have been to (just us two)",
+    "answers": [
+      {
+        "answer": "Zhangliang Malatang",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Google cafe",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "Burger King",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Giwa",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Portillos",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Viva Michoacan",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "McDonalds",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Waymo cafe",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "Din Tai Fung",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Master Oh's",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Bag O Crab",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Joy Yee Noodle",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "Chipotle",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Gyu-Kaku Japanese BBQ",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "BZZ Claypot",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Sizzling Dumpling House",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Duc Huong",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Pocha K",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Motiq",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Olive Garden",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "10 Butchers",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Mimi's Kitchen",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pho Ha Noi",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Urban Plates",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Bill's Cafe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Din Tai Fung",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Doppio Zero",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Beijing Restaurant",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wei's Fish",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "So Gong Dong Tofu House",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Din Din Dumpling",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fish With You",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Joyous Cuisine",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Taichi Pot Shabu Shabu",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Habit Burger",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Hanabi Sushi",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Dough Zone",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Daeho Kalbijjim",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Locanda Sorrento",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "The Melt",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Blue Monkey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cuanyue Malatang",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Seasons Noodle & Dumpling Garden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cali Spartan Tacos",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Banh Xeo Ngon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Yummy Tofu & BBQ",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Zen Handcrafted Udon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tacos Santiaguito",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Malibu Seafood",
+        "sourceTier": "Deep Cut"
+      }
+    ]
+  },
+  {
+    "prompt": "Name a city from Illinois",
+    "answers": [
+      {
+        "answer": "Chicago",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Springfield",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Algonquin",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Abingdon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buffalo Grove",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "Naperville",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Schaumberg",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Antioch",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Addieville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rockford",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Arlington Heights",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Addison",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Evanston",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Bannockburn",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Adeline",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Aurora",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Barrington",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Albany",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Joliet",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Blomingdale",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Albers",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elgin",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Bolingbrook",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Albion",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Peoria",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Carol Stream",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Aledo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Champaign",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Chicago Heights",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alexis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waukegan",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Cicero",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alhambra",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crystal Lake",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Allendale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Deer Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Allenville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Deerfield",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Allerton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Des Plaines",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alma",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Downers Grove",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alpha",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Chicago",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alsey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elk Grove Village",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alsip",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elmhurst",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Altamont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forest Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fox Lake",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Altona",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Geneva",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alto Pass",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glencoe",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Alvin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glenview",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Amboy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Golf",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Anchor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gurnee",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Andalusia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Highland Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Andover",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hinsdale",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Anna",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hoffman Estates",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Annawan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Forest",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Apple River",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Zurich",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Arcola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Libertyville",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Arenzville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lincolnwood",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Argenta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lisle",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Arlington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lombard",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Armington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McHenry",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Aroma Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Morton Grove",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Arrowsmith",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Prospect",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Arthur",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mundelein",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ashkum",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Niles",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ashland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Chicago",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ashley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Northbrook",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ashmore",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oak Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ashton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Orland Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Assumption",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palatine",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Astoria",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Prospect Heights",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Athens",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rolling Meadows",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Atkinson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roselle",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Atlanta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Round Lake",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Atwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Skokie",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Auburn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Barrington",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Augusta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St Charles",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ava",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tinley Park",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Aviston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vernon Hills",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Avon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Chicago",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Baldwin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Banner",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bardolph",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Barrington Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Barry",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bartelso",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bartlett",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bartonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Basco",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Batavia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Batchtown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bath",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Baylis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bay View Gardens",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beach Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beardstown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beaverville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beckemeyer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bedford Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beecher",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Beecher City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belgium",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belknap",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belle Prairie City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belle Rive",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belleville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bellevue",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bellflower",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bellmont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bellwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Belvidere",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bement",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Benld",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bensenville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Benson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bentley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Benton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Berkeley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Berlin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Berwyn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bethalto",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bethany",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Biggsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Big Rock",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bingham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bishop Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bismarck",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Blandinsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bloomington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Blue Island",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Blue Mound",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bluffs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bluford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bondville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bone Gap",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bonfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bonnie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bourbonnais",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bowen",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Braceville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bradford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bradley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Braidwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Breese",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bridgeport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bridgeview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brighton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brimfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Broadlands",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Broadview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Broadwell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brocton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brookfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brooklyn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brookport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Broughton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Browning",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Browns",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brownstown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brussels",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bryant",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buckingham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buckley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buckner",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buffalo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bull Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bulpitt",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Buncombe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bunker Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Burbank",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bureau Junction",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Burlington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Burnham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Burnt Prairie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Burr Ridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bush",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Bushnell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Butler",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Byron",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cabery",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cahokia Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cairo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Caledonia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Calhoun",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Calumet City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Calumet Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Camargo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cambria",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cambridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Camden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Campbell Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Camp Point",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Campton Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Campus",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Canton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cantrall",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Capron",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carbon Cliff",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carbondale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carbon Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carlinville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carlock",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carlyle",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carmi",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carpentersville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carrier Mills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carrollton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carterville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Carthage",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cary",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Casey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Caseyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Catlin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cave-In-Rock",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cedar Point",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cedarville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Central City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Centralia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cerro Gordo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chadwick",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chandlerville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Channahon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chapin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Charleston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chatham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chatsworth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chebanse",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chenoa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cherry",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cherry Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chesterfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chicago Ridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chillicothe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chrisman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Christopher",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cisco",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cisne",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cissna Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Claremont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clarendon Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clay City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clayton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clear Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cleveland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clifton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Clinton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coal City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coalton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coal Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coatsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cobden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coffeen",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Colchester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coleta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Colfax",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Collinsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Colona",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Colp",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Columbia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Columbus",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Compton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Concord",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Congerville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cooksville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cordova",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cornell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cortland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coulterville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Country Club Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Countryside",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cowden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crainville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Creal Springs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crescent City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crest Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Creston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crestwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crete",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Creve Coeur",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Crossville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cuba",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cullom",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Curran",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cutler",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Cypress",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dahlgren",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dakota",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dallas City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dalton City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dalzell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Damiansville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Danforth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Danvers",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Danville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Darien",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Davis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Davis Junction",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dawson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Decatur",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Deer Creek",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Deer Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "DeKalb",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "De Land",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Delavan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "De Pue",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "De Soto",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Detroit",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "De Witt",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Diamond",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dieterich",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Divernon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dix",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dixmoor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dixon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dolton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dongola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Donnellson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Donovan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dorchester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dover",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dowell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Downs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Du Bois",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dunfermline",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dunlap",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dupo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Du Quoin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Durand",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dwight",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Eagarville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Earlville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Alton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Brooklyn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Cape Girardeau",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Carondelet",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Dubuque",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Dundee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Galesburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Gillespie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Hazel Crest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Moline",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Easton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East Peoria",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "East St. Louis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Eddyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Edgewood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Edinburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Edwardsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Effingham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elburn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "El Dara",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Eldorado",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Eldred",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elizabeth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elizabethtown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elkhart",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elkville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elliott",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ellis Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ellisville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ellsworth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elmwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elmwood Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "El Paso",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elsah",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elvaston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Elwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Emden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Emington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Energy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Enfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Equality",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Erie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Essex",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Eureka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Evansville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Evergreen Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ewing",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Exeter",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairbury",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairmont City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairmount",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fairview Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Farina",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Farmer City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Farmersville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Farmington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fayetteville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ferris",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fidelity",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fieldon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fillmore",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Findlay",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fisher",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fithian",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Flanagan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Flat Rock",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Flora",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Florence",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Flossmoor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Foosland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ford Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forest City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forest View",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forrest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forreston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Forsyth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fox River Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Frankfort",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Franklin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Franklin Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Franklin Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Freeburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Freeman Spur",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Freeport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fulton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Fults",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Galatia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Galena",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Galesburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Galva",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gardner",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Garrett",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gays",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Geneseo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Genoa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Georgetown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Germantown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Germantown Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "German Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gibson City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gifford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gilberts",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gillespie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gilman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Girard",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gladstone",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glasford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glasgow",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glen Carbon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glendale Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glen Ellyn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Glenwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Godfrey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Godley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Golconda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Golden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Golden Gate",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Goodfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Good Hope",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Goreville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gorham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grafton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grand Ridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grand Tower",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grandview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Granite City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grantfork",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grant Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Granville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grayslake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Grayville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Greenfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Green Oaks",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Greenup",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Green Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Greenview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Greenville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Greenwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gridley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Griggsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Gulfport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hainesville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hamburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hamel",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hamilton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hammond",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hampshire",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hampton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hanaford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hanna City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hanover",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hanover Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hardin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harmon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harrisburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harristown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hartford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hartsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harvard",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harvel",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harvey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Harwood Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Havana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hawthorn Woods",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hazel Crest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hebron",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hecker",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Henderson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hennepin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Henning",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Henry",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Herrick",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Herrin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Herscher",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hettick",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Heyworth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hickory Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hidalgo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Highland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Highwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hillcrest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hillsboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hillsdale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hillside",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hillview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hinckley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hindsboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hodgkins",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hoffman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Holiday Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hollowayville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Homer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Homer Glen",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hometown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Homewood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hoopeston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hooppole",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hopedale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hopewell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hopkins Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hoyleton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hudson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Huey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hull",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Humboldt",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hume",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Huntley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hurst",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Hutsonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Illiopolis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ina",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Indian Creek",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Indian Head Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Indianola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Industry",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Inverness",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Iola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ipava",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Iroquois",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Irving",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Irvington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Irwin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Island Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Itasca",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Iuka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ivesdale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jacksonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jeffersonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jeisyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jerome",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jerseyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jewett",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Johnsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Johnsonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Johnston City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Jonesboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Joppa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Joy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Junction",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Junction City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Justice",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kampsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kane",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kaneville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kangley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kankakee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kansas",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kappa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Karnak",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kaskaskia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Keenes",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Keensburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Keithsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kempton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kenilworth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kenney",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kewanee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Keyesport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kilbourne",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kildeer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kincaid",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kinderhook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kingston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kingston Mines",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kinmundy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kinsman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kirkland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Kirkwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Knoxville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lacon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ladd",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Fayette",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Grange",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Grange Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Harpe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Barrington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Bluff",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake in the Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Ka-Ho",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lakemoor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lake Villa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lakewood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Moille",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lanark",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lansing",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Prairie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "La Rose",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "LaSalle",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Latham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lawrenceville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Leaf River",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lebanon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Leland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Leland Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lemont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lena",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lenzburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Leonore",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lerna",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Le Roy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lewistown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lexington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Liberty",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lily Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lima",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Limestone",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lincoln",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lincolnshire",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lindenhurst",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lisbon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Litchfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Littleton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Little York",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Liverpool",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Livingston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Loami",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lockport",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Loda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lomax",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "London Mills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Long Creek",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Long Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Long Point",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Longview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Loraine",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lostant",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Louisville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Loves Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lovington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ludlow",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lyndon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lynnville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lynwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Lyons",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Macedonia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Machesney Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mackinaw",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Macomb",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Macon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Madison",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maeystown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Magnolia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mahomet",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Makanda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Malden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Malta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Manchester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Manhattan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Manito",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Manlius",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mansfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Manteno",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maple Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mapleton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maquon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marengo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marietta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marine",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marion",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marissa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mark",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Markham",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maroa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marquette Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marseilles",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Marshall",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Martinsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Martinton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maryville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mascoutah",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mason",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mason City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Matherville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Matteson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mattoon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maunie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Maywood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mazon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McClure",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McCook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McCullom Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McLean",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McLeansboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "McNabb",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mechanicsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Media",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Medora",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Melrose Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Melvin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mendon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mendota",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Menominee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Meredosia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Merrionette Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Metamora",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Metcalf",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Metropolis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mettawa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Middletown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Midlothian",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Milan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Milford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Millbrook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mill Creek",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Milledgeville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Millington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mill Shoals",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Millstadt",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Milton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mineral",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Minier",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Minonk",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Minooka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Modesto",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mokena",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Moline",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Momence",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Monee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Monmouth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Monroe Center",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Montgomery",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Monticello",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Montrose",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Morris",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Morrison",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Morrisonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Morton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mound City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mounds",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mound Station",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Auburn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Carmel",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Carroll",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Clare",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Erie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Morris",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Olive",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Pulaski",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Sterling",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Vernon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mount Zion",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Moweaqua",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Muddy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mulberry Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Muncie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Murphysboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Murrayville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Naplate",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Naples",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nashville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nason",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nauvoo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nebo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nelson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Neoga",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Neponset",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Newark",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Athens",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Baden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Bedford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Berlin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Boston",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Burnside",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Canton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Douglas",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Grand Chain",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Haven",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Holland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Lenox",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Newman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Milford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Minden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "New Salem",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Newton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Niantic",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nilwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Noble",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nokomis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Nora",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Normal",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Norridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Norris",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Norris City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Aurora",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Barrington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Northfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Henderson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Northlake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Pekin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Riverside",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "North Utica",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Norwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oak Brook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakbrook Terrace",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakdale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oak Forest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oak Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oak Lawn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oakwood Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oblong",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oconee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Odell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Odin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "O'Fallon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ogden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oglesby",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ohio",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ohlman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Okawville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Old Mill Creek",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Old Ripley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Old Shawneetown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Olmsted",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Olney",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Olympia Fields",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Omaha",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Onarga",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oneida",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oquawka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Orangeville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oreana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oregon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Orient",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Orion",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Orland Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Oswego",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ottawa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Otterville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Owaneco",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palestine",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palmer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palmyra",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palos Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palos Hills",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Palos Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Panama",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Panola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Papineau",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Paris",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Park City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Parkersburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Park Forest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Park Ridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Patoka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pawnee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Paw Paw",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Paxton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Payson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pearl",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pearl City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pecatonica",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pekin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Peoria Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Peotone",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Percy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Perry",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Peru",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pesotum",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Petersburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Phillipstown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Philo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Phoenix",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pierron",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pinckneyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pingree Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Piper City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pittsburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pittsfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Plainfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Plainville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Plano",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Plattville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pleasant Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pleasant Plains",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Plymouth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pocahontas",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Polo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pontiac",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pontoon Beach",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pontoosuc",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Poplar Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Port Barrington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Port Byron",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Posen",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Potomac",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Prairie City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Prairie du Rocher",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Prairie Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Princeton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Princeville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Prophetstown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Pulaski",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Quincy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Radom",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Raleigh",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ramsey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rankin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ransom",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rantoul",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rapids City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Raritan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Raymond",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Red Bud",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Reddick",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Redmon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Reynolds",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Richmond",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Richton Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Richview",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ridge Farm",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ridgway",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ridott",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ringwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rio",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ripley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Riverdale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "River Forest",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "River Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Riverside",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Riverton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Riverwoods",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roanoke",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Robbins",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roberts",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Robinson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rochelle",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rochester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rockbridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rock City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rockdale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rock Falls",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rock Island",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rockton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rockwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Romeoville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roodhouse",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roscoe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rose Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rosemont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roseville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rosiclare",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rossville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Round Lake Beach",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Round Lake Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Round Lake Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Roxana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Royal",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Royal Lakes",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Royalton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ruma",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rushville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Russellville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Rutland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sadorus",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sailor Springs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Anne",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Augustine",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. David",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Elmo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ste. Marie",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Francisville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Jacob",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Johns",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Joseph",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Libory",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Peter",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "St. Rose",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Salem",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sammons Point",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sandoval",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sandwich",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "San Jose",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sauget",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sauk Village",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Saunemin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Savanna",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Savoy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sawyerville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Saybrook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Scales Mound",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Schiller Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Schram City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sciota",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Scottville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Seaton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Seatonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Secor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Seneca",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sesser",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shabbona",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shannon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shawneetown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sheffield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shelbyville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sheldon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sheridan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sherman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sherrard",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shiloh",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shipman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shorewood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Shumway",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sibley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sidell",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sidney",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sigel",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Silvis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Simpson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sims",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sleepy Hollow",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Smithboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Smithfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Smithton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Somonauk",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sorento",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Beloit",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Chicago Heights",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Elgin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Southern View",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Holland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Jacksonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Pekin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Roxana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "South Wilmington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sparland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sparta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Spaulding",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Spillertown",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Spring Bay",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Springerton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Spring Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Spring Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Standard",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Standard City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stanford",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Staunton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Steeleville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Steger",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sterling",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Steward",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stewardson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stickney",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stillman Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stockton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stonefort",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stone Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stonington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stoy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Strasburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Strawn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Streamwood",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Streator",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Stronghurst",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sublette",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sugar Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sullivan",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Summerfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Summit",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sumner",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sun River Terrace",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Swansea",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sycamore",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Symerton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Table Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tallula",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tamaroa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tamms",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tampico",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Taylor Springs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Taylorville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tennessee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Teutopolis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thawville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thayer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thebes",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Third Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thomasboro",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thompsonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thomson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Thornton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tilden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tilton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Timberlane",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Time",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tiskilwa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Toledo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tolono",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Toluca",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tonica",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Topeka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Toulon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tovey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Towanda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tower Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tower Lakes",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tremont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Trenton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Trout Valley",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Troy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Troy Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Tuscola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ullin",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Union",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Union Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "University Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Urbana",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ursa",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Valier",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Valley City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Valmeyer",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vandalia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Varna",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Venedy",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Venice",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vergennes",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vermilion",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vermont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vernon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Verona",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Versailles",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Victoria",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Vienna",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Villa Grove",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Villa Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Viola",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Virden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Virgil",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Virginia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Volo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wadsworth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waggoner",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Walnut",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Walnut Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Walshville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waltonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wamac",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wapella",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Warren",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Warrensburg",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Warrenville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Warsaw",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Washburn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Washington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Washington Park",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wataga",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waterloo",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waterman",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Watseka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Watson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wauconda",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waverly",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wayne",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wayne City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Waynesville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Weldon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wellington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wenona",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wenonah",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Brooklyn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Westchester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Dundee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Western Springs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Westfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Frankfort",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Westmont",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Peoria",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Point",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "West Salem",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Westville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wheaton",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wheeler",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wheeling",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "White City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "White Hall",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Williamsfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Williamson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Williamsville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Willisville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Willowbrook",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Willow Hill",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Willow Springs",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wilmette",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wilmington",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wilsonville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winchester",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Windsor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winfield",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winnebago",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winnetka",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winslow",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Winthrop Harbor",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Witt",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wonder Lake",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wood Dale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodhull",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodland",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodlawn",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodridge",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wood River",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodson",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Woodstock",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Worden",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Worth",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wyanet",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Wyoming",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Xenia",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Yale",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Yates City",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Yorkville",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Zeigler",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Zion",
+        "sourceTier": "Deep Cut"
+      }
+    ]
+  },
+  {
+    "prompt": "Name a date activity that Daniel & Amy have done",
+    "answers": [
+      {
+        "answer": "Cooking",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Bible reading",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Puzzles",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Target",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Meet fresh",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "Walks/Charlie",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Google lunch",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Mango sago",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Build lego sculptures",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Watch movies",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Waymo",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Karaoke",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Activate",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Double date",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Picnic",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Minigolf/golfland",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Billiards",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Park",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Pool",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Arcade",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Car nap",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Coffee",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Chicago",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Watch the Kardashians",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Dragon temple",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Matcha",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Disneyland",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Planetarium",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Air hockey",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Dinner",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Stargazing",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Farmer's market",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Pickle tennis",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Brunch",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Deb's Beach House",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Navy Pier",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Berkeley",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ikea",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Hakone Gardens",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Paddleboat",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Solidcore",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Singles Inferno",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Ross",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Marshalls",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Watch volleyball clips",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "charcuterie board",
+        "sourceTier": "Rare"
+      }
+    ]
+  },
+  {
+    "prompt": "Name a city of residence that an RBF member family resides in",
+    "answers": [
+      {
+        "answer": "Mountain View",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "San Jose",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Belmont",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "San Carlos",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Sunnyvale",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Palo Alto",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Santa Clara",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Cupertino",
+        "sourceTier": "Plankton"
+      }
+    ]
+  },
+  {
+    "prompt": "Name something we've cooked together",
+    "answers": [
+      {
+        "answer": "pasta",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "mango sago",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "fries",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "kbbq",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Squid ink pasta",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "water spinach",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "steak",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "mango sticky rice",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "shrimp scampi",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "sam gyup sal",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Lomo saltado",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "fried rice",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "butter shrimp garlic pasta",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "kimchi fried rice",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "kimchi jjigae",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "zha jiang mian",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "LA galbi",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "jajangmyeon",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "spicy cucubmer salad",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "beef noodle soup",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "chicken udon",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "brussel sprouts",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "red braised pork | hong shao rou",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "garlic parmesan steak pasta",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "sweet potato fries",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "mapo tofu",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "gyudon",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "soba",
+        "sourceTier": "Rare"
+      }
+    ]
+  },
+  {
+    "prompt": "Name something I love about Amy (one word description)",
+    "answers": [
+      {
+        "answer": "nice",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "humor",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "godly",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "gracious",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "funny",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "smile",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "humble",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "patient",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "pretty",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "hair",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "nosering",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "cackle",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "loving",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "kind",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "godly",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "God-fearing",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "laugh",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "committed",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "strong",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "chill",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "dedicated",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "sweet",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "adventurous",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "scent",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "thoughtful",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "forgiving",
+        "sourceTier": "Rare"
+      }
+    ]
+  }
+]

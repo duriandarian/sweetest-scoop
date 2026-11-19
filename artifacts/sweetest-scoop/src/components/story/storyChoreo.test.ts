@@ -173,3 +173,37 @@ test('no straw, sipping or utensils; Bobi companion is wired in', () => {
   assert.match(intro, /Meet Bobi/); assert.match(intro, /Your little boba guide\./); assert.match(intro, /Rarer answers take us deeper\./);
   assert.match(intro, /Ready to <em>play\?/); assert.match(intro, /Scripted preview/);
 });
+
+import { bobiDive, collage, DIVE_START, OPENING, openingAt, openingLayout, TITLE_H, CONTROLS_H } from './storyOpening';
+test('opening: five personal photos, long enough to enjoy, then a dive that ends exactly at drink time 0', () => {
+  assert.equal(collage.length, 5);
+  assert.deepEqual(collage.map(c => c.src.split('/').pop()), ['collage-1.webp', 'collage-2.webp', 'collage-3.webp', 'collage-4.webp', 'collage-5.webp']);
+  assert.ok(OPENING >= 8 && OPENING <= 12, 'opening has time to appreciate the collage');
+  const allIn = openingAt(DIVE_START - 0.01); assert.ok(allIn.photoIn.every(v => v === 1), 'all photos settled before the dive');
+  assert.ok(DIVE_START - 3 >= 3, 'collage holds fully assembled for at least 3s');
+  assert.equal(openingAt(0).fade, 1); assert.equal(openingAt(OPENING).fade, 0); assert.ok(openingAt(OPENING).done);
+  let prev = openingAt(0);
+  for (let g = DT; g <= OPENING; g += DT) { const f = openingAt(g); assert.ok(f.zoom >= prev.zoom && f.fade <= prev.fade + 1e-9 && f.zoom / prev.zoom < 1.035); prev = f; }
+  const src = readFileSync(new URL('./storyOpening.ts', import.meta.url), 'utf8') + readFileSync(new URL('./OpeningCollage.tsx', import.meta.url), 'utf8');
+  assert.doesNotMatch(src, /month|date:|20\d\d/i, 'no invented dates on the new photos');
+  assert.doesNotMatch(src, /straw|spoon/i);
+  assert.match(src, /<Bobi /);
+});
+test('opening layout: every photo, Bobi and the cup fit on screen and clear the title and controls', () => {
+  for (const [w, h] of SIZES) {
+    const L = openingLayout(w, h);
+    for (const p of L.photos) {
+      const ex = p.w * 0.06 + 6;
+      assert.ok(p.x - p.w / 2 - ex >= 0 && p.x + p.w / 2 + ex <= w, `photo off side ${w}x${h}`);
+      assert.ok(p.y - p.h / 2 >= TITLE_H - 4 && p.y + p.h / 2 <= h - CONTROLS_H, `photo clips title/controls ${w}x${h}`);
+      assert.ok(p.h >= 110, `photo too small ${w}x${h}`);
+    }
+    assert.ok(L.cup.y + L.cup.h / 2 <= h - CONTROLS_H + 1 && L.cup.h >= 140);
+    assert.ok(L.bobi.x >= 0 && L.bobi.size >= 76 && L.bobi.y + L.bobi.size <= h - CONTROLS_H);
+    if (L.bubble) assert.ok(L.bubble.x + L.bubble.w <= w && L.bubble.w >= 160, `bubble ${w}x${h}`);
+    // the cup only scales up about its surface during the dive, so its base only ever moves down
+    let prevBase = -Infinity;
+    for (let g = 0; g <= OPENING; g += 0.05) { const f = openingAt(g); const base = L.surface.y + (L.cup.y + L.cup.h / 2 - L.surface.y) * f.zoom; if (g > 1.4) assert.ok(base >= prevBase - 1e-6, 'cup base rose'); prevBase = base; }
+    const end = bobiDive(L, 1); assert.ok(Math.abs(end.x + L.bobi.size / 2 - L.surface.x) < 1, 'Bobi lands in the cup');
+  }
+});

@@ -10,4 +10,7 @@ export interface RoomPlayer {
   id: string;
   displayName: string;
   isHost: boolean;
+  avatar?: string;
+  /** Whether this player has locked an answer in the current round. Does not expose answer content or score. */
+  hasAnswered?: boolean;
 }
