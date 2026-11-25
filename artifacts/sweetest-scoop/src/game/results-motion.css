@@ -2,9 +2,10 @@
 .is-host-results .podium { position:relative; }
 .is-host-results .podium-row { position:relative; padding-top:18px; }
 .is-host-results .podium-step { animation:rm-rise .8s cubic-bezier(.2,.9,.25,1.15) both; }
-.is-host-results .podium-step.step-3 { animation-delay:.15s; }
-.is-host-results .podium-step.step-2 { animation-delay:.45s; }
-.is-host-results .podium-step.step-1 { animation-delay:.85s; }
+.is-host-results .podium-step.step-4 { animation-delay:.05s; }
+.is-host-results .podium-step.step-3 { animation-delay:.1s; }
+.is-host-results .podium-step.step-2 { animation-delay:.18s; }
+.is-host-results .podium-step.step-1 { animation-delay:.28s; }
 .is-host-results .podium-block { transform-origin:bottom; animation:rm-pour .7s cubic-bezier(.3,1.3,.5,1) both; animation-delay:inherit; }
 .is-host-results .podium-step > .bobi-av { animation:rm-bob 3.2s 1.6s ease-in-out infinite; }
 .is-host-results .podium-step.step-1 > .bobi-av { animation:rm-crown .7s 1.4s ease-out both, rm-bob 2.6s 2.1s ease-in-out infinite; }

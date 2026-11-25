@@ -1,0 +1,123 @@
+.share-recap {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.share-recap h2 {
+  margin: 3px 0 0;
+  font: 650 clamp(25px, 4vw, 34px) / 1.1 var(--app-font-serif);
+}
+
+.recap-points {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0;
+}
+
+.recap-points strong {
+  color: var(--g-matcha-d);
+  font-size: clamp(40px, 8vw, 60px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.recap-points > span {
+  color: var(--g-soft);
+  font-weight: 650;
+}
+
+.recap-strip, .recap-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recap-strip {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recap-strip li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e9d6a6;
+  border-radius: 11px;
+  background: #fff1cd;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.recap-strip .recap-skipped {
+  border-style: dashed;
+  background: var(--g-paper);
+}
+
+.recap-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  color: var(--g-soft);
+}
+
+.recap-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recap-key li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 5px;
+  border: 1px solid var(--g-line);
+  border-radius: 999px;
+  background: var(--g-paper);
+  color: var(--g-ink);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.recap-manual {
+  display: grid;
+  width: 100%;
+  gap: 7px;
+}
+
+.recap-manual textarea {
+  width: 100%;
+  resize: vertical;
+  overflow-wrap: anywhere;
+}
+
+.g-main.shared-score {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+}
+
+.g-card.recap-page {
+  width: min(100%, 580px);
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.recap-page .recap-strip, .recap-page .recap-key, .recap-page .recap-points {
+  justify-content: center;
+}
+
+.recap-page .recap-points {
+  flex-direction: column;
+  align-items: center;
+}

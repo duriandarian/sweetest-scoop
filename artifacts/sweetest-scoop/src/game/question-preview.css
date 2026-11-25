@@ -1,5 +1,9 @@
 .qp-toolbar { width:min(860px,calc(100% - 28px)); margin:16px auto 8px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
 .qp-toolbar .seg button { display:inline-flex; gap:6px; align-items:center; }
+.qp-host-preview-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.qp-demo-drop { min-height:40px; padding:6px 12px; border:1px solid #a77224; border-radius:12px; background:#ffe5a5; color:#5e3c15; font-size:13px; font-weight:750; cursor:pointer; }
+.qp-demo-drop:hover { background:#ffdb85; }
+.qp-demo-drop:focus-visible { outline:2px solid var(--g-matcha-d); outline-offset:2px; }
 .qp-note { margin:0 auto 6px; padding:0 14px; text-align:center; font-size:11px; line-height:1.5; color:var(--g-soft); }
 .qp-note b { color:var(--g-matcha-d); }
 .qp-settings { width:min(860px,calc(100% - 28px)); margin:0 auto; border-bottom:1px dashed var(--g-line); padding:8px 0; color:var(--g-soft); font-size:11px; }
@@ -28,5 +32,7 @@
 .qp-menu-body p:not(.g-kicker) { margin:0; color:var(--g-soft); line-height:1.5; font-size:11px; }
 .qp-menu-btn { display:inline-flex; align-items:center; gap:7px; padding:9px 11px; border-radius:11px; border:1px solid var(--g-line); background:var(--g-paper); color:var(--g-ink); font-weight:700; font-size:13px; text-decoration:none; }
 .qp-badge { font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; color:#7c5410; background:rgba(255,246,222,.8); padding:4px 8px; border-radius:99px; white-space:nowrap; }
+@media (max-width:520px) { .qp-badge { margin-top:9px; } }
+@media (max-width:360px) { .qp-badge { margin-top:16px; } }
 .qp-round-actions { display:flex; justify-content:center; gap:10px; }
 .qp-round-actions button { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:44px; padding:6px 13px; border:1px solid rgba(255,244,220,.45); border-radius:8px; background:rgba(65,46,30,.93); color:#fff4de; font-size:13px; font-weight:700; }

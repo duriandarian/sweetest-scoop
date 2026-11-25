@@ -23,6 +23,7 @@ export function HostRound({ room, remainingMs }: { room: Room; remainingMs: numb
   const timers = useRef(new Set<number>());
   const [fresh, setFresh] = useState<Set<string>>(new Set());
   const [announce, setAnnounce] = useState('');
+  const [scoopCue, setScoopCue] = useState(0);
   useEffect(() => () => { timers.current.forEach(t => window.clearTimeout(t)); }, []);
 
   const key = `${room.round}:${answered.map(a => a.id).sort().join('|')}`;
@@ -36,6 +37,7 @@ export function HostRound({ room, remainingMs }: { room: Room; remainingMs: numb
     const newly = ids.filter(id => !known.current!.has(id));
     newly.forEach(id => { known.current!.add(id); order.current.set(id, seq.current++); });
     if (!newly.length) return;
+    setScoopCue(cue => cue + 1);
     setAnnounce(`${answered.filter(a => newly.includes(a.id)).map(a => a.displayName).join(', ')} locked in.`);
     setFresh(prev => new Set([...prev, ...newly]));
     const t = window.setTimeout(() => { setFresh(prev => { const n = new Set(prev); newly.forEach(id => n.delete(id)); return n; }); timers.current.delete(t); }, 2400);
@@ -52,28 +54,29 @@ export function HostRound({ room, remainingMs }: { room: Room; remainingMs: numb
       <p className="g-kicker">Round {room.round} of {room.questionCount}</p>
       <h1 data-testid="text-question">{room.currentQuestion}</h1>
       <div className="hr-meter">
-        <div className="hr-clock" role="timer" aria-label={seconds === null ? 'Waiting for timer' : `${seconds} seconds remaining`} data-testid="text-host-countdown">{seconds === null ? '—' : seconds}<small>seconds to lock in</small></div>
-        <span className="hr-count" data-testid="text-submitted-count">{count} / {total}<small>guests locked in</small></span>
-        <span className="hr-bar" aria-hidden="true"><i style={{ ['--f' as string]: total ? count / total : 0 }}/></span>
+        <div className="hr-clock" role="timer" aria-label={seconds === null ? 'Waiting for timer' : `${seconds} seconds remaining`} data-testid="text-host-countdown">{seconds ?? '—'}<small>Seconds left</small></div>
+        <div className="hr-progress">
+          <p className="hr-count" data-testid="text-submitted-count">{count} / {total}<small>Guests answered</small></p>
+          <span className="hr-bar" aria-hidden="true"><i style={{ ['--f' as string]: total ? count / total : 0 }}/></span>
+        </div>
       </div>
     </div>
     <RoundMusic remainingMs={remainingMs}/>
 
-    <section className="mt is-some" aria-label="Who has answered">
+    <section className={`mt ${many ? 'is-many' : 'is-some'}`} aria-label="Who has answered">
       <div className="mt-glass">
-        <span className="mt-straw" aria-hidden="true"/>
-        <TeaSurface/>
+        <TeaSurface garnished scoopCue={scoopCue}/>
         {waiting.length > 0 && <div>
           <p className="hr-rim-label">Still thinking · {waiting.length}</p>
           <ul className="hr-rim" data-testid="list-waiting">
-          {waiting.map(g => <li key={g.id} data-testid={`status-waiting-${g.id}`}><BobiAvatar avatar={g.avatar} size={28}/><span>{g.displayName}</span></li>)}
+          {waiting.map(g => <li key={g.id} data-testid={`status-waiting-${g.id}`}><BobiAvatar avatar={g.avatar} size={24}/><span title={g.displayName}>{g.displayName}</span></li>)}
           </ul>
         </div>}
         <div className="mt-tea">
           <TeaBackdrop/>
-          {total > 0 && waiting.length === 0 && <p className="hr-all" data-testid="status-all-answered">Every Bobi is in. Results open when the timer ends.</p>}
+          {total > 0 && waiting.length === 0 && <p className="hr-all" data-testid="status-all-answered">Every Bobi is in. Opening the results...</p>}
           {inCup.length === 0 ? <div className="hr-empty" data-testid="status-none-answered">
-            <p>{total ? 'The cup is waiting for its first Bobi.' : 'No guests at the table yet.'}</p>
+            <p>{total ? 'The mango sago is waiting for its first Bobi.' : 'No guests at the table yet.'}</p>
           </div> : <ul className="mt-grid" data-testid="list-answered">
             {inCup.map(g => {
               const d = driftFor(g.id);
@@ -90,6 +93,6 @@ export function HostRound({ room, remainingMs }: { room: Room; remainingMs: numb
       </div>
       <p className="mt-sr" aria-live="polite" role="status">{announce}</p>
     </section>
-    <p className="hr-foot" data-testid="status-host">Answers stay hidden until the timer ends. Then everyone sees the podium together.</p>
+    <p className="hr-foot" data-testid="status-host">Results open when everyone has answered or time runs out. Then everyone sees the podium together.</p>
   </div>;
 }

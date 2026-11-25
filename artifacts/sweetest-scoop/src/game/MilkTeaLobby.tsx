@@ -28,6 +28,7 @@ export function MilkTeaLobby({ players, isHost }: { players: PlayerLike[]; isHos
   const arrivalTimers = useRef(new Set<number>());
   const [fresh, setFresh] = useState<Set<string>>(new Set());
   const [announce, setAnnounce] = useState('');
+  const [scoopCue, setScoopCue] = useState(0);
   useEffect(() => () => {
     arrivalTimers.current.forEach(t => window.clearTimeout(t));
     arrivalTimers.current.clear();
@@ -43,8 +44,9 @@ export function MilkTeaLobby({ players, isHost }: { players: PlayerLike[]; isHos
     }
     if (first.current) { first.current = false; return; } // don't splash everyone already seated on mount
     if (!newcomers.length) return;
+    setScoopCue(cue => cue + 1);
     const names = players.filter(p => newcomers.includes(p.id)).map(p => p.displayName);
-    setAnnounce(`${names.join(', ')} dropped into the milk tea.`);
+    setAnnounce(`${names.join(', ')} dropped into the mango sago.`);
     setFresh(prev => new Set([...prev, ...newcomers]));
     const t = window.setTimeout(() => {
       setFresh(prev => { const n = new Set(prev); newcomers.forEach(id => n.delete(id)); return n; });
@@ -59,22 +61,21 @@ export function MilkTeaLobby({ players, isHost }: { players: PlayerLike[]; isHos
   const n = guests.length;
   const size = n > 30 ? 'is-many' : n > 12 ? 'is-some' : 'is-few';
 
-  return <section className={`mt ${size}`} aria-labelledby="mt-title" data-testid="section-milk-tea">
+  return <section className={`mt ${size}${isHost ? ' is-lobby-host' : ''}`} aria-labelledby="mt-title" data-testid="section-milk-tea">
     <header className="mt-head">
       <div>
-        <p className="g-kicker">The shared cup</p>
-        <h2 id="mt-title" className="mt-title">{n ? <>{n} {n === 1 ? 'Bobi is' : 'Bobis are'} <i>steeping</i>.</> : <>The tea is <i>poured</i>.</>}</h2>
+        <p className="g-kicker">The mango sago cup</p>
+        <h2 id="mt-title" className="mt-title">{n ? <>{n} {n === 1 ? 'Bobi is' : 'Bobis are'} <i>chilling</i>.</> : <>The mango sago is <i>ready</i>.</>}</h2>
       </div>
       {host && <p className="mt-host" data-testid="text-host-barista"><span>Barista</span>{host.displayName}{isHost ? ' (you)' : ''}</p>}
     </header>
 
     <div className="mt-glass">
-      <span className="mt-straw" aria-hidden="true"/>
-      <TeaSurface/>
+      <TeaSurface scoopCue={scoopCue}/>
       <div className="mt-tea">
         <TeaBackdrop/>
         {n === 0 ? <div className="mt-empty" data-testid="status-tea-empty">
-          <p className="mt-empty-line">Warm, sweet, and waiting.</p>
+          <p className="mt-empty-line">Mango, coconut, and a place for you.</p>
           <p className="g-sub">Each guest who joins drops their Bobi right in here.</p>
         </div> : <ul className="mt-grid" data-testid="list-tea-bobis">
           {guests.map(p => {

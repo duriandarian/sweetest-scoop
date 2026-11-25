@@ -14,7 +14,7 @@ export interface PracticeAnswerInput {
   answer: string;
   /**
      * @minimum 1
-     * @maximum 7
+     * @maximum 10
      */
   round: number;
   /**

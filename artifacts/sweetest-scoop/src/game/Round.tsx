@@ -1,35 +1,69 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { AnswerCorrection } from '@workspace/api-client-react';
 import type { FormEvent, ReactNode } from 'react';
-import { Lock, Send } from 'lucide-react';
+import { CircleX, Lock, Send } from 'lucide-react';
 import { BobiAvatar } from './BobiAvatar';
 import { HostRound } from './HostRound';
 import { PlayerDive } from './PlayerDive';
 import { AnswerCountdown } from './AnswerCountdown';
 import { Catalog, Podium, RoundBoard, TotalBoard, NextHint } from './Results';
+import { HonorableMentions } from './HonorableMentions';
 import { fmtSecs, prizeFor, type Room } from './theme';
 import './host-round.css';
 
-export function Answering({ room, avatar, remainingMs, onSubmit, submitting, error, practice = false, practiceWaiting = false, onDraftChange, roundActions, hud }: { room: Room; avatar: string; remainingMs: number | null; onSubmit: (a: string) => void; submitting: boolean; error: string; practice?: boolean; practiceWaiting?: boolean; onDraftChange?: () => void; roundActions?: ReactNode; hud?: ReactNode }) {
+export function Answering({ room, avatar, remainingMs, onSubmit, submitting, error, feedback = '', correction = null, practice = false, practiceWaiting = false, onDraftChange, roundActions, hud }: { room: Room; avatar: string; remainingMs: number | null; onSubmit: (a: string) => void; submitting: boolean; error: string; feedback?: string; correction?: AnswerCorrection | null; practice?: boolean; practiceWaiting?: boolean; onDraftChange?: () => void; roundActions?: ReactNode; hud?: ReactNode }) {
   const [text, setText] = useState('');
+  const composing = useRef(false);
+  const input = useRef<HTMLInputElement>(null);
   const expired = remainingMs != null && remainingMs <= 0;
   const locked = !!room.myAnswer;
-  const submit = (e: FormEvent) => { e.preventDefault(); if (text.trim() && !locked && !expired) onSubmit(text.trim()); };
+  const retry = !locked && !expired && !submitting && !error && !correction && !!feedback;
+  useEffect(() => {
+    if (!correction || locked) return;
+    setText(correction.correctedAnswer);
+    input.current?.focus({ preventScroll: true });
+  }, [correction, locked]);
+  useEffect(() => {
+    if (!submitting && !locked && !expired && (feedback || error)) input.current?.focus({ preventScroll: true });
+  }, [submitting, locked, expired, feedback, error]);
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!text.trim() || locked || expired || submitting || practiceWaiting || composing.current) return;
+    // Keep the keyboard available on touch devices while the answer is checked.
+    input.current?.focus({ preventScroll: true });
+    onSubmit(text.trim());
+  };
   if (room.isHost) return <>{error && <p className="g-error" role="alert">{error}</p>}<HostRound room={room} remainingMs={remainingMs}/></>;
   return <PlayerDive avatar={avatar} answer={room.myAnswer ?? ''} reward={locked ? room.myReward : null}
     question={room.currentQuestion} round={room.round} questionCount={room.questionCount} total={room.myTotalPoints ?? 0} extra={hud}>
-    {!locked && <form className="dock-form pd-form" onSubmit={submit}>
-      <AnswerCountdown remainingMs={remainingMs}/>
-      <input autoFocus aria-label="Your one answer" data-testid="input-answer" maxLength={120} disabled={(!practice && expired) || submitting} placeholder={expired && !practice ? 'Time is up' : 'Your one answer...'} value={text} onChange={e => { setText(e.target.value); if (e.target.value.trim()) onDraftChange?.(); }}/>
-      <button className="pd-go" disabled={!text.trim() || expired || submitting} data-testid="button-submit-answer">{submitting ? 'Checking...' : 'Dive'} <Send size={15}/></button>
-    </form>}
-    {!locked && practice && <p className="pd-note" role="status">{expired ? "Time's up. Keep typing to start a fresh 25 seconds, or try the next question." : practiceWaiting ? 'Your 25 seconds start when you type.' : 'One answer. Dive before the timer runs out.'}</p>}
+    {!locked && correction && <div className="pd-correction" id="answer-correction-hint" role="status" data-testid="status-answer-correction">
+      <p><s>“{correction.originalAnswer}”</s><span aria-hidden="true"> → </span><strong>“{correction.correctedAnswer}”</strong></p>
+      <small>{expired ? 'Time is up. This correction was not submitted.' : 'Submit again to confirm · or edit your answer'}</small>
+    </div>}
+    {!locked && <div className="pd-entry">
+      {error && <p className="g-error" role="alert" id="answer-connection-hint" data-testid="status-answer-connection">{error}</p>}
+      <div className="pd-retry-status" id="answer-retry-hint" role="status" aria-atomic="true">
+        {retry && <p className="g-feedback-coral pd-retry-banner" data-testid="status-answer-feedback">
+          <CircleX size={21} aria-hidden="true"/>
+          <span><strong>Not on the menu.</strong> Try another answer.</span>
+        </p>}
+      </div>
+      <form className="dock-form pd-form" onSubmit={submit}>
+        <AnswerCountdown remainingMs={remainingMs}/>
+        <input ref={input} autoFocus aria-label="Your one answer" aria-describedby={error ? 'answer-connection-hint' : correction ? 'answer-correction-hint' : retry ? 'answer-retry-hint' : undefined} data-testid="input-answer" maxLength={120} disabled={!practice && expired} readOnly={submitting || expired} aria-busy={submitting} placeholder={expired ? 'Time is up' : 'Your one answer...'} value={text}
+          onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }}
+          onKeyDown={e => { if (e.key === 'Enter' && (e.nativeEvent.isComposing || composing.current)) e.preventDefault(); }}
+          onChange={e => { setText(e.target.value); onDraftChange?.(); }}/>
+        <button className="pd-go" disabled={!text.trim() || expired || submitting || practiceWaiting} data-testid="button-submit-answer">{submitting ? 'Checking...' : correction ? 'Confirm' : 'Dive'} <Send size={15}/></button>
+      </form>
+    </div>}
+    {!locked && practice && <p className="pd-note" role="status">{expired ? "Time's up. Try again or choose the next question." : practiceWaiting ? 'Get ready. Your 25 seconds start in a moment.' : 'One answer. Dive before the timer runs out.'}</p>}
     {!locked && expired && !practice && <p className="pd-note" role="status">Time's up. This answer is closed.</p>}
     {locked && <div className="pd-locked" data-testid="status-answer-locked">
       <span className="ph-seal"><Lock size={12}/>Locked</span>
       <p>{practice ? 'Practice points only. Not saved to a room.' : expired ? 'Time. The big screen is pouring the podium.' : 'Only you see this dive. Watch the big screen.'}</p>
       <AnswerCountdown remainingMs={remainingMs}/>
     </div>}
-    {error && <p className="g-error" role="alert">{error}</p>}
     {roundActions}
   </PlayerDive>;
 }
@@ -54,7 +88,7 @@ export function Revealed({ room, avatar, onNext, nexting }: { room: Room; avatar
     {!room.isHost && <MyResult room={room} avatar={avatar}/>}
     <div className="reveal-stage">
       <div className="reveal-col">
-        <div className="g-card res-podium"><Podium standings={room.roundStandings ?? []} title="This round's top three" testId="podium-round"/></div>
+        <div className="g-card res-podium"><Podium standings={room.standings} title="Overall top five · total points" testId="podium-round"/></div>
         {room.isHost ? <><button className="g-btn g-btn-primary wide" onClick={onNext} disabled={nexting} data-testid="button-next-round">{nexting ? 'One moment...' : last ? 'Final standings' : 'Next question'}</button><NextHint last={last}/></>
           : <p className="dock-note">The host moves us to the {last ? 'final podium' : 'next question'}.</p>}
       </div>
@@ -67,13 +101,11 @@ export function Revealed({ room, avatar, onNext, nexting }: { room: Room; avatar
   </div>;
 }
 
-export function Finished({ room }: { room: Room }) {
-  return <div className={`reveal g-arrive ${room.isHost ? 'is-host-results' : ''}`}>
-    <header className="reveal-head"><p className="g-kicker">The last spoonful</p><h1>Who knows Daniel and Amy best.</h1></header>
-    <div className="reveal-stage">
-      <div className="g-card res-podium"><Podium standings={room.standings} title="Final podium" testId="podium-final"/></div>
-      {(room.possibleAnswers?.length ?? 0) > 0 && <div className="g-card"><p className="g-kicker">Last question · {room.currentQuestion}</p><Catalog key={`final-${room.round}`} answers={room.possibleAnswers ?? []} mine={room.isHost ? null : room.myAnswer}/></div>}
-    </div>
-    <div className="g-card"><p className="g-kicker">Everyone at the table</p><TotalBoard standings={room.standings}/></div>
+export function Finished({ room, share }: { room: Room; share?: ReactNode }) {
+  const mentions = room.honorableMentions ?? [];
+  return <div className={`reveal is-final g-arrive ${room.isHost ? 'is-host-results' : ''}${mentions.length ? ' has-mentions' : ''}`}>
+    <div className="g-card res-podium"><Podium standings={room.standings} title="Final podium" testId="podium-final"/></div>
+    {mentions.length > 0 && <HonorableMentions mentions={mentions}/>}
+    {share}
   </div>;
 }

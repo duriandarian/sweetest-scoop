@@ -14,6 +14,7 @@
     },
     {
       "path": "../../lib/api-zod"
-    }
+    },
+    { "path": "../../lib/scoop-rules" }
   ]
 }

@@ -1,6 +1,8 @@
 import type { RoomState } from '@workspace/api-client-react';
 import type { WardrobeColor } from './wardrobe';
 
+export const GAME_TITLE = 'The Sweetest Scoop';
+
 /** Legacy flavor id or custom "b1:C:H:O:A" token. */
 export type AvatarId = string;
 export type LegacyAvatar = { id: string; label: string; note: string; hue: number; sat: number; aura: string; ink: string };
@@ -21,14 +23,20 @@ export const BODY_TINTS: Record<WardrobeColor, { filter: string; aura: string; s
   taro: { filter: 'hue-rotate(225deg) saturate(.75)', aura: '#b9a1d6', swatch: '#c1aade' },
   coconut: { filter: 'saturate(.3) brightness(1.08)', aura: '#ece0c8', swatch: '#efe5d0' },
   'brown-sugar': { filter: 'sepia(.45) saturate(1.3) brightness(.82)', aura: '#c48a55', swatch: '#b9814f' },
+  blueberry: { filter: 'hue-rotate(177deg) saturate(1.12) brightness(.96)', aura: '#9bcdeb', swatch: '#74b5ef' },
+  mint: { filter: 'hue-rotate(113deg) saturate(.85) brightness(1.08)', aura: '#9ee0bf', swatch: '#7cdab1' },
+  lemon: { filter: 'hue-rotate(27deg) saturate(1.45) brightness(1.14)', aura: '#efe285', swatch: '#e9d94c' },
+  peach: { filter: 'hue-rotate(-12deg) saturate(.74) brightness(1.20)', aura: '#f9c4a1', swatch: '#f6c0a0' },
+  cherry: { filter: 'hue-rotate(-56deg) saturate(1.45) brightness(.72) contrast(1.12)', aura: '#e092a3', swatch: '#e26080' },
+  'black-sesame': { filter: 'hue-rotate(195deg) saturate(.12) brightness(.74) contrast(1.14)', aura: '#c9c6d1', swatch: '#848996' },
 };
 
 export const PRIZES = [
   { name: 'Sago Pearl', depth: 0, base: 20, color: '#efe4cf', ink: '#7a6a52', blurb: 'common or too clever' },
   { name: 'Mango Cube', depth: 1, base: 40, color: '#f5c35b', ink: '#7c5410' },
   { name: 'Pomelo Gem', depth: 2, base: 60, color: '#f2a59a', ink: '#8a3f37' },
-  { name: 'Coconut Cloud', depth: 3, base: 80, color: '#d9e6d0', ink: '#3f5a36' },
-  { name: 'Golden Mango', depth: 4, base: 100, color: '#e9a92a', ink: '#6b4208' },
+  { name: 'Coconut Cloud', depth: 3, base: 80, color: '#afd397', ink: '#284c31' },
+  { name: 'Golden Mango', depth: 4, base: 100, color: '#e89545', ink: '#753913' },
 ] as const;
 export type PrizeName = typeof PRIZES[number]['name'];
 

@@ -14,4 +14,9 @@ export interface CreateRoomInput {
      */
   hostName: string;
   avatar?: BobiAppearance;
+  /**
+     * Optional pasted spreadsheet rows for a custom room, using Question, Answer and Dessert tier columns.
+     * @maxLength 16000
+     */
+  customQuestionsTsv?: string;
 }

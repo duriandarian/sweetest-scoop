@@ -11,7 +11,7 @@ type Cat = 'color' | 'hat' | 'outfit' | 'accessory';
 const CATS: { id: Cat; label: string; items: readonly string[] }[] = [
   { id: 'hat', label: 'Hats', items: WARDROBE_HATS },
   { id: 'outfit', label: 'Outfits', items: WARDROBE_OUTFITS },
-  { id: 'accessory', label: 'Extras', items: WARDROBE_ACCESSORIES },
+  { id: 'accessory', label: 'Extras', items: ['none', 'schnauzer', 'turtle', ...WARDROBE_ACCESSORIES.filter(item => item !== 'none' && item !== 'schnauzer' && item !== 'turtle')] },
   { id: 'color', label: 'Color', items: WARDROBE_COLORS },
 ];
 

@@ -8,8 +8,8 @@
 
 export interface QuestionListInput {
   /**
-     * @minItems 7
-     * @maxItems 7
+     * @minItems 1
+     * @maxItems 10
      * @items.minLength 1
      * @items.maxLength 280
      */

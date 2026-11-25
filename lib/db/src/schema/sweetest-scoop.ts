@@ -2,6 +2,7 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgTable,
   text,
   timestamp,
@@ -21,6 +22,7 @@ export const scoopRoomsTable = pgTable(
     roundDuration: integer("round_duration").notNull().default(25),
     roundStartedAt: timestamp("round_started_at", { withTimezone: true }),
     roundEndsAt: timestamp("round_ends_at", { withTimezone: true }),
+    lastActivityAt: timestamp("last_activity_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -54,6 +56,7 @@ export const scoopQuestionsTable = pgTable(
       .references(() => scoopRoomsTable.id, { onDelete: "cascade" }),
     position: integer("position").notNull(),
     prompt: varchar("prompt", { length: 280 }).notNull(),
+    customAnswers: jsonb("custom_answers").$type<{ answer: string; depth: number }[]>(),
   },
   (table) => [
     unique("scoop_questions_room_position_unique").on(
