@@ -39,13 +39,13 @@ paths:
               $ref: "#/components/schemas/PracticeAnswerInput"
       responses:
         "200":
-          description: Valid answer and its actual practice reward
+          description: Checked answer. matched is false with zero points when the answer is not listed.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AnswerReward"
         "400":
-          description: Invalid input or answer not in this question's prepared list
+          description: Malformed practice request
   /rooms:
     post:
       operationId: createRoom
@@ -64,6 +64,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionRoom"
+        "400":
+          description: Invalid host name or appearance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomEntryProblem"
+        "503":
+          description: All room codes are currently in use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomEntryProblem"
   /rooms/{code}:
     get:
       operationId: getRoom
@@ -101,11 +113,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionRoom"
+        "400":
+          description: Invalid room code, display name, or appearance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomEntryProblem"
+        "404":
+          description: Room not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomEntryProblem"
+        "409":
+          description: Display name already in use in this room, or game already started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomEntryProblem"
   /rooms/{code}/questions:
     put:
       operationId: updateQuestions
       tags: [sweetest-scoop]
-      summary: Replace the room's seven prompts before starting
+      summary: Replace the room's prompts before starting
       parameters:
         - $ref: "#/components/parameters/RoomCode"
         - $ref: "#/components/parameters/SessionToken"
@@ -132,7 +162,7 @@ paths:
         - $ref: "#/components/parameters/SessionToken"
       responses:
         "200":
-          description: Game started
+          description: Game started, or current room state if already started
           content:
             application/json:
               schema:
@@ -181,13 +211,23 @@ paths:
       parameters:
         - $ref: "#/components/parameters/RoomCode"
         - $ref: "#/components/parameters/SessionToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoundAdvanceInput"
       responses:
         "200":
-          description: Round advanced
+          description: Round advanced, or current room state if that round was already advanced
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/RoomState"
+        "400":
+          description: Missing or invalid round number
+        "409":
+          description: The requested round has not reached results
   /rooms/{code}/profile:
     put:
       operationId: updateProfile
@@ -208,6 +248,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RoomState"
+  /rooms/{code}/recap:
+    get:
+      operationId: getFinalRecap
+      tags: [sweetest-scoop]
+      summary: Get the authenticated guest's shareable final score
+      parameters:
+        - $ref: "#/components/parameters/RoomCode"
+        - name: X-Session-Token
+          in: header
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: This guest's final score and read-only share reference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FinalRecap"
+        "401":
+          description: No active guest session
+        "403":
+          description: Hosts do not have a personal score
+        "409":
+          description: The game has not finished
+  /results:
+    get:
+      operationId: getSharedRecap
+      tags: [sweetest-scoop]
+      summary: Read a final score using its share reference, without a seat session
+      parameters:
+        - name: X-Result-Ref
+          in: header
+          required: true
+          schema: { $ref: "#/components/schemas/RecapReference" }
+      responses:
+        "200":
+          description: Anonymous score and chronological round outcomes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoreRecap"
+        "400":
+          description: Invalid share link format
+        "404":
+          description: The recap has expired or is not available
   /rooms/{code}/settings:
     put:
       operationId: updateSettings
@@ -234,10 +319,10 @@ components:
       name: code
       in: path
       required: true
+      description: Short code on the host screen. Previously issued codes and links remain valid.
       schema:
         type: string
-        minLength: 4
-        maxLength: 8
+        pattern: '^(?:[A-Za-z]{2,3}|[0-9]{4}|[A-Za-z0-9]{6})$(?![\s\S])'
     SessionToken:
       name: X-Session-Token
       in: header
@@ -245,6 +330,28 @@ components:
       schema:
         type: string
   schemas:
+    RecapReference:
+      type: string
+      description: A read-only capability separate from room codes and seat credentials.
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.[A-Za-z0-9_-]{43}$(?![\s\S])'
+    RecapOutcome:
+      type: string
+      enum: [golden-mango, coconut-cloud, pomelo-gem, mango-cube, sago-pearl, skipped]
+    ScoreRecap:
+      type: object
+      required: [totalPoints, rounds]
+      properties:
+        totalPoints: { type: integer, minimum: 0 }
+        rounds:
+          description: One outcome per question, in the order the questions were played.
+          type: array
+          items: { $ref: "#/components/schemas/RecapOutcome" }
+    FinalRecap:
+      type: object
+      required: [reference, recap]
+      properties:
+        reference: { $ref: "#/components/schemas/RecapReference" }
+        recap: { $ref: "#/components/schemas/ScoreRecap" }
     HealthStatus:
       type: object
       properties:
@@ -255,7 +362,7 @@ components:
     BobiAppearance:
       type: string
       maxLength: 16
-      pattern: '^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\s\S])'
+      pattern: '^(mango|matcha|strawberry|taro|coconut|b1:([0-9]|1[01]):([0-9]|1[0-9]|2[01]):([0-9]|1[0-9]|2[0-3]):([0-9]|1[0-3]))$(?![\s\S])'
       description: Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.
     CreateRoomInput:
       type: object
@@ -267,8 +374,34 @@ components:
       type: object
       required: [displayName]
       properties:
-        displayName: { type: string, minLength: 1, maxLength: 32 }
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 32
+          description: Unique within the room after ignoring case and extra spaces.
         avatar: { $ref: "#/components/schemas/BobiAppearance" }
+        inviteRoomId:
+          $ref: "#/components/schemas/RoomInstanceId"
+          description: When joining from a QR invite, require the current room to be this exact instance.
+    RoomInstanceId:
+      type: string
+      format: uuid
+      description: Immutable room identifier. It is not a session credential.
+    RoomEntryProblem:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }
+        field: { type: string, enum: [name, code] }
+        issues:
+          type: array
+          items: { $ref: "#/components/schemas/CustomQuestionIssue" }
+    CustomQuestionIssue:
+      type: object
+      required: [message]
+      properties:
+        row: { type: integer, minimum: 1 }
+        message: { type: string }
     ProfileInput:
       type: object
       required: [avatar]
@@ -285,21 +418,30 @@ components:
       properties:
         questions:
           type: array
-          minItems: 7
-          maxItems: 7
+          minItems: 1
+          maxItems: 10
           items: { type: string, minLength: 1, maxLength: 280 }
     AnswerInput:
       type: object
       required: [answer, round]
       properties:
         answer: { type: string, minLength: 1, maxLength: 120 }
-        round: { type: integer, minimum: 1, maximum: 7 }
+        round: { type: integer, minimum: 1, maximum: 10 }
+    RoundAdvanceInput:
+      type: object
+      required: [round]
+      properties:
+        round:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: The revealed round displayed when the host clicked Next or Final standings.
     PracticeAnswerInput:
       type: object
       required: [answer, round, elapsedMs]
       properties:
         answer: { type: string, minLength: 1, maxLength: 120 }
-        round: { type: integer, minimum: 1, maximum: 7 }
+        round: { type: integer, minimum: 1, maximum: 10 }
         elapsedMs: { type: integer, minimum: 0, maximum: 25000 }
     SessionRoom:
       type: object
@@ -320,6 +462,9 @@ components:
         roundEndsAt: { type: ["string", "null"] }
         roundDuration: { type: integer }
         playerId: { type: ["string", "null"] }
+        roomInstanceId:
+          $ref: "#/components/schemas/RoomInstanceId"
+          description: Included for a verified seat, so invite links cannot resume an unrelated room with the same code.
         myAnswer: { type: ["string", "null"] }
         myTotalPoints:
           type: integer
@@ -336,6 +481,7 @@ components:
           type: array
           items: { $ref: "#/components/schemas/CatalogAnswer" }
         questions:
+          description: Custom rooms expose only prompts played so far to verified seats; party rooms keep their original behavior.
           type: array
           items: { type: string }
         currentQuestion: { type: ["string", "null"] }
@@ -348,10 +494,26 @@ components:
         standings:
           type: array
           items: { $ref: "#/components/schemas/Standing" }
+        honorableMentions:
+          type: array
+          description: Awards from all rounds, available only to room members once the game finishes.
+          items: { $ref: "#/components/schemas/HonorableMention" }
         isHost: { type: boolean }
         avatar: { type: string }
         submitted: { type: boolean }
         submittedCount: { type: integer }
+        answerFeedback:
+          type: string
+          description: Normal feedback for an unlisted answer, returned only by submission. No answer is saved or locked.
+        answerCorrection:
+          $ref: "#/components/schemas/AnswerCorrection"
+    AnswerCorrection:
+      type: object
+      description: A private spelling suggestion. Submit the corrected answer again to confirm; no answer or points have been saved.
+      required: [originalAnswer, correctedAnswer]
+      properties:
+        originalAnswer: { type: string }
+        correctedAnswer: { type: string }
     AnswerReward:
       type: object
       required: [points, basePoints, speedBonus, tier, ingredient, depth, matched, elapsedMs]
@@ -364,6 +526,11 @@ components:
         depth: { type: integer }
         matched: { type: boolean }
         elapsedMs: { type: integer }
+        canonicalAnswer:
+          type: string
+          description: The accepted prepared answer, for displaying its correct spelling.
+        answerCorrection:
+          $ref: "#/components/schemas/AnswerCorrection"
     CatalogAnswer:
       type: object
       required: [answer, tier, basePoints, depth]
@@ -397,6 +564,18 @@ components:
         points: { type: integer, minimum: 0, maximum: 120 }
         tier: { type: string }
         ingredient: { type: string }
+    HonorableMention:
+      type: object
+      required: [category, playerId, displayName, value]
+      properties:
+        category: { type: string, enum: [fastest, just-in-time, rare-finds] }
+        playerId: { type: string }
+        displayName: { type: string }
+        avatar: { type: string }
+        value:
+          type: integer
+          minimum: 0
+          description: Elapsed milliseconds for reply awards, or number of top-two-tier answers for rare finds.
     Standing:
       type: object
       required: [playerId, displayName, points, discoveries]

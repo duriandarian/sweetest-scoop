@@ -6,12 +6,16 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { BobiAppearance } from './bobiAppearance';
+import type { RoomInstanceId } from './roomInstanceId';
 
 export interface JoinRoomInput {
   /**
+     * Unique within the room after ignoring case and extra spaces.
      * @minLength 1
      * @maxLength 32
      */
   displayName: string;
   avatar?: BobiAppearance;
+  /** When joining from a QR invite, require the current room to be this exact instance. */
+  inviteRoomId?: RoomInstanceId;
 }

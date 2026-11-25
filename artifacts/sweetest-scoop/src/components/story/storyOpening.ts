@@ -34,7 +34,7 @@ export const CUP_RATIO = 420 / 869;
 export const CUP_SURFACE = 152 / 869;
 
 /** pixel layout of the collage, cup and Bobi for a viewport */
-export function openingLayout(w: number, h: number): OpeningLayout {
+export function openingLayout(w: number, h: number, companionOnly = false): OpeningLayout {
   const mobile = w < 700;
   const cupH = mobile ? clamp(h * 0.25, 140, 220) : clamp(h * 0.34, 150, 290);
   const cupW = cupH * CUP_RATIO;
@@ -53,7 +53,15 @@ export function openingLayout(w: number, h: number): OpeningLayout {
   }
   const size = mobile ? clamp(w * 0.24, 76, 104) : clamp(h * 0.15, 86, 136);
   const bobi = { x: cupX - cupW / 2 - size * 0.62, y: cupTop - size * 0.62, size };
-  const bubble = mobile ? { x: bobi.x + size * 0.92, y: cupTop - size * 0.62 - 40, w: Math.min(250, w - (bobi.x + size * 0.92) - 14) } : { x: cupX + cupW / 2 + 18, y: cupTop + cupH * 0.08, w: Math.min(250, w - (cupX + cupW / 2 + 18) - 24) };
+  let bubble = mobile ? { x: bobi.x + size * 0.92, y: cupTop - size * 0.62 - 40, w: Math.min(250, w - (bobi.x + size * 0.92) - 14) } : { x: cupX + cupW / 2 + 18, y: cupTop + cupH * 0.08, w: Math.min(250, w - (cupX + cupW / 2 + 18) - 24) };
+  if (companionOnly) {
+    // Without a cup, keep Bobi and his dialogue together instead of on either side
+    // of an invisible drink. The bubble tail sits 29px below its top edge.
+    const gap = mobile ? 12 : 18;
+    const bubbleWidth = Math.min(270, w - 32 - size - gap);
+    bobi.x = (w - size - gap - bubbleWidth) / 2;
+    bubble = { x: bobi.x + size + gap, y: bobi.y + size / 2 - 29, w: bubbleWidth };
+  }
   return { photos, cup: { x: cupX, y: cupTop + cupH / 2, w: cupW, h: cupH, rot: 0 }, bobi, bubble, mobile, surface: { x: cupX, y: cupTop + cupH * CUP_SURFACE } };
 }
 

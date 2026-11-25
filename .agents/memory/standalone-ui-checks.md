@@ -6,13 +6,19 @@ Standalone UI test bundles need exact-case module resolution; do not assume Vite
 
 **Why:** The standalone bundler conflated a UI component and its model when their basenames differed only by case and their extensions differed. Normal Vite rendering and TypeScript checks worked, but the standalone bundle selected the component in place of the model.
 
-**How to apply:** Use exact filenames and extensions in the standalone bundle's resolver when adding server-rendered UI checks. Keep this as a testing-tool constraint, not a reason to rename working app modules broadly.
+**How to apply:** Use exact filenames and extensions in standalone bundles, including inline or temporary entry-point imports, not only nested imports covered by a resolver hook. Do not broadly rename working app modules to accommodate the test bundler.
 
 Bundle workspace TypeScript dependencies into standalone UI tests instead of treating them as external Node packages.
 
 **Why:** Workspace source exports can contain extensionless TypeScript imports that Vite resolves but native Node does not. Adding a real API hook to a previously local-only component exposed this difference in server-rendered checks.
 
 **How to apply:** Keep third-party dependencies external, but resolve workspace source packages into the test bundle. Do not change generated API imports or application module conventions to satisfy a standalone test runner.
+
+If a leaf typecheck contradicts the generated API source after a merge, rebuild the workspace library declarations first.
+
+**Why:** Updated hooks were present in source, but the existing declarations still represented the pre-merge request signature.
+
+**How to apply:** Run the workspace library typecheck before checking the affected app. Verify the source and contract before editing either.
 
 Separate actual typing behavior from the embedded Design canvas's interaction mode before changing answer-entry logic.
 

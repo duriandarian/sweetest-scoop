@@ -1,8 +1,11 @@
 // Pure wardrobe model. Order of every list is PERSISTED in avatar tokens — never reorder, only append.
-export const WARDROBE_COLORS = ['mango', 'matcha', 'strawberry', 'taro', 'coconut', 'brown-sugar'] as const;
-export const WARDROBE_HATS = ['none', 'beret', 'bow', 'flower', 'cat', 'frog', 'crown', 'chef', 'beanie', 'bunny', 'bear', 'panda', 'mushroom', 'pirate'] as const;
-export const WARDROBE_OUTFITS = ['none', 'apron', 'overalls', 'scarf', 'sweater', 'kimono', 'bee', 'dinosaur', 'astronaut', 'fox', 'duck', 'superhero'] as const;
-export const WARDROBE_ACCESSORIES = ['none', 'tea', 'heart', 'star', 'mango', 'glasses', 'blush', 'sparkles', 'donut', 'umbrella', 'guitar', 'headphones'] as const;
+export const WARDROBE_COLORS = [
+  'mango', 'matcha', 'strawberry', 'taro', 'coconut', 'brown-sugar',
+  'blueberry', 'mint', 'lemon', 'peach', 'cherry', 'black-sesame',
+] as const;
+export const WARDROBE_HATS = ['none', 'beret', 'bow', 'flower', 'cat', 'frog', 'crown', 'chef', 'beanie', 'bunny', 'bear', 'panda', 'mushroom', 'pirate', 'tiger', 'penguin', 'pig', 'dragon', 'sheep', 'rainhat', 'strawberry', 'sleepcap'] as const;
+export const WARDROBE_OUTFITS = ['none', 'apron', 'overalls', 'scarf', 'sweater', 'kimono', 'bee', 'dinosaur', 'astronaut', 'fox', 'duck', 'superhero', 'cat', 'bunny', 'panda', 'frog', 'tiger', 'penguin', 'pig', 'dragon', 'sheep', 'raincoat', 'strawberry', 'pajamas'] as const;
+export const WARDROBE_ACCESSORIES = ['none', 'tea', 'heart', 'star', 'mango', 'glasses', 'blush', 'sparkles', 'donut', 'umbrella', 'guitar', 'headphones', 'schnauzer', 'turtle'] as const;
 
 export type WardrobeColor = typeof WARDROBE_COLORS[number];
 export type WardrobeHat = typeof WARDROBE_HATS[number];
@@ -49,8 +52,11 @@ export function randomLook(rand: () => number = Math.random): WardrobeLook {
 
 export const WARDROBE_LABELS: Record<string, string> = {
   none: 'None', mango: 'Mango', matcha: 'Matcha', strawberry: 'Strawberry', taro: 'Taro', coconut: 'Coconut', 'brown-sugar': 'Brown sugar',
+  blueberry: 'Blueberry', mint: 'Mint', lemon: 'Lemon', peach: 'Peach', cherry: 'Cherry', 'black-sesame': 'Black sesame',
   beret: 'Beret', bow: 'Ribbon bow', flower: 'Plumeria', cat: 'Cat ears', frog: 'Frog hood', crown: 'Mini crown', chef: 'Chef toque', beanie: 'Pom beanie',
   apron: 'Café apron', overalls: 'Overalls', scarf: 'Knit scarf', sweater: 'Cozy sweater', kimono: 'Yukata', bee: 'Bee suit',
   tea: 'Mango sago cup', bunny: 'Bunny ears', bear: 'Bear ears', panda: 'Panda hood', mushroom: 'Mushroom cap', pirate: 'Pirate hat', dinosaur: 'Dinosaur suit', astronaut: 'Astronaut suit', fox: 'Fox suit', duck: 'Duckling suit', superhero: 'Hero cape', donut: 'Donut', umbrella: 'Paper parasol', guitar: 'Ukulele', headphones: 'Headphones', heart: 'Heart balloon', star: 'Star wand', glasses: 'Round glasses', blush: 'Rosy blush', sparkles: 'Sparkles',
+  tiger: 'Tiger costume', penguin: 'Penguin costume', pig: 'Piglet costume', dragon: 'Little dragon costume', sheep: 'Fluffy lamb costume', rainhat: 'Rain hat', sleepcap: 'Sleepy nightcap', raincoat: 'Raincoat', pajamas: 'Starry pajamas',
+  schnauzer: 'Schnauzer companion', turtle: 'Turtle companion',
 };
 export const lookLabel = (l: WardrobeLook) => [WARDROBE_LABELS[l.color], l.hat, l.outfit, l.accessory].filter(x => x && x !== 'none').map(x => WARDROBE_LABELS[x] ?? x).join(', ');

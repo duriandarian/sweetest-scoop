@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { countdownSeconds, PRACTICE_ROUND_MS, remainingPracticeMs, remainingRoundMs } from './round-countdown';
+import { countdownSeconds, PRACTICE_PROMPT_DELAY_MS, PRACTICE_ROUND_MS, remainingPracticeMs, remainingRoundMs } from './round-countdown';
 
 test('practice countdown follows elapsed wall-clock time and never goes negative', () => {
   const start = 100_000;
@@ -28,10 +28,15 @@ test('answer timer shows 25 seconds, rounds up, and can display legacy in-progre
   assert.equal(countdownSeconds(-500), 0);
 });
 
-test('practice does not expire while the visitor looks around before typing', () => {
-  assert.equal(remainingPracticeMs(null, 0), 25_000);
-  assert.equal(remainingPracticeMs(null, 600_000), 25_000);
-  assert.equal(remainingPracticeMs(null, Date.now() + 3_600_000), 25_000);
+test('practice gives a one-second prompt delay followed by an automatic countdown without typing', () => {
+  const appeared = 600_000;
+  const deadline = appeared + PRACTICE_PROMPT_DELAY_MS + PRACTICE_ROUND_MS;
+  assert.equal(PRACTICE_PROMPT_DELAY_MS, 1000);
+  assert.equal(remainingPracticeMs(deadline, appeared), 25_000);
+  assert.equal(remainingPracticeMs(deadline, appeared + 999), 25_000);
+  assert.equal(remainingPracticeMs(deadline, appeared + 1000), 25_000);
+  assert.equal(remainingPracticeMs(deadline, appeared + 2000), 24_000);
+  assert.equal(remainingPracticeMs(deadline, appeared + 26_000), 0);
 });
 
 test('started practice expires after 25 seconds and restarting returns to ready', () => {

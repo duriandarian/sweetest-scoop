@@ -1,0 +1,29 @@
+.bobi-av.bobi-party { isolation:isolate; }
+.bobi-party .bobi-av-aura {
+  inset:-15%;
+  background:radial-gradient(circle,var(--aura) 18%,color-mix(in srgb,var(--aura) 60%,transparent) 48%,transparent 72%);
+  animation:party-aura 3.8s ease-in-out infinite;
+}
+.bobi-party-stage { position:relative; display:block; width:100%; height:100%; }
+.bobi-party-stage > svg, .bobi-av .bobi-party-stage > img { position:absolute; inset:0; width:100%; height:100%; }
+/* Amy keeps the base sprite's feet, but the peace signs replace its original arms. */
+.bobi-av .bobi-party-stage[data-party-variant="party-amy"] > img {
+  clip-path:polygon(0 0,100% 0,100% 48%,83% 48%,83% 64%,72% 77%,70% 100%,27% 100%,25% 77%,16% 64%,16% 48%,0 48%);
+}
+.bobi-av .bobi-party-stage[data-party-variant="party-daniel"] > img {
+  clip-path:inset(0 0 25%); filter:hue-rotate(-9deg) saturate(.82) brightness(.97);
+}
+.bobi-party-stage > svg { overflow:visible; }
+.bobi-party-sparks { animation:party-sparkles 3.8s ease-in-out infinite; }
+.party-bobi-card {
+  display:flex; align-items:center; gap:clamp(8px,3vw,18px); padding:10px clamp(10px,3vw,20px); margin-block:8px 0;
+  border:1px solid #e3bd86; border-radius:16px; background:linear-gradient(120deg,#fff4d2,#fff8eb 52%,#fce8ee);
+}
+.party-bobi-card .g-kicker { margin:0 0 3px; }
+.party-bobi-card h2 { margin:0 0 4px; font-size:clamp(21px,4vw,27px); line-height:1.02; }
+.party-bobi-card p:last-child { margin:0; line-height:1.4; }
+@keyframes party-aura { 50% { opacity:.62; scale:1.10; } }
+@keyframes party-sparkles { 50% { opacity:.85; translate:0 -2px; } }
+@media (prefers-reduced-motion:reduce) {
+  .bobi-party .bobi-av-aura, .bobi-party-sparks { animation:none; }
+}

@@ -1,3 +1,5 @@
+import { CostumeBackArt, CostumeHatArt, CostumeOutfitArt } from './CostumeArt';
+import { PetArt } from './PetArt';
 import type { WardrobeAccessory, WardrobeHat, WardrobeOutfit } from './wardrobe';
 
 /**
@@ -37,8 +39,9 @@ export function HatArt({ id }: { id: WardrobeHat }) {
     case 'bear': return <g>{[-1, 1].map(s => <g key={s}><circle cx={x + s * 17} cy={y + 3} r="6.5" fill="#8a5a3c" {...sw}/><circle cx={x + s * 17} cy={y + 3} r="3.4" fill="#d7a27a"/></g>)}<path d={`M${x - 18} ${y + 8}c10-7 26-7 36 0`} fill="none" stroke="#8a5a3c" strokeWidth="3" strokeLinecap="round"/></g>;
     case 'panda': return <g><path d={`M${x - 22} ${y + 9}c0-12 10-18 22-18s22 6 22 18c-6-4-14-6-22-6s-16 2-22 6Z`} fill="#fbf7ef" {...sw}/>{[-1, 1].map(s => <circle key={s} cx={x + s * 17} cy={y - 6} r="6" fill="#2f2a2a" {...sw}/>)}</g>;
     case 'mushroom': return <g><path d={`M${x - 22} ${y + 7}c0-13 10-20 22-20s22 7 22 20c-8-3-36-3-44 0Z`} fill="#d9473f" {...sw}/>{[[-12, 0, 3.2], [3, -7, 3.6], [13, 1, 2.6], [-3, 3, 2]].map(([dx, dy, rr]) => <circle key={dx} cx={x + dx} cy={y + dy} r={rr} fill="#fff4e0"/>)}</g>;
+    case 'none': return null;
     case 'pirate': return <g><path d={`M${x - 24} ${y + 6}c6-4 10-14 24-14s18 10 24 14c-6 3-12 3-24 0-12 3-18 3-24 0Z`} fill="#2f2a33" {...sw}/><path d={`M${x - 22} ${y + 5}c12 2 32 2 44 0`} fill="none" stroke="#e9b949" strokeWidth="1.4"/><circle cx={x} cy={y - 1} r="3" fill="#fff4e0"/><path d={`M${x - 4} ${y + 3}l8-3M${x - 4} ${y}l8 3`} stroke="#fff4e0" strokeWidth="1.2" strokeLinecap="round"/></g>;
-    default: return null;
+    default: return CostumeHatArt({ id }) ?? null;
   }
 }
 
@@ -50,7 +53,8 @@ export function BackArt({ outfit }: { outfit: WardrobeOutfit }) {
     case 'fox': return <g><path d={`M${x + 24} ${y + 20}c14-2 22-14 20-26 6 10 6 26-8 32-6 2-10 0-12-6Z`} fill="#e77b3a" {...sw}/><path d={`M${x + 44} ${y - 6}c4 6 4 12 2 16-3-1-5-6-2-16Z`} fill="#fff4e0"/></g>;
     case 'superhero': return <path d={`M${x - 22} ${y - 4}c-8 14-12 26-12 34 14-4 30-4 44 0 0-8-4-20-12-34Z`} fill="#d9473f" {...sw}/>;
     case 'astronaut': return <rect x={x - 33} y={y - 6} width="66" height="26" rx="6" fill="#c9d3dc" {...sw}/>;
-    default: return null;
+    case 'none': return null;
+    default: return CostumeBackArt({ outfit }) ?? null;
   }
 }
 
@@ -69,13 +73,16 @@ export function OutfitArt({ id }: { id: WardrobeOutfit }) {
     case 'duck': return <g><path d={`${hem}c-4-6-10-8-${r - 3}-8s-${r - 9} 2-${r - 3} 8Z`} fill="#f7d34f" {...sw}/>{[-1, 1].map(s => <path key={s} d={`M${x + s * 24} ${y + 6}c ${s * 8} 2 ${s * 10} 8 ${s * 8} 14 c ${-s * 5} -1 ${-s * 8} -6 ${-s * 8} -14 Z`} fill="#f2bd55" {...sw} strokeWidth="1.2"/>)}{[34, 61].map(fx => <path key={fx} d={`M${fx - 6} 87l6-5 6 5-3-1-3 2-3-2Z`} fill="#ef8a2f" {...sw} strokeWidth="1.1"/>)}</g>;
     case 'superhero': return <g><path d={`${hem}c-4-6-10-8-${r - 3}-8s-${r - 9} 2-${r - 3} 8Z`} fill="#3f6fb5" {...sw}/><path d={`M${x} ${y + 4}l2.4 5 5.4.6-4 3.8 1 5.4-4.8-2.6-4.8 2.6 1-5.4-4-3.8 5.4-.6Z`} fill="#f4c542" {...sw} strokeWidth="1.1"/><path d={`M${x - 22} ${y - 1}c4 3 8 4 10 4M${x + 22} ${y - 1}c-4 3-8 4-10 4`} fill="none" stroke="#d9473f" strokeWidth="2.6" strokeLinecap="round"/></g>;
     case 'bee': return <g><path d={`${hem}c-4-6-10-8-${r - 3}-8s-${r - 9} 2-${r - 3} 8Z`} fill="#f4c542" {...sw}/><path d={`M${x - 22} ${y + 8}h44M${x - 18} ${y + 16}h36`} stroke={INK} strokeWidth="3.6"/>{[-1, 1].map(s => <ellipse key={s} cx={x + s * 24} cy={y - 2} rx="8" ry="5.5" fill="#e3f1f3" opacity=".92" {...sw} strokeWidth="1.2" transform={`rotate(${s * -30} ${x + s * 24} ${y - 2})`}/>)}</g>;
-    default: return null;
+    case 'none': return null;
+    default: return CostumeOutfitArt({ id }) ?? null;
   }
 }
 
 export function AccessoryArt({ id }: { id: WardrobeAccessory }) {
   const hx = A.handRX, hy = A.handRY;
   switch (id) {
+    case 'schnauzer':
+    case 'turtle': return <PetArt pet={id}/>;
     case 'tea': return <g transform={`translate(${hx - 1} ${hy - 4}) scale(.85)`}><path d="M-7-6h14l-2 17h-10Z" fill="#fde8b0" {...sw}/><path d="M-6.4-1h12.8l-1.4 11h-10Z" fill="#f2b437"/><circle cx="-2" cy="7" r="1.3" fill="#fff8ea"/><circle cx="2" cy="5" r="1.3" fill="#fff8ea"/><circle cx="0" cy="8.5" r="1.3" fill="#fff8ea"/><path d="M-8-6h16" {...sw}/><path d="M2-6l3-8" stroke="#e66a7c" strokeWidth="2.2" strokeLinecap="round"/></g>;
     case 'heart': return <g><path d={`M${hx} ${hy}c2-10 0-18 2-26`} fill="none" stroke={INK} strokeWidth="1"/><path d={`M${hx + 2} ${hy - 24}c-8-4-11-12-6-15 3-2 5 0 6 2 1-2 3-4 6-2 5 3 2 11-6 15Z`} fill="#e6566e" {...sw}/><path d={`M${hx - 1} ${hy - 35}c1-1 2-1 3 0`} stroke="#ffd2da" strokeWidth="1.4" strokeLinecap="round"/></g>;
     case 'star': return <g><path d={`M${hx} ${hy + 2}l6-20`} stroke="#c58a3c" strokeWidth="2.4" strokeLinecap="round"/><path d={`M${hx + 6} ${hy - 30}l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z`} fill="#f7d34f" {...sw}/></g>;

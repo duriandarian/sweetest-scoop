@@ -7,3 +7,172 @@ uri = "file://generated-artifacts/sweet-cafe.mp3"
 type = "audio"
 title = "Cozy dessert cafe loop"
 description = "Generated music: Original instrumental background music for a cozy, cute Taiwanese dessert cafe party game. Warm intimate cafe jazz-pop, 96 BPM in F major, soft felt piano playing a memorable simple …"
+logical_id = "bd140c50-2f5d-4b1d-93bf-51a761da929f"
+
+[[outputs]]
+id = "01j0rG47ChL4p5bVpIFs4"
+uri = "file://generated-artifacts/daniel-and-amy-bobis.png"
+type = "image"
+title = "Daniel and Amy’s hidden Bobis"
+description = "Side-by-side close-up from the game: Daniel in his kart with the volleyball, and Amy in her showtime look with her labradoodle."
+logical_id = "56fdead4-f4eb-4608-8a98-3665008e8f3a"
+content_hash = "sha256:22cd6a3ab1d68344cca33141b9bda529a724b5c5595801a3b4cb43b67e6ae0ab"
+size = 180033
+mtime_ms = 1795170241977
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/56fdead4-f4eb-4608-8a98-3665008e8f3a/7cc1b165-30e0-4e23-8b94-f5d58a762fba"
+storage_version_token = "1795170256897330"
+content_type = "image/png"
+
+[[outputs]]
+id = "gRZfNPAEZ2zuRrBHKmzel"
+uri = "file://generated-artifacts/amy-bobi-stage-look.png"
+type = "image"
+title = "Amy’s updated Bobi and labradoodle"
+description = "A close-up of the retro stage outfit, volleyball, and larger labradoodle."
+logical_id = "05a8f3b6-50d2-4c9a-b8a9-55dce8f0ffde"
+content_hash = "sha256:8138be4135c9af0dd1e79501af9997771feebae1e7497e00f7691f3f85f05bb4"
+size = 124178
+mtime_ms = 1795170357537
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/05a8f3b6-50d2-4c9a-b8a9-55dce8f0ffde/0b44920d-5e0d-45e2-9b0a-649f78c11bbd"
+storage_version_token = "1795170369825285"
+content_type = "image/png"
+
+[[outputs]]
+id = "4CC9P203B0UMWvIfh3DaE"
+uri = "file://generated-artifacts/amy-bobi-cream-jacket.png"
+type = "image"
+title = "Amy’s Bobi in the cream Disneyland jacket"
+description = "Close-up of her cream zip-up with the dark D, fedora, gold mic, volleyball, and labradoodle."
+logical_id = "84fb4a14-578c-4f3c-8851-602d10d3caf7"
+content_hash = "sha256:8d1a841371ae6b397bda500dd34a32a307131f2d2bbf22fb7129caca97349da7"
+size = 124584
+mtime_ms = 1795170433880
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/84fb4a14-578c-4f3c-8851-602d10d3caf7/324ab3a9-ef8c-4c96-897a-0165c7b45c92"
+storage_version_token = "1795170444233751"
+content_type = "image/png"
+
+[[outputs]]
+id = "oXyPPuEc29jGQjkwilS26"
+uri = "file://generated-artifacts/amy-bobi-matcha.png"
+type = "image"
+title = "Amy’s Bobi with matcha"
+description = "Close-up of Amy’s cream Disneyland zip-up, volleyball, and matcha."
+logical_id = "0645cec4-7a12-4fcf-86b7-0d1b0fc50c3e"
+content_hash = "sha256:5207beb1be6938e60d8b9859ea3aff64ba855467089acefa445b9067706c10d4"
+size = 127246
+mtime_ms = 1795170591805
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/0645cec4-7a12-4fcf-86b7-0d1b0fc50c3e/b9487c62-06d5-4a4b-80c6-1c8193a3d9b4"
+storage_version_token = "1795170602935924"
+content_type = "image/png"
+
+[[outputs]]
+id = "c0T12JRfBFqorYBQ7ibiC"
+uri = "file://generated-artifacts/amy-bobi-cozy-fit.png"
+type = "image"
+title = "Amy’s Bobi in the oversized Disneyland zip-up"
+description = "The jacket wraps around Bobi with roomy sleeves, a rounded hem, and no visible feet."
+logical_id = "2714df57-76cc-4e24-85ab-36ae4d3cb6e2"
+content_hash = "sha256:da4fc71dcea02bf50cf35ffd4a61750caffc079ecf3e712d97a6065248282711"
+size = 119101
+mtime_ms = 1795170744224
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/2714df57-76cc-4e24-85ab-36ae4d3cb6e2/954fa4d3-05c3-4ebb-887d-b71eb7f2a6d1"
+storage_version_token = "1795170756093836"
+content_type = "image/png"
+
+[[outputs]]
+id = "C3sFcfJ1COSdtWnPXrkh1"
+uri = "file://generated-artifacts/daniel-bobi-fitted-jersey.png"
+type = "image"
+title = "Daniel’s Bobi with the refitted jersey"
+description = "Close-up of the teal jersey sitting higher on Bobi, with the chef hat, kart, and volleyball still in place."
+logical_id = "2b51f934-f3bf-4ea9-b173-bb614509a5ad"
+content_hash = "sha256:ea99ddfdd1a883362e924bb7dcfa27ffc6fdbda13b6d7a6b9d6658b68ddd4b3d"
+size = 111551
+mtime_ms = 1795170830472
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/2b51f934-f3bf-4ea9-b173-bb614509a5ad/e8b989da-a147-44cb-9269-b13331e89c43"
+storage_version_token = "1795170844372473"
+content_type = "image/png"
+
+[[outputs]]
+id = "9uvEM414_TxA0rDBWn_qu"
+uri = "file://generated-artifacts/amy-and-daniel-fitted-bobis.png"
+type = "image"
+title = "Daniel and Amy’s updated Bobis"
+description = "Side-by-side close-up of Daniel’s snug teal jersey and Amy’s unzipped Disneyland jacket with floating hearts."
+logical_id = "9831b9a6-3470-4396-9bb3-ce03d63be883"
+content_hash = "sha256:349ca7d54503d6e1e953be9a17d34a8d5dfdb6a4da61d4367058748051aec29e"
+size = 202763
+mtime_ms = 1795171236980
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/9831b9a6-3470-4396-9bb3-ce03d63be883/9ff195d1-e849-4403-8a0c-2e2c218138da"
+storage_version_token = "1795171250836600"
+content_type = "image/png"
+
+[[outputs]]
+id = "Lpu6xqhf1M8vQ4Blyj05l"
+uri = "file://generated-artifacts/sweetheart-bobi-curls.png"
+type = "image"
+title = "Sweetheart Bobi with Bruno Mars–inspired curls"
+description = "Close-up of the dark curls without a bandana, alongside the open cream jacket, pink hearts, volleyball, and matcha."
+logical_id = "40bb73dc-4107-4a42-9621-02aee97ff337"
+content_hash = "sha256:98edc7a6745041e10c8f6605a6f039002316747468a25ddfd36f504ebb306c7f"
+size = 124259
+mtime_ms = 1795171405756
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/40bb73dc-4107-4a42-9621-02aee97ff337/aa4d0ebf-a02f-42fd-89b8-2b0eba92c567"
+storage_version_token = "1795171419514911"
+content_type = "image/png"
+
+[[outputs]]
+id = "wqHYwTmAWSzUHk8PHO3nd"
+uri = "file://generated-artifacts/bobis-on-host-podium.png"
+type = "image"
+title = "Daniel and Amy on the host podium"
+description = "Screenshot from a fresh test room showing Daniel’s teal jersey and kart, and Amy’s curls, cream jacket, and matcha."
+logical_id = "b6ec1920-7640-4254-ac11-57db319c4f22"
+content_hash = "sha256:426d59f808aa46208c69d4b42a39215bcc8f43260483c64c5a4e64159c3f7e2b"
+size = 78472
+mtime_ms = 1795171726911
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/b6ec1920-7640-4254-ac11-57db319c4f22/57bdf913-42d2-496d-ae22-8c24394f4f2f"
+storage_version_token = "1795171734695884"
+content_type = "image/png"
+
+[[outputs]]
+id = "JMWNywri5kj1clmfsKOa4"
+uri = "file://generated-artifacts/sweetheart-bobi-gold-sunglasses.png"
+type = "image"
+title = "Sweetheart Bobi with gold-rimmed sunglasses"
+description = "Close-up of Amy’s Bruno Mars–inspired curls and dark shades, without a bandana."
+logical_id = "61d7b4cf-2414-40e0-b5d5-6204c8e7f8ad"
+content_hash = "sha256:855a996b4a2c0d1ca5e037f32f50fdebff7e5f8c1025d2fb25d81bf33d7e49a6"
+size = 125262
+mtime_ms = 1795193846566
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/61d7b4cf-2414-40e0-b5d5-6204c8e7f8ad/9bf2279f-6e3f-48eb-88a2-7be823f9a011"
+storage_version_token = "1795193863331838"
+content_type = "image/png"
+
+[[outputs]]
+id = "Xw--3EPiNq0QJQyYz7U6E"
+uri = "file://generated-artifacts/sweetheart-bobi-centered-shades.png"
+type = "image"
+title = "Sweetheart Bobi with centered sunglasses"
+description = "The gold frames now sit over Bobi’s eyes without covering her smile."
+logical_id = "3ae1efd7-5b89-4baa-afdc-7301bb586c98"
+content_hash = "sha256:5ca3605dc8f9d4b2a7b695f131d486e0e16e2512f5742efea59c17cd191ba645"
+size = 125187
+mtime_ms = 1795193985422
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/3ae1efd7-5b89-4baa-afdc-7301bb586c98/6395e6c1-f397-4237-b76d-6375e6736931"
+storage_version_token = "1795194000427315"
+content_type = "image/png"
+
+[[outputs]]
+id = "EsUSGoMS7GjsV3H1r9S6N"
+uri = "file://generated-artifacts/five-player-podium.jpg"
+type = "image"
+title = "Five-player final podium"
+description = "The host’s final results screen with five sample Bobis, cumulative scores, and honorable mentions."
+logical_id = "5297d738-6175-4994-a7e6-893ee9e032c0"
+content_hash = "sha256:4f634375f65a18ed0b0efdfd4511ac01f8e943402ea10ab69dfe966b82b9daf9"
+size = 67270
+mtime_ms = 1795224594765
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:da505324-56ac-4330-ad96-0098aff9027f/5297d738-6175-4994-a7e6-893ee9e032c0/d72b6fff-3621-42aa-bb1a-d3328b18863f"
+storage_version_token = "1795224601815068"
+content_type = "image/jpeg"

@@ -9,6 +9,6 @@
 /**
  * Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.
  * @maxLength 16
- * @pattern ^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\s\S])
+ * @pattern ^(mango|matcha|strawberry|taro|coconut|b1:([0-9]|1[01]):([0-9]|1[0-9]|2[01]):([0-9]|1[0-9]|2[0-3]):([0-9]|1[0-3]))$(?![\s\S])
  */
 export type BobiAppearance = string;

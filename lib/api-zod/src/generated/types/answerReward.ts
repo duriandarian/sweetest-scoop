@@ -5,6 +5,7 @@
  * The Sweetest Scoop party game API
  * OpenAPI spec version: 0.1.0
  */
+import type { AnswerCorrection } from './answerCorrection';
 
 export interface AnswerReward {
   points: number;
@@ -15,4 +16,7 @@ export interface AnswerReward {
   depth: number;
   matched: boolean;
   elapsedMs: number;
+  /** The accepted prepared answer, for displaying its correct spelling. */
+  canonicalAnswer?: string;
+  answerCorrection?: AnswerCorrection;
 }

@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
+import { memo, type ReactNode } from 'react';
 import { BobiAvatar } from './BobiAvatar';
+import { IngredientArt, type IngredientKind } from './IngredientArt';
 import './dive-scene.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -18,7 +19,7 @@ export const depthY = (d: number | null) => (d == null || d < 0 ? SURFACE - 1 : 
 export const depthCm = (d: number) => (d + 1) * 20;
 
 type Bit = readonly [x: number, dy: number, r: number, s: number];
-const BANDS: { kind: string; bits: Bit[] }[] = [
+const BANDS: { kind: IngredientKind; bits: Bit[] }[] = [
   { kind: 'sago', bits: [[7, -14, 0, 1], [12, -6, 0, .8], [17, -16, 0, 1.2], [84, -10, 0, 1], [90, -2, 0, .8], [79, 4, 0, 1.1], [24, 8, 0, .9], [70, -18, 0, .7]] },
   { kind: 'cube', bits: [[9, -10, -14, 1], [19, 6, 22, .8], [82, -6, 12, 1.1], [91, 10, -24, .8], [74, 14, 35, .7]] },
   { kind: 'pomelo', bits: [[8, -8, -30, 1], [14, 4, 18, .9], [22, -14, 70, 1], [80, -12, -12, 1], [88, 2, 40, .9], [93, -18, 110, .8]] },
@@ -30,7 +31,7 @@ const DRIFT = [[14, 0], [33, 2.1], [61, 3.6], [77, 1.2], [88, 4.4]] as const;
 const TICKS = Array.from({ length: 11 }, (_, i) => i + 1);
 
 /** depth: null = waiting at the surface, -1 = no prize (floats back), 0..4 = reward band */
-export function DiveScene({ avatar, depth, caption, compact = false, children }: { avatar?: string | null; depth: number | null; caption?: string; compact?: boolean; children?: ReactNode }) {
+export const DiveScene = memo(function DiveScene({ avatar, depth, caption, compact = false, children }: { avatar?: string | null; depth: number | null; caption?: string; compact?: boolean; children?: ReactNode }) {
   const landed = depth != null && depth >= 0;
   const size = compact ? 76 : 88;
   const y = depthY(depth);
@@ -41,10 +42,10 @@ export function DiveScene({ avatar, depth, caption, compact = false, children }:
       <div className="ds-rays" aria-hidden="true"><i/><i/><i/></div>
       <div className="ds-ticks" aria-hidden="true">{TICKS.map(t => <span key={t} style={{ top: `${SURFACE + t * 35}cqh` }}>{t * 10}</span>)}</div>
       <div className="ds-decor" aria-hidden="true">
-        {AMBIENT.map(([x, t, , s], i) => <span key={`a${i}`} className="ds-sago" style={{ left: `${x}%`, top: `${SURFACE + t}cqh`, ['--s' as string]: s, animationDelay: `${-i * .9}s` }}/>)}
+        {AMBIENT.map(([x, t, , s], i) => <span key={`a${i}`} className="ds-sago" style={{ left: `${x}%`, top: `${SURFACE + t}cqh`, ['--s' as string]: s, animationDelay: `${-i * .9}s` }}><IngredientArt kind="sago"/></span>)}
         {BANDS.map((b, d) => <div key={b.kind} className={`ds-band ${landed && depth === d ? 'is-found' : ''}`}>
-          {b.bits.map(([x, dy, r, s], i) => <span key={i} className={`ds-${b.kind}`} style={{ left: `${x}%`, top: `${depthY(d) + dy}cqh`, ['--r' as string]: `${r}deg`, ['--s' as string]: s, animationDelay: `${-(i + d) * .8}s` }}/>)}
-          <span className={`ds-prize ds-${b.kind}`} style={{ top: `calc(${depthY(d)}cqh + ${size * .42}px)` }}/>
+          {b.bits.map(([x, dy, r, s], i) => <span key={i} className={`ds-${b.kind}`} style={{ left: `${x}%`, top: `${depthY(d) + dy}cqh`, ['--r' as string]: `${r}deg`, ['--s' as string]: s, animationDelay: `${-(i + d) * .8}s` }}><IngredientArt kind={b.kind}/></span>)}
+          <span className={`ds-prize ds-${b.kind}`} style={{ top: `calc(${depthY(d)}cqh + ${size * .42}px)` }} data-testid={`art-prize-${b.kind}`}><IngredientArt kind={b.kind}/></span>
         </div>)}
         <span className="ds-floor" style={{ top: `${WORLD - 26}cqh` }}/>
       </div>
@@ -58,4 +59,4 @@ export function DiveScene({ avatar, depth, caption, compact = false, children }:
     <div className="ds-vignette" aria-hidden="true"/>
     {caption && <p className="dive-caption">{caption}</p>}
   </div>;
-}
+});

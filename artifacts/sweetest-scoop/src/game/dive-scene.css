@@ -28,17 +28,13 @@
 
 /* ingredients: placed at fixed coordinates, discovered as the camera descends */
 .ds-decor span { position:absolute; display:block; translate:-50% -50%; scale:var(--s,1); rotate:var(--r,0deg); }
-.ds-sago { width:clamp(10px,1.7cqh,16px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 50% 54%, rgba(255,252,240,.95) 0 18%, rgba(250,240,218,.35) 30%, rgba(255,250,236,.18) 62%, rgba(230,200,160,.35) 100%); box-shadow:inset 1px 1px 1px rgba(255,255,250,.8), inset -1px -2px 2px rgba(190,140,80,.18); animation:ds-float 6s ease-in-out infinite; }
-.ds-cube { width:clamp(20px,3.6cqh,32px); aspect-ratio:1; border-radius:30% 22% 34% 18% / 22% 32% 20% 30%; background:repeating-linear-gradient(118deg, rgba(255,236,170,.0) 0 3px, rgba(255,236,170,.35) 3px 4px), radial-gradient(ellipse at 32% 28%, #ffe08a, #fbbd3e 55%, #ec9a2c 100%); box-shadow:inset 2px 2px 3px rgba(255,244,200,.7), inset -3px -3px 5px rgba(214,120,30,.35), 0 3px 6px rgba(170,100,30,.14); animation:ds-float 7s ease-in-out infinite; }
-.ds-pomelo { width:clamp(9px,1.6cqh,14px); height:clamp(24px,4cqh,36px); border-radius:50% 50% 50% 50% / 80% 80% 20% 20%; background:repeating-linear-gradient(90deg, rgba(255,240,232,.5) 0 1px, transparent 1px 3px), linear-gradient(175deg,rgba(255,214,204,.95),rgba(244,160,150,.85) 60%,rgba(226,128,120,.75)); box-shadow:inset 1px 2px 1px rgba(255,248,242,.85); animation:ds-float 8s ease-in-out infinite; }
-.ds-cloud { width:clamp(70px,13cqh,130px); height:clamp(32px,5.6cqh,52px); border-radius:60% 55% 48% 52% / 70% 70% 40% 40%; background:radial-gradient(ellipse at 40% 35%, rgba(255,252,242,.95), rgba(250,240,222,.75) 60%, rgba(250,236,214,0) 100%); filter:blur(1.5px); box-shadow:18px -8px 0 -8px rgba(255,248,234,.8), -16px -4px 0 -10px rgba(255,248,234,.8); animation:ds-drift 14s ease-in-out infinite; }
-.ds-gold { width:clamp(40px,7cqh,64px); height:clamp(30px,5cqh,46px); border-radius:58% 42% 52% 48% / 62% 52% 48% 38%; background:repeating-linear-gradient(150deg, transparent 0 4px, rgba(255,238,170,.3) 4px 5px), radial-gradient(ellipse at 34% 30%, #fff0b0 0 8%, #ffd05a 30%, #f6ad38 66%, #e08a3a); box-shadow:inset -4px -5px 6px rgba(200,100,40,.25), inset 3px 3px 4px rgba(255,246,210,.7), 0 6px 12px rgba(170,90,40,.2); }
-.ds-gold::after { content:""; position:absolute; top:-14%; right:20%; width:30%; height:26%; border-radius:0 80% 0 80%; background:linear-gradient(135deg,#9bb27a,#6f8f56); opacity:.9; rotate:20deg; }
+.ds-decor span > .ia { display:block; width:100%; height:100%; overflow:visible; }
+.ds-sago { width:clamp(10px,1.7cqh,16px); aspect-ratio:1; opacity:.9; animation:ds-float 6s ease-in-out infinite; }
+.ds-cube { width:clamp(20px,3.6cqh,32px); aspect-ratio:1; filter:drop-shadow(0 3px 3px rgba(170,100,30,.16)); animation:ds-float 7s ease-in-out infinite; }
+.ds-pomelo { width:clamp(18px,3.2cqh,30px); aspect-ratio:1; filter:drop-shadow(0 2px 3px rgba(160,70,60,.14)); animation:ds-float 8s ease-in-out infinite; }
+.ds-cloud { width:clamp(48px,8.5cqh,84px); aspect-ratio:1; opacity:.92; animation:ds-drift 14s ease-in-out infinite; }
+.ds-gold { width:clamp(40px,7cqh,64px); aspect-ratio:1; filter:drop-shadow(0 5px 6px rgba(170,90,40,.2)); }
 .ds-decor .ds-prize { left:50%; --s:1.35; animation:none; opacity:.85; transition:filter .6s, opacity .6s; }
-.ds-prize.ds-pomelo { width:clamp(20px,3cqh,28px); }
-.ds-prize.ds-pomelo::before, .ds-prize.ds-pomelo::after { content:""; position:absolute; top:-8%; width:75%; height:90%; border-radius:inherit; background:inherit; box-shadow:inherit; }
-.ds-prize.ds-pomelo::before { left:-52%; rotate:-22deg; }
-.ds-prize.ds-pomelo::after { right:-52%; rotate:22deg; }
 .ds-band.is-found .ds-prize { opacity:1; filter:drop-shadow(0 0 12px rgba(255,248,226,.9)); }
 .ds-floor { left:-5% !important; right:-5%; width:110%; height:26cqh; translate:0 0 !important; border-radius:50% 50% 0 0 / 30px 30px 0 0; background:radial-gradient(ellipse at 28% 20%,rgba(255,252,240,.7),transparent 55%),linear-gradient(180deg,#f8ecd8,#efdcc0); }
 @keyframes ds-float { 50% { translate:-50% calc(-50% - 6px); } }

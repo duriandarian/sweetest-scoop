@@ -8,7 +8,10 @@ import { Home } from './game/Home';
 import { RoomPage } from './game/RoomPage';
 import { SoloPage } from './game/Solo';
 import { QuestionPreview } from './game/QuestionPreview';
+import { HostResultsPreview } from './game/HostResultsPreview';
+import { HostLobbyPreview } from './game/HostLobbyPreview';
 import { MusicProvider } from './game/MusicProvider';
+import { SharedScorePage } from './game/ScoreRecap';
 import './game/game.css';
 
 const queryClient = new QueryClient();
@@ -18,8 +21,11 @@ function Router() {
   return <ErrorBoundary resetKey={location}><Switch>
     <Route path="/" component={Home}/>
     <Route path="/room/:code" component={RoomPage}/>
+    <Route path="/results" component={SharedScorePage}/>
     <Route path="/solo" component={SoloPage}/>
     <Route path="/preview/question"><QuestionPreview/></Route>
+    <Route path="/preview/lobby" component={HostLobbyPreview}/>
+    <Route path="/preview/results" component={HostResultsPreview}/>
     <Route component={NotFound}/>
   </Switch></ErrorBoundary>;
 }

@@ -23,12 +23,16 @@ import type {
   AnswerInput,
   AnswerReward,
   CreateRoomInput,
+  FinalRecap,
   HealthStatus,
   JoinRoomInput,
   PracticeAnswerInput,
   ProfileInput,
   QuestionListInput,
+  RoomEntryProblem,
   RoomState,
+  RoundAdvanceInput,
+  ScoreRecap,
   SessionRoom,
   SettingsInput
 } from './api.schemas';
@@ -268,7 +272,7 @@ return customFetch<SessionRoom>(getCreateRoomUrl(),
 
 export const getCreateRoomMutationKey = () => ['createRoom'] as const;
 
-export const getCreateRoomMutationOptions = <TError = ErrorType<unknown>,
+export const getCreateRoomMutationOptions = <TError = ErrorType<RoomEntryProblem>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createRoom>>, TError,CreateRoomMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
 ): UseMutationOptions<Awaited<ReturnType<typeof createRoom>>, TError,CreateRoomMutationVariables, TContext> => {
 
@@ -297,13 +301,13 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type CreateRoomMutationResult = NonNullable<Awaited<ReturnType<typeof createRoom>>>
     export type CreateRoomMutationBody = BodyType<CreateRoomInput>
-    export type CreateRoomMutationError = ErrorType<unknown>
+    export type CreateRoomMutationError = ErrorType<RoomEntryProblem>
     export type CreateRoomMutationVariables = {data: BodyType<CreateRoomInput>}
 
     /**
  * @summary Create a room and host session
  */
-export const useCreateRoom = <TError = ErrorType<unknown>,
+export const useCreateRoom = <TError = ErrorType<RoomEntryProblem>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createRoom>>, TError,CreateRoomMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof createRoom>>,
@@ -434,7 +438,7 @@ return customFetch<SessionRoom>(getJoinRoomUrl(code),
 
 export const getJoinRoomMutationKey = () => ['joinRoom'] as const;
 
-export const getJoinRoomMutationOptions = <TError = ErrorType<unknown>,
+export const getJoinRoomMutationOptions = <TError = ErrorType<RoomEntryProblem>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof joinRoom>>, TError,JoinRoomMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
 ): UseMutationOptions<Awaited<ReturnType<typeof joinRoom>>, TError,JoinRoomMutationVariables, TContext> => {
 
@@ -463,13 +467,13 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type JoinRoomMutationResult = NonNullable<Awaited<ReturnType<typeof joinRoom>>>
     export type JoinRoomMutationBody = BodyType<JoinRoomInput>
-    export type JoinRoomMutationError = ErrorType<unknown>
+    export type JoinRoomMutationError = ErrorType<RoomEntryProblem>
     export type JoinRoomMutationVariables = {code: string;data: BodyType<JoinRoomInput>}
 
     /**
  * @summary Join a room as a guest
  */
-export const useJoinRoom = <TError = ErrorType<unknown>,
+export const useJoinRoom = <TError = ErrorType<RoomEntryProblem>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof joinRoom>>, TError,JoinRoomMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof joinRoom>>,
@@ -489,7 +493,7 @@ export const getUpdateQuestionsUrl = (code: string,) => {
 }
 
 /**
- * @summary Replace the room's seven prompts before starting
+ * @summary Replace the room's prompts before starting
  */
 export const updateQuestions = async (code: string,
     questionListInput: QuestionListInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
@@ -556,7 +560,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type UpdateQuestionsMutationVariables = {code: string;data: BodyType<QuestionListInput>}
 
     /**
- * @summary Replace the room's seven prompts before starting
+ * @summary Replace the room's prompts before starting
  */
 export const useUpdateQuestions = <TError = ErrorType<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateQuestions>>, TError,UpdateQuestionsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -817,14 +821,29 @@ export const getNextQuestionUrl = (code: string,) => {
 /**
  * @summary Advance to the next question or finish
  */
-export const nextQuestion = async (code: string, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
+export const nextQuestion = async (code: string,
+    roundAdvanceInput: RoundAdvanceInput, options?: Parameters<typeof customFetch>[1]): Promise<RoomState> => {
 
-  return customFetch<RoomState>(getNextQuestionUrl(code),
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<RoomState>(getNextQuestionUrl(code),
   {
     ...options,
-    method: 'POST'
-
-
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(roundAdvanceInput)
   }
 );}
 
@@ -834,7 +853,7 @@ export const nextQuestion = async (code: string, options?: Parameters<typeof cus
 
 export const getNextQuestionMutationKey = () => ['nextQuestion'] as const;
 
-export const getNextQuestionMutationOptions = <TError = ErrorType<unknown>,
+export const getNextQuestionMutationOptions = <TError = ErrorType<void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof nextQuestion>>, TError,NextQuestionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
 ): UseMutationOptions<Awaited<ReturnType<typeof nextQuestion>>, TError,NextQuestionMutationVariables, TContext> => {
 
@@ -849,9 +868,9 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof nextQuestion>>, NextQuestionMutationVariables> = (props) => {
-          const {code} = props ?? {};
+          const {code,data} = props ?? {};
 
-          return  nextQuestion(code,requestOptions)
+          return  nextQuestion(code,data,requestOptions)
         }
 
 
@@ -862,14 +881,14 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type NextQuestionMutationResult = NonNullable<Awaited<ReturnType<typeof nextQuestion>>>
-
-    export type NextQuestionMutationError = ErrorType<unknown>
-    export type NextQuestionMutationVariables = {code: string}
+    export type NextQuestionMutationBody = BodyType<RoundAdvanceInput>
+    export type NextQuestionMutationError = ErrorType<void>
+    export type NextQuestionMutationVariables = {code: string;data: BodyType<RoundAdvanceInput>}
 
     /**
  * @summary Advance to the next question or finish
  */
-export const useNextQuestion = <TError = ErrorType<unknown>,
+export const useNextQuestion = <TError = ErrorType<void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof nextQuestion>>, TError,NextQuestionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof nextQuestion>>,
@@ -962,6 +981,160 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
       return useMutation(getUpdateProfileMutationOptions(options));
     }
+
+export const getGetFinalRecapUrl = (code: string,) => {
+
+
+
+
+  return `/api/rooms/${code}/recap`
+}
+
+/**
+ * @summary Get the authenticated guest's shareable final score
+ */
+export const getFinalRecap = async (code: string, options?: Parameters<typeof customFetch>[1]): Promise<FinalRecap> => {
+
+  return customFetch<FinalRecap>(getGetFinalRecapUrl(code),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetFinalRecapQueryKey = (code: string,) => {
+    return [
+    `/api/rooms/${code}/recap`
+    ] as const;
+    }
+
+
+export const getGetFinalRecapQueryOptions = <TData = Awaited<ReturnType<typeof getFinalRecap>>, TError = ErrorType<void>>(code: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getFinalRecap>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetFinalRecapQueryKey(code);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFinalRecap>>> = ({ signal }) => getFinalRecap(code, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: code !== null && code !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getFinalRecap>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetFinalRecapQueryResult = NonNullable<Awaited<ReturnType<typeof getFinalRecap>>>
+export type GetFinalRecapQueryError = ErrorType<void>
+
+
+/**
+ * @summary Get the authenticated guest's shareable final score
+ */
+
+export function useGetFinalRecap<TData = Awaited<ReturnType<typeof getFinalRecap>>, TError = ErrorType<void>>(
+ code: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getFinalRecap>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetFinalRecapQueryOptions(code,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetSharedRecapUrl = () => {
+
+
+
+
+  return `/api/results`
+}
+
+/**
+ * @summary Read a final score using its share reference, without a seat session
+ */
+export const getSharedRecap = async ( options?: Parameters<typeof customFetch>[1]): Promise<ScoreRecap> => {
+
+  return customFetch<ScoreRecap>(getGetSharedRecapUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetSharedRecapQueryKey = () => {
+    return [
+    `/api/results`
+    ] as const;
+    }
+
+
+export const getGetSharedRecapQueryOptions = <TData = Awaited<ReturnType<typeof getSharedRecap>>, TError = ErrorType<void>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSharedRecap>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetSharedRecapQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSharedRecap>>> = ({ signal }) => getSharedRecap({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSharedRecap>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetSharedRecapQueryResult = NonNullable<Awaited<ReturnType<typeof getSharedRecap>>>
+export type GetSharedRecapQueryError = ErrorType<void>
+
+
+/**
+ * @summary Read a final score using its share reference, without a seat session
+ */
+
+export function useGetSharedRecap<TData = Awaited<ReturnType<typeof getSharedRecap>>, TError = ErrorType<void>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSharedRecap>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetSharedRecapQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
 
 export const getUpdateSettingsUrl = (code: string,) => {
 

@@ -1,7 +1,9 @@
+import { memo } from 'react';
 import { BOBI_SRC } from '@/components/story/Bobi';
 import { avatarOf, BODY_TINTS } from './theme';
 import { decodeAvatar, lookLabel } from './wardrobe';
 import { AccessoryArt, BackArt, HatArt, OutfitArt } from './WardrobeArt';
+import { isPartyBobi, PARTY_BOBI_NAMES, PartyBobiArt } from './PartyBobiArt';
 import './wardrobe.css';
 
 export const BOBI_DRESSUP_SRC = `${import.meta.env.BASE_URL}story/bobi-dressup-base.webp`;
@@ -16,7 +18,15 @@ function Accessory({ id, ink }: { id: string; ink: string }) {
 
 /** Shared renderer for every Bobi in the game: legacy flavor ids render unchanged; b1 tokens render the dress-up stack. */
 /** `label` is accepted for compatibility but no visible name is rendered. */
-export function BobiAvatar({ avatar, size = 56, className = '', testId }: { avatar?: string | null; size?: number; label?: boolean; className?: string; testId?: string }) {
+export const BobiAvatar = memo(function BobiAvatar({ avatar, size = 56, className = '', testId }: { avatar?: string | null; size?: number; label?: boolean; className?: string; testId?: string }) {
+  if (isPartyBobi(avatar)) {
+    const amy = avatar === 'party-amy';
+    return <span className={`bobi-av bobi-party ${className}`} style={{ ['--av' as string]: `${size}px`, ['--aura' as string]: amy ? '#f2a9c4' : '#ffc963' }}
+      data-testid={testId} role="img" aria-label={PARTY_BOBI_NAMES[avatar]}>
+      <span className="bobi-av-aura" aria-hidden="true"/>
+      <PartyBobiArt variant={avatar} baseSrc={BOBI_DRESSUP_SRC}/>
+    </span>;
+  }
   const look = decodeAvatar(avatar);
   if (look) {
     const tint = BODY_TINTS[look.color];
@@ -40,4 +50,4 @@ export function BobiAvatar({ avatar, size = 56, className = '', testId }: { avat
     <img src={BOBI_SRC} alt={`Bobi, ${a.label} style`} draggable={false} style={{ filter: `hue-rotate(${a.hue}deg) saturate(${a.sat})` }}/>
     <span className="bobi-av-acc" aria-hidden="true"><Accessory id={a.id} ink={a.ink}/></span>
   </span>;
-}
+});

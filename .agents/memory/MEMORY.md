@@ -2,3 +2,5 @@
 - [Party game rules](party-game-rules.md) — seven timed rounds, prepared answer rarity, individual scores, one answer each, and round podiums.
 - [Standalone UI checks](standalone-ui-checks.md) — standalone bundlers need exact-case resolution even when the normal Vite app works.
 - [GitHub synchronization](github-synchronization.md) — preserve GitHub history when syncing the separate Replit checkpoint tree; never force-push.
+- [Party recovery testing](phone-recovery-testing.md) — distinguish lost replies from unsent requests; check host replays after the following round reveals.
+- [Shareable game recaps](shareable-game-recaps.md) — standalone personal scores follow the room’s lifetime and must not share seat access or private game details.

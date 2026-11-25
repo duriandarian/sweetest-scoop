@@ -6,20 +6,32 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from './answerCorrection';
 export * from './answerInput';
 export * from './answerReward';
 export * from './bobiAppearance';
 export * from './catalogAnswer';
 export * from './createRoomInput';
+export * from './customQuestionIssue';
+export * from './finalRecap';
 export * from './groupedAnswer';
 export * from './healthStatus';
+export * from './honorableMention';
+export * from './honorableMentionCategory';
 export * from './joinRoomInput';
 export * from './practiceAnswerInput';
 export * from './profileInput';
 export * from './questionListInput';
+export * from './recapOutcome';
+export * from './recapReference';
+export * from './roomEntryProblem';
+export * from './roomEntryProblemField';
+export * from './roomInstanceId';
 export * from './roomPlayer';
 export * from './roomState';
 export * from './roomStatePhase';
+export * from './roundAdvanceInput';
+export * from './scoreRecap';
 export * from './sessionRoom';
 export * from './sessionTokenParameter';
 export * from './settingsInput';

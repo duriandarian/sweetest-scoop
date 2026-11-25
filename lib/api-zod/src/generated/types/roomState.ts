@@ -5,9 +5,12 @@
  * The Sweetest Scoop party game API
  * OpenAPI spec version: 0.1.0
  */
+import type { AnswerCorrection } from './answerCorrection';
 import type { AnswerReward } from './answerReward';
 import type { CatalogAnswer } from './catalogAnswer';
 import type { GroupedAnswer } from './groupedAnswer';
+import type { HonorableMention } from './honorableMention';
+import type { RoomInstanceId } from './roomInstanceId';
 import type { RoomPlayer } from './roomPlayer';
 import type { RoomStatePhase } from './roomStatePhase';
 import type { Standing } from './standing';
@@ -29,6 +32,8 @@ export interface RoomState {
   roundDuration?: number;
   /** @nullable */
   playerId?: string | null;
+  /** Included for a verified seat, so invite links cannot resume an unrelated room with the same code. */
+  roomInstanceId?: RoomInstanceId;
   /** @nullable */
   myAnswer?: string | null;
   /**
@@ -39,14 +44,20 @@ export interface RoomState {
   myReward?: AnswerReward | null;
   roundStandings?: Standing[];
   possibleAnswers?: CatalogAnswer[];
+  /** Custom rooms expose only prompts played so far to verified seats; party rooms keep their original behavior. */
   questions: string[];
   /** @nullable */
   currentQuestion?: string | null;
   players: RoomPlayer[];
   answers: GroupedAnswer[];
   standings: Standing[];
+  /** Awards from all rounds, available only to room members once the game finishes. */
+  honorableMentions?: HonorableMention[];
   isHost: boolean;
   avatar?: string;
   submitted: boolean;
   submittedCount?: number;
+  /** Normal feedback for an unlisted answer, returned only by submission. No answer is saved or locked. */
+  answerFeedback?: string;
+  answerCorrection?: AnswerCorrection;
 }

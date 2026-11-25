@@ -224,7 +224,7 @@
         "sourceTier": "Schooler"
       },
       {
-        "answer": "So Gong Dong Tofu House",
+        "answer": "SGD Tofu House",
         "sourceTier": "Rare"
       },
       {
@@ -5680,39 +5680,312 @@
     ]
   },
   {
-    "prompt": "Name a city of residence that an RBF member family resides in",
+    "prompt": "Name an item Amy carries on her",
     "answers": [
       {
-        "answer": "Mountain View",
+        "answer": "keys",
         "sourceTier": "Plankton"
       },
       {
-        "answer": "San Jose",
+        "answer": "chapstick",
         "sourceTier": "Schooler"
       },
       {
-        "answer": "Belmont",
+        "answer": "labubu | lafufu",
         "sourceTier": "Rare"
       },
       {
-        "answer": "San Carlos",
+        "answer": "Vaseline lip therapy | Vaseline lip cream",
         "sourceTier": "Deep Cut"
       },
       {
-        "answer": "Sunnyvale",
+        "answer": "engagement ring",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "phone",
         "sourceTier": "Plankton"
       },
       {
-        "answer": "Palo Alto",
+        "answer": "owala",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "lip balm",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "nail filer | nail trim | nail smoother",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "laptop",
         "sourceTier": "Plankton"
       },
       {
-        "answer": "Santa Clara",
+        "answer": "book",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "oura ring",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "trader joe's hand cream",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "water",
         "sourceTier": "Plankton"
       },
       {
-        "answer": "Cupertino",
+        "answer": "Bible",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "gentle monsters",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "burt's bees",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "glasses",
         "sourceTier": "Plankton"
+      },
+      {
+        "answer": "ring",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "fentle monsters",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "id",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "tote bag",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "h&m earrings",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "drivers license",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "scrunchie",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "purse",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "hand cream",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "bag",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "earrings",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "sunglasses",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "necklace",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "backpack",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "bracelet",
+        "sourceTier": "Schooler"
+      }
+    ]
+  },
+  {
+    "prompt": "Name a boba place Daniel has tried",
+    "answers": [
+      {
+        "answer": "Heytea",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Charlie's | Google",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "Shu Shia",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Teazzi",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Joy yee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Auntea Jenny",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "Molly tea",
+        "sourceTier": "Plankton"
+      },
+      {
+        "answer": "Waymo",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "7 leaves",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Tea era",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Chagee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "liquid fusion",
+        "sourceTier": "Krillion"
+      },
+      {
+        "answer": "99 ranch",
+        "sourceTier": "Too Clever"
+      },
+      {
+        "answer": "Ume tea",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Boba guys",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Pekoe",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Happy Lemon",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Boba bliss",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Tiger Sugar",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Yi Fang",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Sunright",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "3catea",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Meet fresh",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Tastea",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Chinatown Taiwan Fruit tea",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "TP Tea",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Xing fu tang",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "HK tea",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Mixue",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "Shang yu lin",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "Bearology",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Chicha | Chicha san chen",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "kung fu tea",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "teamoji",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "85 degrees",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "latea",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Teaspoon",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "moge tee",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Ten ren",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "cocomero",
+        "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "Teatop",
+        "sourceTier": "Schooler"
+      },
+      {
+        "answer": "te'amo",
+        "sourceTier": "Deep Cut"
       }
     ]
   },
@@ -5792,7 +6065,7 @@
         "sourceTier": "Rare"
       },
       {
-        "answer": "spicy cucubmer salad",
+        "answer": "spicy cucumber salad",
         "sourceTier": "Deep Cut"
       },
       {
@@ -5816,6 +6089,10 @@
         "sourceTier": "Rare"
       },
       {
+        "answer": "soup dumplings | xlb",
+        "sourceTier": "Deep Cut"
+      },
+      {
         "answer": "sweet potato fries",
         "sourceTier": "Rare"
       },
@@ -5830,11 +6107,19 @@
       {
         "answer": "soba",
         "sourceTier": "Rare"
+      },
+      {
+        "answer": "tomato egg",
+        "sourceTier": "Rare"
+      },
+      {
+        "answer": "pork buns",
+        "sourceTier": "Rare"
       }
     ]
   },
   {
-    "prompt": "Name something I love about Amy (one word description)",
+    "prompt": "Name something Daniel loves about Amy (one word description)",
     "answers": [
       {
         "answer": "nice",
@@ -5851,6 +6136,10 @@
       {
         "answer": "gracious",
         "sourceTier": "Deep Cut"
+      },
+      {
+        "answer": "devoted",
+        "sourceTier": "Krillion"
       },
       {
         "answer": "funny",
@@ -5893,7 +6182,7 @@
         "sourceTier": "Schooler"
       },
       {
-        "answer": "godly",
+        "answer": "goofy",
         "sourceTier": "Rare"
       },
       {
@@ -5921,12 +6210,20 @@
         "sourceTier": "Rare"
       },
       {
+        "answer": "bubbly",
+        "sourceTier": "Deep Cut"
+      },
+      {
         "answer": "sweet",
         "sourceTier": "Schooler"
       },
       {
         "answer": "adventurous",
         "sourceTier": "Rare"
+      },
+      {
+        "answer": "Vietnamese",
+        "sourceTier": "Schooler"
       },
       {
         "answer": "scent",

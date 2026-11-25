@@ -2,8 +2,11 @@ import { useMemo, useState } from 'react';
 import type { CatalogAnswer, Standing } from '@workspace/api-client-react';
 import { Search } from 'lucide-react';
 import { BobiAvatar } from './BobiAvatar';
+import { PodiumMedal } from './PodiumMedal';
+import { IngredientArt } from './IngredientArt';
 import { PRIZES, fmtSecs, prizeFor } from './theme';
 import './results-motion.css';
+import './podium.css';
 
 const SPRINKLES = [
   { l: '8%', s: '9px', c: '#f6efe0', t: '7.2s', d: '1.8s', x: '8px' },
@@ -15,27 +18,32 @@ const SPRINKLES = [
   { l: '88%', s: '9px', c: '#f0b23f', t: '7.4s', d: '3.6s', x: '5px', cube: true },
 ];
 export function NextHint({ last }: { last: boolean }) {
-  return <p className="rm-next-hint" aria-hidden="true"><span/><span/><span/>{last ? 'Final podium is chilling' : 'Next scoop is ready when you are'}</p>;
+  return <p className="rm-next-hint" aria-hidden="true"><span/><span/><span/>{last ? 'Final podium is chilling' : 'Next round is ready when you are'}</p>;
 }
 
 const rank = (list: Standing[]) => list.slice().sort((a, b) => b.points - a.points || (a.elapsedMs ?? 1e12) - (b.elapsedMs ?? 1e12) || a.displayName.localeCompare(b.displayName));
 
+const PLACES = ['1st', '2nd', '3rd', '4th', '5th'] as const;
+
 export function Podium({ standings, title, testId }: { standings: Standing[]; title: string; testId: string }) {
-  const top = rank(standings).slice(0, 3);
+  const top = rank(standings).slice(0, PLACES.length);
   if (!top.length) return <div className="g-empty" data-testid={`${testId}-empty`}>No guests have scored yet.</div>;
-  const order = [top[1], top[0], top[2]];
   return <section className="podium" aria-label={title} data-testid={testId}>
     <span className="rm-sprinkle" aria-hidden="true">{SPRINKLES.map((s, i) => <i key={i} className={s.cube ? 'cube' : ''}
       style={{ left: s.l, ['--s' as string]: s.s, ['--c' as string]: s.c, ['--t' as string]: s.t, ['--dl' as string]: s.d, ['--x' as string]: s.x }}/>)}</span>
     <h3 className="g-kicker">{title}</h3>
-    <div className="podium-row">
-      {order.map((s, i) => s ? <div key={s.playerId} className={`podium-step step-${i === 1 ? 1 : i === 0 ? 2 : 3}`} data-testid={`${testId}-${s.playerId}`}>
-        <BobiAvatar avatar={s.avatar} size={i === 1 ? 72 : 56}/>
-        <strong>{s.displayName}</strong>
-        <span className="podium-pts">{s.points}</span>
-        <span className="podium-block">{i === 1 ? 1 : i === 0 ? 2 : 3}</span>
-      </div> : <div key={i} className="podium-step is-blank"/>)}
-    </div>
+    <ol className="podium-row" role="list" data-places={top.length}>
+      {top.map((s, i) => <li key={s.playerId} className={`podium-step step-${i + 1}`} data-testid={`${testId}-${s.playerId}`}>
+        <span className="sr-only">{PLACES[i]} place</span>
+        <BobiAvatar avatar={s.avatar} size={i === 0 ? 84 : i < 3 ? 66 : 56}/>
+        <strong title={s.displayName}>{s.displayName}</strong>
+        <span className="podium-pts">{s.points}<small>pts</small></span>
+        <span className="podium-block" aria-hidden="true">
+          {i < 3 && <PodiumMedal place={i === 0 ? 1 : i === 1 ? 2 : 3}/>}
+          <span className="podium-rank">{i < 3 ? i + 1 : PLACES[i]}</span>
+        </span>
+      </li>)}
+    </ol>
   </section>;
 }
 
@@ -90,7 +98,7 @@ export function Catalog({ answers, mine }: { answers: CatalogAnswer[]; mine?: st
     </div>
     <label className="kat-search"><Search size={17}/><input data-testid="input-catalog-search" placeholder="Search all answers..." value={q} onChange={e => { setQ(e.target.value); setLimit(PAGE); }}/></label>
     {list.length ? <ul className="kat-list">{list.slice(0, limit).map((a, i) => { const p = prizeFor(a.tier, a.depth); const isMine = !!mine && norm(mine) === norm(a.answer); return <li key={`${a.answer}-${i}`} className={`${a.submitted ? 'is-picked' : ''} ${isMine ? 'is-mine' : ''}`} style={{ ['--pc' as string]: p.color, ['--pi' as string]: p.ink }} data-testid={`row-catalog-${i}`}>
-      <span className="kat-mark" title={p.name} aria-label={p.name}>{p.depth + 1}</span>
+      <span className="kat-mark is-ingredient" title={p.name} aria-label={p.name}><IngredientArt depth={p.depth} size={28}/></span>
       <span className="kat-ans"><b>{a.answer}</b><small>{p.name}{a.submittedCount ? ` · picked ${a.submittedCount}x` : ''}{isMine ? ' · your answer' : ''}</small></span>
       <span className="kat-pts">+{a.basePoints}</span></li>; })}</ul>
       : <div className="g-empty">Nothing matches that search.</div>}

@@ -1,0 +1,22 @@
+.round-ready {
+  align-self: center;
+  width: min(100%, 34rem);
+  margin-block: auto;
+  padding: clamp(24px, 6vw, 48px);
+  align-items: center;
+  text-align: center;
+}
+.round-ready .g-title { font-size: clamp(32px, 5vw, 56px); }
+.round-ready p { margin: 0; }
+.round-ready-count {
+  display: grid;
+  place-items: center;
+  width: clamp(108px, 15vw, 160px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid #deb059;
+  background: linear-gradient(145deg, #fff3ce, #fee2a0);
+  color: #61451a;
+  font: 750 clamp(64px, 9vw, 100px)/1 var(--app-font-sans);
+  font-variant-numeric: tabular-nums;
+}

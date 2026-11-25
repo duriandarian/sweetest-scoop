@@ -5,6 +5,36 @@
  * The Sweetest Scoop party game API
  * OpenAPI spec version: 0.1.0
  */
+/**
+ * A read-only capability separate from room codes and seat credentials.
+ * @pattern ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.[A-Za-z0-9_-]{43}$(?![\s\S])
+ */
+export type RecapReference = string;
+
+export type RecapOutcome = typeof RecapOutcome[keyof typeof RecapOutcome];
+
+
+export const RecapOutcome = {
+  'golden-mango': 'golden-mango',
+  'coconut-cloud': 'coconut-cloud',
+  'pomelo-gem': 'pomelo-gem',
+  'mango-cube': 'mango-cube',
+  'sago-pearl': 'sago-pearl',
+  skipped: 'skipped',
+} as const;
+
+export interface ScoreRecap {
+  /** @minimum 0 */
+  totalPoints: number;
+  /** One outcome per question, in the order the questions were played. */
+  rounds: RecapOutcome[];
+}
+
+export interface FinalRecap {
+  reference: RecapReference;
+  recap: ScoreRecap;
+}
+
 export interface HealthStatus {
   status: string;
 }
@@ -12,7 +42,7 @@ export interface HealthStatus {
 /**
  * Legacy flavor preset or a versioned mix-and-match Bobi token. b1 encodes fixed color, hat, outfit and accessory indices; existing indices must never be reordered.
  * @maxLength 16
- * @pattern ^(mango|matcha|strawberry|taro|coconut|b1:[0-5]:([0-9]|1[0-3]):([0-9]|1[01]):([0-9]|1[01]))$(?![\s\S])
+ * @pattern ^(mango|matcha|strawberry|taro|coconut|b1:([0-9]|1[01]):([0-9]|1[0-9]|2[01]):([0-9]|1[0-9]|2[0-3]):([0-9]|1[0-3]))$(?![\s\S])
  */
 export type BobiAppearance = string;
 
@@ -25,13 +55,41 @@ export interface CreateRoomInput {
   avatar?: BobiAppearance;
 }
 
+/**
+ * Immutable room identifier. It is not a session credential.
+ */
+export type RoomInstanceId = string;
+
 export interface JoinRoomInput {
   /**
+     * Unique within the room after ignoring case and extra spaces.
      * @minLength 1
      * @maxLength 32
      */
   displayName: string;
   avatar?: BobiAppearance;
+  /** When joining from a QR invite, require the current room to be this exact instance. */
+  inviteRoomId?: RoomInstanceId;
+}
+
+export type RoomEntryProblemField = typeof RoomEntryProblemField[keyof typeof RoomEntryProblemField];
+
+
+export const RoomEntryProblemField = {
+  name: 'name',
+  code: 'code',
+} as const;
+
+export interface CustomQuestionIssue {
+  /** @minimum 1 */
+  row?: number;
+  message: string;
+}
+
+export interface RoomEntryProblem {
+  error: string;
+  field?: RoomEntryProblemField;
+  issues?: CustomQuestionIssue[];
 }
 
 export interface ProfileInput {
@@ -51,8 +109,8 @@ export interface SettingsInput {
 
 export interface QuestionListInput {
   /**
-     * @minItems 7
-     * @maxItems 7
+     * @minItems 1
+     * @maxItems 10
      * @items.minLength 1
      * @items.maxLength 280
      */
@@ -67,7 +125,16 @@ export interface AnswerInput {
   answer: string;
   /**
      * @minimum 1
-     * @maximum 7
+     * @maximum 10
+     */
+  round: number;
+}
+
+export interface RoundAdvanceInput {
+  /**
+     * The revealed round displayed when the host clicked Next or Final standings.
+     * @minimum 1
+     * @maximum 10
      */
   round: number;
 }
@@ -80,7 +147,7 @@ export interface PracticeAnswerInput {
   answer: string;
   /**
      * @minimum 1
-     * @maximum 7
+     * @maximum 10
      */
   round: number;
   /**
@@ -100,6 +167,14 @@ export const RoomStatePhase = {
   finished: 'finished',
 } as const;
 
+/**
+ * A private spelling suggestion. Submit the corrected answer again to confirm; no answer or points have been saved.
+ */
+export interface AnswerCorrection {
+  originalAnswer: string;
+  correctedAnswer: string;
+}
+
 export interface AnswerReward {
   points: number;
   basePoints: number;
@@ -109,6 +184,9 @@ export interface AnswerReward {
   depth: number;
   matched: boolean;
   elapsedMs: number;
+  /** The accepted prepared answer, for displaying its correct spelling. */
+  canonicalAnswer?: string;
+  answerCorrection?: AnswerCorrection;
 }
 
 export interface Standing {
@@ -156,6 +234,27 @@ export interface GroupedAnswer {
   ingredient: string;
 }
 
+export type HonorableMentionCategory = typeof HonorableMentionCategory[keyof typeof HonorableMentionCategory];
+
+
+export const HonorableMentionCategory = {
+  fastest: 'fastest',
+  'just-in-time': 'just-in-time',
+  'rare-finds': 'rare-finds',
+} as const;
+
+export interface HonorableMention {
+  category: HonorableMentionCategory;
+  playerId: string;
+  displayName: string;
+  avatar?: string;
+  /**
+     * Elapsed milliseconds for reply awards, or number of top-two-tier answers for rare finds.
+     * @minimum 0
+     */
+  value: number;
+}
+
 export interface RoomState {
   code: string;
   phase: RoomStatePhase;
@@ -173,6 +272,8 @@ export interface RoomState {
   roundDuration?: number;
   /** @nullable */
   playerId?: string | null;
+  /** Included for a verified seat, so invite links cannot resume an unrelated room with the same code. */
+  roomInstanceId?: RoomInstanceId;
   /** @nullable */
   myAnswer?: string | null;
   /**
@@ -183,16 +284,22 @@ export interface RoomState {
   myReward?: AnswerReward | null;
   roundStandings?: Standing[];
   possibleAnswers?: CatalogAnswer[];
+  /** Custom rooms expose only prompts played so far to verified seats; party rooms keep their original behavior. */
   questions: string[];
   /** @nullable */
   currentQuestion?: string | null;
   players: RoomPlayer[];
   answers: GroupedAnswer[];
   standings: Standing[];
+  /** Awards from all rounds, available only to room members once the game finishes. */
+  honorableMentions?: HonorableMention[];
   isHost: boolean;
   avatar?: string;
   submitted: boolean;
   submittedCount?: number;
+  /** Normal feedback for an unlisted answer, returned only by submission. No answer is saved or locked. */
+  answerFeedback?: string;
+  answerCorrection?: AnswerCorrection;
 }
 
 export interface SessionRoom {
